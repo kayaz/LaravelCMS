@@ -10,7 +10,7 @@
             @foreach ($zdjecia as $index => $p)
             <li id="recordsArray_{{ $p->id }}">
                 <div class="card thumb-card">
-                    <img class="img-fluid" src="<?php echo asset("storage/galeria/thumbs/".$p->plik)?>" alt="{{ $p->nazwa }}">
+                    <img class="img-fluid" src="<?php echo asset("uploads/galeria/thumbs/".$p->plik)?>" alt="{{ $p->nazwa }}">
                     <div class="card-body">
                         <div class="btn-group">
                             <a href="" class="btn action-button action-small mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj zdjęcie"><i class="fe-edit"></i></a>

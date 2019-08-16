@@ -28,7 +28,7 @@
 <div id="slider" class="clearfix">
     <ul class="rslidess list-unstyled mb-0">
         @foreach ($slider as $s)
-        <li><img src="{{asset('storage/slider/'.$s->plik) }}" alt="{{ $s->nazwa }}"></li>
+        <li><img src="{{asset('uploads/slider/'.$s->plik) }}" alt="{{ $s->nazwa }}"></li>
         @endforeach
     </ul>
 </div>
@@ -41,7 +41,7 @@
                     <div class="list-post">
                         <div class="row">
                             <div class="col-4">
-                                <a href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->nazwa }}" itemprop="url"><img src="{{asset('storage/news/thumbs/'.$n->plik) }}" alt="{{ $n->nazwa }}"></a>
+                                <a href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->nazwa }}" itemprop="url"><img src="{{asset('uploads/news/thumbs/'.$n->plik) }}" alt="{{ $n->nazwa }}"></a>
                             </div>
                             <div class="col-8">
                                 <div class="list-post-content">

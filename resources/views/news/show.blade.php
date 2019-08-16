@@ -8,7 +8,7 @@
             <div class="col-12 col-md-10">
                 <div class="single-news">
                     <div class="main-entry-img">
-                        <img src="{{asset('storage/news/'.$wpis->plik) }}" alt="{{ $wpis->nazwa }}" class="img-news">
+                        <img src="{{asset('uploads/news/'.$wpis->plik) }}" alt="{{ $wpis->nazwa }}" class="img-news">
                     </div>
 
                     <div class="main-entry-outer">

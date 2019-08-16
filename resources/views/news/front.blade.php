@@ -11,7 +11,7 @@
                     <div class="list-post">
                         <div class="row">
                             <div class="col-4">
-                                <a href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->nazwa }}" itemprop="url"><img src="{{asset('storage/news/thumbs/'.$n->plik) }}" alt="{{ $n->nazwa }}"></a>
+                                <a href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->nazwa }}" itemprop="url"><img src="{{asset('uploads/news/thumbs/'.$n->plik) }}" alt="{{ $n->nazwa }}"></a>
                             </div>
                             <div class="col-8">
                                 <div class="list-post-content">

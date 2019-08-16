@@ -66,8 +66,8 @@ class SliderController extends Controller
             $filepath = public_path('storage/slider/' . $name);
             $thumbnailpath = public_path('storage/slider/thumbs/' . $name);
             $image = Image::make($filepath)->fit(1920, 700)->save($filepath);
-            $image = Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
             chmod($filepath, 0755);
+            $image = Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
             chmod($thumbnailpath, 0755);
 
             // Name for SQL
@@ -120,8 +120,8 @@ class SliderController extends Controller
             $filepath = public_path('storage/slider/' . $name);
             $thumbnailpath = public_path('storage/slider/thumbs/' . $name);
             $image = Image::make($filepath)->fit(1920, 700)->save($filepath);
-            $image = Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
             chmod($filepath, 0755);
+            $image = Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
             chmod($thumbnailpath, 0755);
 
             // Name for SQL

@@ -61,14 +61,13 @@ class SliderController extends Controller
             $file = request()->file('plik');
             $name = Str::slug($request->nazwa, '-') . '.' . $file->getClientOriginalExtension();
             $request->plik->storeAs('public/slider', $name);
+            chmod('public/slider'.$name, 0755);
 
             // Make thumbs
             $filepath = public_path('storage/slider/' . $name);
             $thumbnailpath = public_path('storage/slider/thumbs/' . $name);
-            chmod($filepath, 0755);
             $image = Image::make($filepath)->fit(1920, 700)->save($filepath);
             $image = Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
-            chmod($thumbnailpath, 0755);
 
             // Name for SQL
             $slider->plik = $name;
@@ -115,14 +114,13 @@ class SliderController extends Controller
             $file = request()->file('plik');
             $name = Str::slug($request->nazwa, '-') . '.' . $file->getClientOriginalExtension();
             $request->plik->storeAs('public/slider', $name);
+            chmod('public/slider'.$name, 0755);
 
             // Make thumbs
             $filepath = public_path('storage/slider/' . $name);
             $thumbnailpath = public_path('storage/slider/thumbs/' . $name);
-            chmod($filepath, 0755);
             $image = Image::make($filepath)->fit(1920, 700)->save($filepath);
             $image = Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
-            chmod($thumbnailpath, 0755);
 
             // Name for SQL
             $slider->plik = $name;

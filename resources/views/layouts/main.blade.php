@@ -23,7 +23,7 @@
     <!-- tutaj trzeba wstawić kod od head -->
 </head>
 <body id="mainpage">
-
+Test
 @include('layouts.header')
 
 <div id="slider" class="clearfix">

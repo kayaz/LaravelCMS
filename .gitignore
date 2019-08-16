@@ -9,3 +9,14 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+!/public/storage/galeria/
+!/public/storage/news/
+!/public/storage/slider/
+!/public/thumbs/
+!/public/uploads/
+!/storage/app/public/galeria/
+!/storage/app/public/news/
+!/storage/app/public/slider/
+!/public/galeria/
+!/public/news/
+!/public/slider/

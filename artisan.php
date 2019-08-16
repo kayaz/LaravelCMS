@@ -1,4 +1,3 @@
 <?php
+exec('php artisan storage:link');
 
-$output = shell_exec('php artisan storage:link');
-echo "<pre>$output</pre>";

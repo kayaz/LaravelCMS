@@ -1,27 +1,6 @@
 @extends('admin')
 
 @section('content')
-
-<?php
-
-// Path to the project's root folder
-echo base_path();
-
-// Path to the 'app' folder
-echo app_path();
-
-// Path to the 'public' folder
-echo public_path();
-
-// Path to the 'storage' folder
-echo storage_path();
-
-// Path to the 'storage/app' folder
-echo storage_path('app');
-
-?>
-
-
     <div class="container-fluid">
         <h4 class="page-title"><i class="fe-airplay"></i> &nbsp;Przeglądaj panele</h4>
     </div>
@@ -54,7 +33,7 @@ echo storage_path('app');
                     <tr id="recordsArray_{{ $p->id }}">
                         <th class="position" scope="row">{{ $index+1 }}</th>
                         <td>{{ $p->nazwa }}</td>
-                        <td><img src="<?php echo asset("storage/slider/thumbs/".$p->plik)?>" alt="{{ $p->nazwa }}"></td>
+                        <td><img src="<?php echo asset("uploads/slider/thumbs/".$p->plik)?>" alt="{{ $p->nazwa }}"></td>
                         <td>{{ $p->updated_at }}</td>
                         <td class="option-120">
                             <div class="btn-group">

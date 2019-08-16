@@ -60,11 +60,11 @@ class SliderController extends Controller
             // Save new file
             $file = request()->file('plik');
             $name = Str::slug($request->nazwa, '-') . '.' . $file->getClientOriginalExtension();
-            $request->plik->storeAs('public/storage/slider', $name);
+            $request->plik->storeAs('slider', $name, 'public_uploads');
 
             // Make thumbs
-            $filepath = public_path('storage/slider/' . $name);
-            $thumbnailpath = public_path('storage/slider/thumbs/' . $name);
+            $filepath = public_path('uploads/slider/' . $name);
+            $thumbnailpath = public_path('uploads/slider/thumbs/' . $name);
             $image = Image::make($filepath)->fit(1920, 700)->save($filepath);
             $image = Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
 
@@ -106,17 +106,17 @@ class SliderController extends Controller
         if ($request->hasFile('plik')) {
 
             // Delete old files
-            File::delete(public_path('/storage/slider/' . $slider->plik));
-            File::delete(public_path('/storage/slider/thumbs/' . $slider->plik));
+            File::delete(public_path('uploads/slider/' . $slider->plik));
+            File::delete(public_path('uploads/slider/thumbs/' . $slider->plik));
 
             // Save new file
             $file = request()->file('plik');
             $name = Str::slug($request->nazwa, '-') . '.' . $file->getClientOriginalExtension();
-            $request->plik->storeAs('public/storage/slider', $name);
+            $request->plik->storeAs('slider', $name, 'public_uploads');
 
             // Make thumbs
-            $filepath = public_path('storage/slider/' . $name);
-            $thumbnailpath = public_path('storage/slider/thumbs/' . $name);
+            $filepath = public_path('uploads/slider/' . $name);
+            $thumbnailpath = public_path('uploads/slider/thumbs/' . $name);
             $image = Image::make($filepath)->fit(1920, 700)->save($filepath);
             $image = Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
 

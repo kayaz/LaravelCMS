@@ -1,3 +1,4 @@
 *
-!/settings.json
-!/public/
+!.gitignore
+!settings.json
+!/public

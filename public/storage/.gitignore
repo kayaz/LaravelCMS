@@ -1,5 +1,5 @@
 *
-!/news/
-!/slider/
-!/galeria/
-!/.gitignore
+!.gitignore
+!/news
+!/slider
+!/galeria

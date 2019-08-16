@@ -61,7 +61,6 @@ class SliderController extends Controller
             $file = request()->file('plik');
             $name = Str::slug($request->nazwa, '-') . '.' . $file->getClientOriginalExtension();
             $request->plik->storeAs('public/slider', $name);
-            chmod('public/slider'.$name, 0755);
 
             // Make thumbs
             $filepath = public_path('storage/slider/' . $name);
@@ -114,7 +113,6 @@ class SliderController extends Controller
             $file = request()->file('plik');
             $name = Str::slug($request->nazwa, '-') . '.' . $file->getClientOriginalExtension();
             $request->plik->storeAs('public/slider', $name);
-            chmod('public/slider'.$name, 0755);
 
             // Make thumbs
             $filepath = public_path('storage/slider/' . $name);

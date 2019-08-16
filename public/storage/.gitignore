@@ -1,5 +1,5 @@
 *
 !.gitignore
-!/galeria/*
-!/news/*
-!/slider/*
+!/galeria
+!/news
+!/slider

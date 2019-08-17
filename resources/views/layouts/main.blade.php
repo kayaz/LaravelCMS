@@ -28,7 +28,12 @@
 <div id="slider" class="clearfix">
     <ul class="rslidess list-unstyled mb-0">
         @foreach ($slider as $s)
-        <li><img src="{{asset('uploads/slider/'.$s->plik) }}" alt="{{ $s->nazwa }}"></li>
+        <li>
+            <img src="{{asset('uploads/slider/'.$s->plik) }}" alt="{{ $s->nazwa }}">
+            <div class="apla">
+                <h2>{{ $s->nazwa }}<span></span></h2>
+            </div>
+        </li>
         @endforeach
     </ul>
 </div>
@@ -79,10 +84,13 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $(".rslidess").responsiveSlides({auto:true, pager:false, nav:false, timeout:2000, random:false, speed:500});
+        $(".rslidess").responsiveSlides({auto:true, pager:false, nav:true, timeout:2000, random:false, speed:500});
 
     });
-
+    $(window).load(function() {
+        $(".rslidess").show();
+        $(".rslides_nav").show();
+    });
     $(window).resize(function() {
 
     });

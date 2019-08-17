@@ -16,6 +16,7 @@
                             <div class="list-post-date">Data publikacji: <span itemprop="datePublished" content="{{ $wpis->data }}">{{ $wpis->data }}</span></div>
                             <h1>{{ $wpis->nazwa }}</h1>
                             <p><i>{{ $wpis->wprowadzenie }}</i></p>
+                            <p>&nbsp;</p>
                             {!! $wpis->tekst !!}
                             <a href="{{route('front.news.index')}}" class="bttn">WRÓĆ DO AKTUALNOŚCI</a>
                         </div>

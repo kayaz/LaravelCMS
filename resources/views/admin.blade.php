@@ -99,8 +99,8 @@
                 <ul class="none">
                     <li><span class="fe-calendar"></span> <span id="livedate"></span></li>
                     <li><span class="fe-clock"></span> <span id="liveclock"></span></li>
-                    <li><span class="fe-user"></span> Witaj: <b>xxxxxx</b></li>
-                    <li><a title="Idź do strony" href="" target="_blank"><span class="fe-monitor"></span> Idź do strony</a></li>
+                    <li><span class="fe-user"></span> Witaj: <b>{{ Auth::user()->name }}</b></li>
+                    <li><a title="Idź do strony" href="{{route('front.index')}}" target="_blank"><span class="fe-monitor"></span> Idź do strony</a></li>
                     <li>
                         <a title="Wyloguj" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><span class="fe-lock"></span> Wyloguj</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

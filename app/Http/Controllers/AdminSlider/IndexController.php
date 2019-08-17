@@ -13,7 +13,7 @@ use File;
 
 use App\Http\Controllers\Controller;
 
-class SliderController extends Controller
+class IndexController extends Controller
 {
 
     protected $redirectTo = 'admin/slider';

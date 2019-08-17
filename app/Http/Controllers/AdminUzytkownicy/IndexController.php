@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 
-class UsersController extends Controller
+class IndexController extends Controller
 {
 
     protected $redirectTo = 'admin/users';

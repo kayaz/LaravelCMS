@@ -15,7 +15,7 @@ use File;
 
 use App\Http\Controllers\Controller;
 
-class GaleriaController extends Controller
+class IndexController extends Controller
 {
 
     protected $redirectTo = 'admin/galeria';
@@ -56,12 +56,14 @@ class GaleriaController extends Controller
             // Save new file
             $file = request()->file('qqfile');
             $filename = $file->getClientOriginalName();
-            $name = Str::slug($filename, '-') . '.' . $file->getClientOriginalExtension();
-            $request->qqfile->storeAs('public/galeria', $name);
+            $date = date('His');
+
+            $name = Str::slug($filename, '-') . '_'.$date.'.' . $file->getClientOriginalExtension();
+            $request->qqfile->storeAs('galeria', $name, 'public_uploads');
 
             // Make thumbs
-            $filepath = public_path('storage/galeria/' . $name);
-            $thumbnailpath = public_path('storage/galeria/thumbs/' . $name);
+            $filepath = public_path('uploads/galeria/' . $name);
+            $thumbnailpath = public_path('uploads/galeria/thumbs/' . $name);
             Image::make($filepath)->resize(250, 150, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
 
             // Name for SQL
@@ -103,7 +105,7 @@ class GaleriaController extends Controller
     public function show($id)
     {
         $gallery = Galeria::where('id', $id)->first();
-        $galleryphotos = GaleriaZdjecia::all()->sortBy("sort");
+        $galleryphotos = GaleriaZdjecia::all()->sortBy("sort")->where('id_gal', $id);
 
         return view('galeria.show',
             array('nazwa' => $gallery->nazwa, 'id' => $gallery->id, 'zdjecia' => $galleryphotos)
@@ -163,7 +165,17 @@ class GaleriaController extends Controller
     public function destroy($id)
     {
         $gallery = Galeria::find($id);
+        $galleryphotos = GaleriaZdjecia::all()->where('id_gal', $id);
+
+        foreach($galleryphotos as $element) {
+            $zdjecie = GaleriaZdjecia::where('id', $element->id)->firstOrFail();
+            File::delete( public_path('uploads/galeria/' . $element->plik));
+            File::delete( public_path('uploads/galeria/thumbs/' . $element->plik));
+            $zdjecie->delete();
+        }
+
         $gallery->delete();
+
         return response()->json([
             'success' => 'Wpis usniety'
         ]);
@@ -179,8 +191,8 @@ class GaleriaController extends Controller
     {
         $galleryphotos = GaleriaZdjecia::find($id);
 
-        File::delete( public_path('/storage/galeria/' . $galleryphotos->plik));
-        File::delete( public_path('/storage/galeria/thumbs/' . $galleryphotos->plik));
+        File::delete( public_path('uploads/galeria/' . $galleryphotos->plik));
+        File::delete( public_path('uploads/galeria/thumbs/' . $galleryphotos->plik));
 
         $galleryphotos->delete();
         return response()->json([

@@ -38,6 +38,36 @@
     </ul>
 </div>
 
+<div id="mainbox">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="boks p-4 pt-5 pb-5 shadow rounded bg-white text-center">
+                    <img src="{{ asset('boks/collaboration.png') }}" class="img-fluid" alt="">
+                    <h4 class="title text-uppercase mt-3">Organization</h4>
+                    <p class="text-muted">It is a long established fact that a reader will be of a page reader will be of a page when looking at its layout. </p>
+                </div>
+            </div><!--end col-->
+
+            <div class="col-md-4">
+                <div class="boks p-4 pt-5 pb-5 shadow rounded bg-white text-center">
+                    <img src="{{ asset('boks/ideas.png') }}" class="img-fluid" alt="">
+                    <h4 class="title text-uppercase mt-3">Marketing Strategy</h4>
+                    <p class="text-muted">It is a long established fact that a reader will be of a page when reader will be of a page looking at its layout. </p>
+                </div>
+            </div><!--end col-->
+
+            <div class="col-md-4">
+                <div class="boks mb-0 p-4 pt-5 pb-5 shadow rounded bg-white text-center">
+                    <img src="{{ asset('boks/risks.png') }}" class="img-fluid" alt="">
+                    <h4 class="title text-uppercase mt-3">Risk Analitics</h4>
+                    <p class="text-muted">It is a long established fact that a reader will be of a page when reader will be of a page looking at its layout. </p>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div>
+</div>
+
 <div id="news-list" class="container pt-5 pb-5">
     <div class="row">
         <div class="col-12">
@@ -56,7 +86,7 @@
                                     </header>
 
                                     <div class="list-post-entry" itemprop="articleBody">
-                                        <p>{{ $n->wprowadzenie }}</p>
+                                        <p class="text-muted">{{ $n->wprowadzenie }}</p>
                                     </div>
 
                                     <footer>

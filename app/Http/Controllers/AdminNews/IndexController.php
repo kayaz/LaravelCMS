@@ -20,7 +20,7 @@ class IndexController extends Controller
 
     public function index()
     {
-        $news = News::all()->sortBy("sort");
+        $news = News::orderBy('data', 'desc')->get();
         return view('news.index',
             array('lista' => $news)
         );

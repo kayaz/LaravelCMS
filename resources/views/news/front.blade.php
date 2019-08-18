@@ -21,7 +21,7 @@
                                     </header>
 
                                     <div class="list-post-entry" itemprop="articleBody">
-                                        <p>{{ $n->wprowadzenie }}</p>
+                                        <p class="text-muted">{{ $n->wprowadzenie }}</p>
                                     </div>
 
                                     <footer>

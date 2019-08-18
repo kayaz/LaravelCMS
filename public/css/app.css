@@ -162,6 +162,56 @@ article {border-bottom: 1px solid #f6f6f6;margin-bottom:30px;padding-bottom:30px
     box-shadow: 0 -3px 3px 0 rgba(0,0,0,0.12);
 }
 
+/* Paginacja
+================================================== */
+
+
+.pagination {
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+}
+
+.pagination li {
+    display: inline-block;
+    border-top: 6px solid #fff;
+    -webkit-transition: all 100ms linear;
+    -moz-transition: all 100ms linear;
+    -o-transition: all 100ms linear;
+    -ms-transition: all 100ms linear;
+    transition: all 100ms linear
+}
+
+.pagination li:hover {
+    border-top: 6px solid #00aeef
+}
+
+.pagination li.disabled {
+    display: none
+}
+
+.pagination li a,
+.pagination li.active span {
+    display: inline-block;
+    padding: 8px 17px;
+    font-size: 15px;
+    color: black;
+    font-weight: 400
+}
+
+.pagination li.active {
+    border-top: 6px solid #00aeef
+}
+
+.pagination li.active span,
+.pagination li:hover a {
+    color: black;
+    font-size: 15px;
+    font-weight: 400
+}
+
+
+
 /* Kontakt
 ================================================== */
 .formError{position:absolute;top:300px;left:300px;display:block;z-index:500;cursor:pointer}.formError .formErrorContent{background:#ff9000;position:relative;z-index:5001;color:#fff;width:190px;font-size:12px;border:1px solid #ff9000;padding:2px 10px 2px 10px}.formError .formErrorArrow{width:12px;margin:-2px 0 0 1px;position:relative;z-index:5006}.formError .formErrorArrowBottom{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;margin:0 0 0 12px;top:2px}.formError .formErrorArrow div{font-size:0;height:1px;background:#ff9000;margin:0 auto;line-height:0;display:block}.formError .formErrorArrowBottom div{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none}.formError .formErrorArrow .line10{width:15px;border:0}.formError .formErrorArrow .line9{width:13px;border:0}.formError .formErrorArrow .line8{width:11px}.formError .formErrorArrow .line7{width:9px}.formError .formErrorArrow .line6{width:7px}.formError .formErrorArrow .line5{width:5px}.formError .formErrorArrow .line4{width:3px}.formError .formErrorArrow .line3{width:1px}.formError .formErrorArrow .line2{width:0}.formError .formErrorArrow .line1{width:0}.inputbox-error{border-bottom:1px solid #ff9000!important}

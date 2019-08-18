@@ -41,10 +41,20 @@
 <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}" charset="utf-8"></script>
 <script src="{{ URL::asset('js/app.js') }}" charset="utf-8"></script>
 
+@isset($validation)
+<script src="{{ URL::asset('js/validation.js') }}" charset="utf-8"></script>
+<script src="{{ URL::asset('js/pl.js') }}" charset="utf-8"></script>
+@endisset
+
 <script type="text/javascript">
     $(document).ready(function(){
-        $(".rslidess").responsiveSlides({auto:true, pager:false, nav:false, timeout:2000, random:false, speed:500});
-
+    @isset($validation)
+        $(".validateForm").validationEngine({
+            validateNonVisibleFields: true,
+            updatePromptsPosition:true,
+            promptPosition : "topRight:-132px"
+        });
+    @endisset
     });
 
     $(window).resize(function() {

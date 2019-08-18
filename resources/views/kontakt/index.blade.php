@@ -46,7 +46,7 @@
                     <div class="row">
                         <div class="col-12 col-input">
                             <label for="form_imie">Imię lub nazwa firmy</label>
-                            <input name="imie" id="form_imie" class="validate[required]" type="text">
+                            <input name="imie" id="form_imie" class="validate[required]" class="validate[required]" type="text">
                         </div>
                         <div class="col-6 col-input mt-2">
                             <label for="form_email">E-mail</label>
@@ -65,8 +65,8 @@
                         </div>
 
                         <div class="col-12 regulki">
-                            <label for="zgoda_1" class="rules-text"><input name="zgoda_1" id="zgoda_1" value="1" class="validate[required]" data-prompt-position="topLeft:0" type="checkbox"><p>Na otrzymywanie ofert  handlowych  drogą elektroniczną od firmy ....., na podany przez Państwo adres e-mail</p></label>
-                            <label for="zgoda_1" class="rules-text"><input name="zgoda_1" id="zgoda_1" value="1" class="validate[required]" data-prompt-position="topLeft:0" type="checkbox"><p>Na otrzymywanie ofert  handlowych  drogą elektroniczną od firmy ....., na podany przez Państwo adres e-mail</p></label>
+                            <label for="zgoda_1" class="rules-text"><input name="zgoda_1" id="zgoda_1" value="1" type="checkbox"><p>Na otrzymywanie ofert  handlowych  drogą elektroniczną od firmy ....., na podany przez Państwo adres e-mail</p></label>
+                            <label for="zgoda_1" class="rules-text"><input name="zgoda_1" id="zgoda_1" value="1" type="checkbox"><p>Na otrzymywanie ofert  handlowych  drogą elektroniczną od firmy ....., na podany przez Państwo adres e-mail</p></label>
                         </div>
                     </div>
                     <div class="row row-form-submit">

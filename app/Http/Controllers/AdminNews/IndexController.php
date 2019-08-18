@@ -18,11 +18,6 @@ class IndexController extends Controller
 
     protected $redirectTo = 'admin/news';
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $news = News::all()->sortBy("sort");
@@ -31,11 +26,6 @@ class IndexController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('news.form',
@@ -43,12 +33,6 @@ class IndexController extends Controller
             ->with('wpis', News::make());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreNews $request)
     {
         $news = new News();
@@ -65,9 +49,9 @@ class IndexController extends Controller
             $filepath = public_path('uploads/news/' . $name);
             $thumbnailpath = public_path('uploads/news/thumbs/' . $name);
             $thumbnailadminpath = public_path('uploads/news/adminthumbs/' . $name);
-            $image = Image::make($filepath)->fit(920, 520)->save($filepath);
-            $image = Image::make($filepath)->resize(350, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
-            $image = Image::make($filepath)->resize(175, 100, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailadminpath);
+            Image::make($filepath)->fit(920, 520)->save($filepath);
+            Image::make($filepath)->resize(350, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
+            Image::make($filepath)->resize(175, 100, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailadminpath);
 
             // Name for SQL
             $news->plik = $name;
@@ -77,12 +61,6 @@ class IndexController extends Controller
         return redirect($this->redirectTo)->with('success', 'Nowy wpis dodany');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\News  $news
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $news = News::where('id', $id)->first();
@@ -91,13 +69,6 @@ class IndexController extends Controller
         );
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\News  $news
-     * @return \Illuminate\Http\Response
-     */
     public function update(StoreNews $request, $id)
     {
         $news = News::find($id);
@@ -118,9 +89,9 @@ class IndexController extends Controller
             $filepath = public_path('uploads/news/' . $name);
             $thumbnailpath = public_path('uploads/news/thumbs/' . $name);
             $thumbnailadminpath = public_path('uploads/news/adminthumbs/' . $name);
-            $image = Image::make($filepath)->fit(920, 520)->save($filepath);
-            $image = Image::make($filepath)->resize(350, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
-            $image = Image::make($filepath)->resize(175, 100, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailadminpath);
+            Image::make($filepath)->fit(920, 520)->save($filepath);
+            Image::make($filepath)->resize(350, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
+            Image::make($filepath)->resize(175, 100, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailadminpath);
 
             // Name for SQL
             $news->plik = $name;
@@ -146,12 +117,6 @@ class IndexController extends Controller
         $menu->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\News  $news
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         // Usuwamy pliki

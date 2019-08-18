@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\News;
 use App\Slider;
-use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {

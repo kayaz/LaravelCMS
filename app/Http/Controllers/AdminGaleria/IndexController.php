@@ -20,11 +20,6 @@ class IndexController extends Controller
 
     protected $redirectTo = 'admin/galeria';
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $gallery = Galeria::all()->sortBy("nazwa");
@@ -33,11 +28,6 @@ class IndexController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('galeria.form',
@@ -79,12 +69,6 @@ class IndexController extends Controller
         return response()->json($data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreGallery $request)
     {
 
@@ -96,12 +80,6 @@ class IndexController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Galeria  $galeria
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $gallery = Galeria::where('id', $id)->first();
@@ -112,12 +90,6 @@ class IndexController extends Controller
         );
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Galeria  $galeria
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $gallery = Galeria::where('id', $id)->first();
@@ -126,13 +98,6 @@ class IndexController extends Controller
         );
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Galeria  $galeria
-     * @return \Illuminate\Http\Response
-     */
     public function update(StoreGallery $request, $id)
     {
         $gallery = Galeria::find($id);
@@ -141,9 +106,7 @@ class IndexController extends Controller
 
         return redirect($this->redirectTo)->with('success', 'Galeria zaktualizowana');
     }
-    /**
-     * Save sort list.
-     */
+
     public function sort(Request $request)
     {
         $updateRecordsArray = $request->get('recordsArray');
@@ -156,12 +119,6 @@ class IndexController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Galeria  $galeria
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $gallery = Galeria::find($id);
@@ -181,12 +138,6 @@ class IndexController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Galeria  $galeria
-     * @return \Illuminate\Http\Response
-     */
     public function destroyphoto($id, $gal)
     {
         $galleryphotos = GaleriaZdjecia::find($id);

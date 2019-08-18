@@ -18,11 +18,6 @@ class IndexController extends Controller
 
     protected $redirectTo = 'admin/slider';
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $slider = Slider::all()->sortBy("sort");
@@ -31,11 +26,6 @@ class IndexController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('slider.form',
@@ -43,12 +33,6 @@ class IndexController extends Controller
             ->with('wpis', Slider::make());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreSlider $request)
     {
         $slider = new Slider();
@@ -65,8 +49,8 @@ class IndexController extends Controller
             // Make thumbs
             $filepath = public_path('uploads/slider/' . $name);
             $thumbnailpath = public_path('uploads/slider/thumbs/' . $name);
-            $image = Image::make($filepath)->fit(1920, 700)->save($filepath);
-            $image = Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
+            Image::make($filepath)->fit(1920, 700)->save($filepath);
+            Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
 
             // Name for SQL
             $slider->plik = $name;
@@ -76,12 +60,6 @@ class IndexController extends Controller
         return redirect($this->redirectTo)->with('success', 'Nowy wpis dodany');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $slider = Slider::where('id', $id)->first();
@@ -90,13 +68,6 @@ class IndexController extends Controller
         );
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(StoreSlider $request, $id)
     {
         $slider = Slider::find($id);
@@ -117,8 +88,8 @@ class IndexController extends Controller
             // Make thumbs
             $filepath = public_path('uploads/slider/' . $name);
             $thumbnailpath = public_path('uploads/slider/thumbs/' . $name);
-            $image = Image::make($filepath)->fit(1920, 700)->save($filepath);
-            $image = Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
+            Image::make($filepath)->fit(1920, 700)->save($filepath);
+            Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
 
             // Name for SQL
             $slider->plik = $name;
@@ -128,9 +99,6 @@ class IndexController extends Controller
         return redirect($this->redirectTo)->with('success', 'Wpis zaktualizowany');
     }
 
-    /**
-     * Save sort list.
-     */
     public function sort(Request $request)
     {
         $updateRecordsArray = $request->get('recordsArray');
@@ -143,12 +111,6 @@ class IndexController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         // Usuwamy pliki

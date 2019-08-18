@@ -78,7 +78,7 @@ class IndexController extends Controller
         }
 
         // Walidacja formularza
-        $validatedData = $request->validate([
+        $request->validate([
             'oldpassword' => 'required',
             'password' => 'required|string|min:6|confirmed',
         ]);

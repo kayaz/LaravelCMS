@@ -3,19 +3,20 @@
 namespace App\Http\Controllers\Kontakt;
 
 use App\Http\Requests\SendMail;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        return view('kontakt.index');
+        return view('kontakt.index',
+            array('validation' => 1)
+        );
     }
 
     public function send(SendMail $request)
     {
-        \Mail::send('email.contact',
+        Mail::send('email.contact',
             array(
                 'ip' => $_SERVER['REMOTE_ADDR'],
                 'data' => date('Y-m-d H:i:s'),
@@ -29,7 +30,6 @@ class IndexController extends Controller
                 $message->to('kacpersky@gmail.com', 'Admin')->subject('Wiadmość z formularza kontaktowego');
             });
 
-        //return back()->with('success', 'Form wysłany');
         return redirect('kontakt')->with('success', 'Twoja wiadomość została wysłana. W najbliższym czasie skontaktujemy się z Państwem celem omówienia szeczegółów!');
     }
 }

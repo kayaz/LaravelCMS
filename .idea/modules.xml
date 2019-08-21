@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/kcms.iml" filepath="$PROJECT_DIR$/.idea/kcms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/kCMS Laravel.iml" filepath="$PROJECT_DIR$/.idea/kCMS Laravel.iml" />
     </modules>
   </component>
 </project>

@@ -30,6 +30,7 @@
     <div class="form-group form-group-submit row">
         <div class="col-12">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bootstrapmodal">Dodaj kilka zdjęć</button>
+            <a href="{{route('admin.galeria.index')}}" class="btn btn-primary">Wróć do listy</a>
         </div>
     </div>
 

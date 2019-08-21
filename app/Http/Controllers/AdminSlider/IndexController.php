@@ -115,8 +115,8 @@ class IndexController extends Controller
     {
         // Usuwamy pliki
         $slider = Slider::find($id);
-        File::delete( public_path('/storage/slider/' . $slider->plik));
-        File::delete( public_path('/storage/slider/thumbs/' . $slider->plik));
+        File::delete( public_path('uploads/slider/' . $slider->plik));
+        File::delete( public_path('uploads/slider/thumbs/' . $slider->plik));
 
         $slider->delete();
         return response()->json([

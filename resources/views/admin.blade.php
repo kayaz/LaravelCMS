@@ -60,6 +60,12 @@
                         <span> Slider </span>
                     </a>
                 </li>
+                <li class="{{ Request::routeIs('admin.boksy.*') ? 'active' : '' }}">
+                    <a href="{{route('admin.boksy.index')}}">
+                        <i class="fe-grid"></i>
+                        <span> Boksy </span>
+                    </a>
+                </li>
                 <li class="{{ Request::routeIs('admin.menu.*') ? 'active' : '' }}">
                         <a href="{{route('admin.menu.index')}}">
                         <i class="fe-file-text"></i>

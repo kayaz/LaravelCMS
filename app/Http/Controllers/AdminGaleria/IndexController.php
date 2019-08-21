@@ -22,7 +22,7 @@ class IndexController extends Controller
 
     public function index()
     {
-        $gallery = Galeria::all()->sortBy("nazwa");
+        $gallery = Galeria::all('id', 'nazwa', 'updated_at')->sortBy("nazwa");
         return view('galeria.index',
             array('galeria' => $gallery)
         );
@@ -34,7 +34,6 @@ class IndexController extends Controller
             array('cardtitle' => 'Dodaj katalog'))->with('wpis', Galeria::make());
     }
 
-    // upload file name: qqfile
     public function upload(Request $request, $id)
     {
         $galleryphotos = new GaleriaZdjecia();
@@ -82,11 +81,15 @@ class IndexController extends Controller
 
     public function show($id)
     {
-        $gallery = Galeria::where('id', $id)->first();
+        $gallery = Galeria::where('id', $id)->first(['id', 'nazwa']);
         $galleryphotos = GaleriaZdjecia::all()->sortBy("sort")->where('id_gal', $id);
 
         return view('galeria.show',
-            array('nazwa' => $gallery->nazwa, 'id' => $gallery->id, 'zdjecia' => $galleryphotos)
+            array(
+                'nazwa' => $gallery->nazwa,
+                'id' => $gallery->id,
+                'zdjecia' => $galleryphotos
+            )
         );
     }
 

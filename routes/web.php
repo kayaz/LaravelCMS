@@ -61,6 +61,18 @@ Route::group(['namespace' => 'AdminSlider', 'prefix'=>'/admin/slider/', 'as' => 
         Route::post('ustaw', 'IndexController@sort')->name('sort');
 });
 
+// Robimy boksy
+Route::group(['namespace' => 'AdminBoksy', 'prefix'=>'/admin/boksy/', 'as' => 'admin.boksy.', 'middleware' => 'auth'], function() {
+        Route::get('/', 'IndexController@index')->name('index');
+
+        Route::get('dodaj', 'IndexController@create')->name('dodaj');
+        Route::post('zapisz', 'IndexController@store')->name('zapisz');
+        Route::get('edytuj/{id}', 'IndexController@edit')->name('edytuj');
+        Route::put('update/{id}', 'IndexController@update')->name('update');
+        Route::delete('usun/{id}', 'IndexController@destroy')->name('usun');
+        Route::post('ustaw', 'IndexController@sort')->name('sort');
+});
+
 // Robimy aktualnosci
 Route::group(['namespace' => 'AdminNews', 'prefix'=>'/admin/news/', 'as' => 'admin.news.', 'middleware' => 'auth'], function() {
         Route::get('/', 'IndexController@index')->name('index');

@@ -65,9 +65,9 @@
                             <div class="form-group row">
                                 <div class="col-2 col-form-label control-label">&nbsp;</div>
                                 <div class="col-10" style="line-height: normal">
-                                    <h3 style="font-family: arial,sans-serif;font-size:18px;line-height: 1.2;margin:0;font-weight: normal;color:#1a0dab;">{{ settings('meta_nazwa_strony') }}</h3>
-                                    <div style="line-height: 14px"><cite style="font-size:14px;line-height: 16px;color: #006621;font-style: normal;font-family: arial,sans-serif">{{ settings('adres_strony') }}</cite></div>
-                                    <span style="font-family: arial,sans-serif;font-size:13px;line-height:18px;color: #545454">{{ settings('meta_opis_strony') }}</span>
+                                    <h3 style="font-family: arial,sans-serif;font-size:18px;line-height: 1.2;margin:0;font-weight: normal;color:#1a0dab;">{{ settings('meta_title') }}</h3>
+                                    <div style="line-height: 14px"><cite style="font-size:14px;line-height: 16px;color: #006621;font-style: normal;font-family: arial,sans-serif">{{ settings('page_url') }}</cite></div>
+                                    <span style="font-family: arial,sans-serif;font-size:13px;line-height:18px;color: #545454">{{ settings('meta_description') }}</span>
 
                                 </div>
                             </div>

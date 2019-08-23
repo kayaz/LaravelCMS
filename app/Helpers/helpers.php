@@ -31,3 +31,40 @@ function settings($key = null, $default = null) {
 
     return app(App\Settings::class)->get($key, $default);
 }
+
+
+/* DeveloPro */
+
+// Sprawdzamy typ inwestycji
+if (! function_exists('inwest_typ')) {
+    function inwest_typ($number)
+    {
+        switch ($number) {
+            case '1':
+                return "Inwestycja osiedlowa";
+            case '2':
+                return "Inwestycja budynkowa";
+            case '3':
+                return "Inwestycja z domami";
+            case '4':
+                return "Inna oferta";
+        }
+    }
+
+}
+
+// Sprawdzamy status inwestycji
+if (! function_exists('inwest_status')) {
+    function inwest_status($number)
+    {
+        switch ($number) {
+            case '1':
+                return "Inwestycja aktualna";
+            case '2':
+                return "Inwestycja zrealizowana";
+            case '3':
+                return "Inwestycja planowana";
+        }
+    }
+
+}

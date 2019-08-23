@@ -305,6 +305,13 @@ p {margin:0}
     margin: 1rem -20px;
 }
 
+/* DeveloPro
+================================================== */
+.inwest-list-status-1 {background:green;color:white;display:inline-block;padding:3px 8px}
+.inwest-list-status-2 {background:#940000;color:white;display:inline-block;padding:3px 8px}
+.inwest-list-status-3 {background:#0063a9;color:white;display:inline-block;padding:3px 8px}
+.inwest-list-status-4 {background:#5800c5;color:white;display:inline-block;padding:3px 8px}
+
 /* Modal
 ================================================== */
 .modal-content, .modal-header, .modal-footer {border-radius: 0}

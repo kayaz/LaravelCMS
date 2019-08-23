@@ -72,8 +72,8 @@
                         <span> Menu </span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="">
+                <li class="{{ Request::routeIs('admin.inwestycje.*') ? 'active' : '' }}">
+                    <a href="{{route('admin.inwestycje.index')}}">
                         <i class="fe-home"></i>
                         <span> Inwestycje </span>
                     </a>

@@ -18,6 +18,7 @@
                             @if (session('success'))
                                 <div class="alert alert-success border-0">
                                     {{ session('success') }}
+                                    <script>window.setTimeout(function(){$(".alert").fadeTo(500,0).slideUp(500,function(){$(this).remove()})},3000);</script>
                                 </div>
                             @endif
                             @if ($errors->any())

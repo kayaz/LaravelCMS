@@ -16,6 +16,8 @@ Route::get('/', 'IndexController@index')->name('front.index');
 Route::get('/kontakt', 'Kontakt\IndexController@index')->name('front.kontakt');
 Route::post('/kontakt', 'Kontakt\IndexController@send')->name('front.kontakt.send');
 
+Route::get('/aktualne-inwestycje', 'Inwestycje\IndexController@index')->name('front.inwestycje');
+
 // Aktualności
 Route::group(['namespace' => 'News', 'prefix'=>'/aktualnosci/', 'as' => 'front.news.'], function() {
     Route::get('/', 'IndexController@index', function() {return View::make('content');})->name('index');
@@ -47,6 +49,17 @@ Route::group(['namespace' => 'AdminMenu', 'prefix'=>'/admin/menu/', 'as' => 'adm
     Route::get('edytuj/{id}', 'IndexController@edit')->name('edytuj');
     Route::put('update/{id}', 'IndexController@update')->name('update');
     Route::delete('usun/{id}', 'IndexController@destroy')->name('usun');
+});
+
+// Robimy inwestycje
+Route::group(['namespace' => 'AdminInwest', 'prefix'=>'/admin/inwestycje/', 'as' => 'admin.inwestycje.', 'middleware' => 'auth'], function() {
+    Route::get('/', 'IndexController@index')->name('index');
+//
+    Route::get('dodaj', 'IndexController@create')->name('dodaj');
+    Route::post('zapisz', 'IndexController@store')->name('zapisz');
+    Route::get('edytuj/{id}', 'IndexController@edit')->name('edytuj');
+    Route::put('update/{id}', 'IndexController@update')->name('update');
+//    Route::delete('usun/{id}', 'IndexController@destroy')->name('usun');
 });
 
 // Robimy slider

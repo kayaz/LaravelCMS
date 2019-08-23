@@ -67,6 +67,10 @@ return [
             'driver' => 'local',
             'root'   => public_path() . '/uploads',
         ],
+        'inwest_uploads' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/inwestycje',
+        ],
     ],
 
 ];

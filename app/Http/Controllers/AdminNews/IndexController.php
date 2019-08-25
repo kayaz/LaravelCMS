@@ -8,9 +8,6 @@ use App\News;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
-use Image;
-use File;
-
 use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
@@ -29,35 +26,22 @@ class IndexController extends Controller
     public function create()
     {
         return view('news.form',
-            array('cardtitle' => 'Dodaj wpis'))
+            array(
+                'cardtitle' => 'Dodaj wpis',
+                'thumbwidth' => News::THUMB_WIDTH,
+                'thumbheight' => News::THUMB_HEIGHT
+            ))
             ->with('wpis', News::make());
     }
 
     public function store(StoreNews $request)
     {
-        $news = new News();
-
-        // Upload files?
+        $slug = Str::slug($request->nazwa);
+        request()->merge([ 'slug' => $slug ]);
+        $entryId = News::insertGetId(request(['nazwa', 'slug', 'status', 'meta_tytul', 'meta_opis', 'data', 'wprowadzenie', 'tekst']));
         if ($request->hasFile('plik')) {
-
-            // Save new file
-            $file = request()->file('plik');
-            $name = Str::slug($request->nazwa, '-') . '.' . $file->getClientOriginalExtension();
-            $request->plik->storeAs('news', $name, 'public_uploads');
-
-            // Make thumbs
-            $filepath = public_path('uploads/news/' . $name);
-            $thumbnailpath = public_path('uploads/news/thumbs/' . $name);
-            $thumbnailadminpath = public_path('uploads/news/adminthumbs/' . $name);
-            Image::make($filepath)->fit(920, 520)->save($filepath);
-            Image::make($filepath)->resize(350, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
-            Image::make($filepath)->resize(175, 100, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailadminpath);
-
-            // Name for SQL
-            $news->plik = $name;
+            News::addThumb($slug, $request->file('plik'), $entryId);
         }
-
-        $this->persist($news, $request);
         return redirect($this->redirectTo)->with('success', 'Nowy wpis dodany');
     }
 
@@ -65,66 +49,34 @@ class IndexController extends Controller
     {
         $news = News::where('id', $id)->first();
         return view('news.form',
-            array('wpis' => $news, 'cardtitle' => 'Edytuj wpis')
+            array(
+                'wpis' => $news,
+                'cardtitle' => 'Edytuj wpis',
+                'thumbwidth' => News::THUMB_WIDTH,
+                'thumbheight' => News::THUMB_HEIGHT
+            )
         );
     }
 
     public function update(StoreNews $request, $id)
     {
+        $slug = Str::slug($request->nazwa);
+        request()->merge([ 'slug' => $slug ]);
         $news = News::find($id);
-        // Upload file?
+        $news->update(request(['nazwa', 'slug', 'status', 'meta_tytul', 'meta_opis', 'data', 'wprowadzenie', 'tekst']));
+
         if ($request->hasFile('plik')) {
-
-            // Delete old files
-            File::delete(public_path('uploads/news/' . $news->plik));
-            File::delete(public_path('uploads/news/thumbs/' . $news->plik));
-            File::delete(public_path('uploads/news/adminthumbs/' . $news->plik));
-
-            // Save new file
-            $file = request()->file('plik');
-            $name = Str::slug($request->nazwa, '-') . '.' . $file->getClientOriginalExtension();
-            $request->plik->storeAs('news', $name, 'public_uploads');
-
-            // Make thumbs
-            $filepath = public_path('uploads/news/' . $name);
-            $thumbnailpath = public_path('uploads/news/thumbs/' . $name);
-            $thumbnailadminpath = public_path('uploads/news/adminthumbs/' . $name);
-            Image::make($filepath)->fit(920, 520)->save($filepath);
-            Image::make($filepath)->resize(350, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
-            Image::make($filepath)->resize(175, 100, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailadminpath);
-
-            // Name for SQL
-            $news->plik = $name;
+            News::deleteThumb($news->plik);
+            News::addThumb($slug, $request->file('plik'), $id);
         }
 
-        $this->persist($news, $request);
         return redirect($this->redirectTo)->with('success', 'Wpis zaktualizowany');
-    }
-
-    protected function persist($menu, $request)
-    {
-        $menu->fill($request->only([
-            'nazwa',
-            'slug' => Str::slug($request->get('nazwa'), '-'),
-            'status',
-            'meta_tytul',
-            'meta_opis',
-            'data',
-            'wprowadzenie',
-            'tekst',
-        ]));
-        $menu->slug = Str::slug($request->get('nazwa'), '-');
-        $menu->save();
     }
 
     public function destroy($id)
     {
-        // Usuwamy pliki
         $news = News::find($id);
-        File::delete(public_path('uploads/news/' . $news->plik));
-        File::delete(public_path('uploads/news/thumbs/' . $news->plik));
-        File::delete(public_path('uploads/news/adminthumbs/' . $news->plik));
-
+        News::deleteThumb($news->plik);
         $news->delete();
         return response()->json([
             'success' => 'Wpis usniety'

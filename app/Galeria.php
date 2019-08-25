@@ -16,8 +16,10 @@ class Galeria extends Model
         $galleryphotos = GaleriaZdjecia::all()->where('id_gal', $id);
         foreach($galleryphotos as $element) {
             $zdjecie = GaleriaZdjecia::where('id', $element->id)->firstOrFail();
-            File::delete( public_path('uploads/galeria/' . $element->plik));
-            File::delete( public_path('uploads/galeria/thumbs/' . $element->plik));
+            File::delete([
+                public_path('uploads/galeria/' . $element->plik),
+                public_path('uploads/galeria/thumbs/' . $element->plik)
+            ]);
             $zdjecie->delete();
         }
     }

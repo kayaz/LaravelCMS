@@ -8,9 +8,6 @@ use App\Slider;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
-use Image;
-use File;
-
 use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
@@ -35,29 +32,12 @@ class IndexController extends Controller
 
     public function store(StoreSlider $request)
     {
-        $slider = new Slider();
-        $slider->nazwa = $request->get('nazwa');
-
-        // Upload files?
+        $slug = Str::slug($request->nazwa);
+        $entryId = Slider::insertGetId(request(['nazwa']));
         if ($request->hasFile('plik')) {
-
-            // Save new file
-            $file = request()->file('plik');
-            $name = Str::slug($request->nazwa, '-') . '.' . $file->getClientOriginalExtension();
-            $request->plik->storeAs('slider', $name, 'public_uploads');
-
-            // Make thumbs
-            $filepath = public_path('uploads/slider/' . $name);
-            $thumbnailpath = public_path('uploads/slider/thumbs/' . $name);
-            Image::make($filepath)->fit(1920, 700)->save($filepath);
-            Image::make($filepath)->resize(200, 200, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
-
-            // Name for SQL
-            $slider->plik = $name;
+            Slider::addThumb($slug, $request->file('plik'), $entryId);
         }
-
-        $slider->save();
-        return redirect($this->redirectTo)->with('success', 'Nowy wpis dodany');
+        return redirect($this->redirectTo)->with('success', 'Nowy panel dodany');
     }
 
     public function edit($id)
@@ -68,7 +48,7 @@ class IndexController extends Controller
         );
     }
 
-    public function update(StoreSlider $request, $id)
+    public function updatess(StoreSlider $request, $id)
     {
         $slider = Slider::find($id);
         $slider->nazwa = $request->get('nazwa');
@@ -99,28 +79,32 @@ class IndexController extends Controller
         return redirect($this->redirectTo)->with('success', 'Wpis zaktualizowany');
     }
 
+    public function update(StoreSlider $request, $id)
+    {
+        $slug = Str::slug($request->nazwa);
+        $panel = Slider::find($id);
+        $panel->update(request(['nazwa']));
+
+        if ($request->hasFile('plik')) {
+            Slider::deletePanel($panel->plik);
+            Slider::addThumb($slug, $request->file('plik'), $id);
+        }
+
+        return redirect($this->redirectTo)->with('success', 'Wpis zaktualizowany');
+    }
+
     public function sort(Request $request)
     {
-        $updateRecordsArray = $request->get('recordsArray');
-        $listingCounter = 1;
-        foreach ($updateRecordsArray as $recordIDValue) {
-            $slider = Slider::find($recordIDValue);
-            $slider->sort = $listingCounter;
-            $slider->save();
-            $listingCounter = $listingCounter + 1;
-        }
+        Slider::sort($request);
     }
 
     public function destroy($id)
     {
-        // Usuwamy pliki
         $slider = Slider::find($id);
-        File::delete( public_path('uploads/slider/' . $slider->plik));
-        File::delete( public_path('uploads/slider/thumbs/' . $slider->plik));
-
+        Slider::deletePanel($slider->plik);
         $slider->delete();
         return response()->json([
-            'success' => 'Wpis usniety'
+            'success' => 'Panel usniety'
         ]);
     }
 }

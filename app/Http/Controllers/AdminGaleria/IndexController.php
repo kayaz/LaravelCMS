@@ -7,11 +7,7 @@ use App\GaleriaZdjecia;
 
 use App\Http\Requests\StoreGallery;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-
-use Image;
-use File;
 
 use App\Http\Controllers\Controller;
 
@@ -36,47 +32,19 @@ class IndexController extends Controller
 
     public function upload(Request $request, $id)
     {
-        $galleryphotos = new GaleriaZdjecia();
-        $galleryphotos->id_gal = $id;
-
-        // Upload files?
-        if($request->hasFile('qqfile')) {
-
-            // Save new file
-            $file = request()->file('qqfile');
-            $filename = $file->getClientOriginalName();
-            $date = date('His');
-
-            $name = Str::slug($filename, '-') . '_'.$date.'.' . $file->getClientOriginalExtension();
-            $request->qqfile->storeAs('galeria', $name, 'public_uploads');
-
-            // Make thumbs
-            $filepath = public_path('uploads/galeria/' . $name);
-            $thumbnailpath = public_path('uploads/galeria/thumbs/' . $name);
-            Image::make($filepath)->resize(250, 150, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath);
-
-            // Name for SQL
-            $galleryphotos->plik = $name;
-            $galleryphotos->nazwa = $filename;
+        if ($request->hasFile('qqfile')) {
+            GaleriaZdjecia::uploadPhoto($request->file('qqfile'), $id);
         }
 
-        $galleryphotos->save();
-        $data = [
-            'success' => true
-        ] ;
-
-        return response()->json($data);
+        return response()->json(['success' => true]);
     }
 
     public function store(StoreGallery $request)
     {
-
         $gallery = new Galeria();
-        $gallery->nazwa = $request->get('name');
-        $gallery->save();
+        $gallery->save(request(['nazwa']));
 
         return redirect($this->redirectTo)->with('success', 'Nowa galeria dodana');
-
     }
 
     public function show($id)
@@ -104,46 +72,35 @@ class IndexController extends Controller
     public function update(StoreGallery $request, $id)
     {
         $gallery = Galeria::find($id);
-        $gallery->nazwa = $request->get('name');
-        $gallery->save();
+        $gallery->update(request(['nazwa']));
 
         return redirect($this->redirectTo)->with('success', 'Galeria zaktualizowana');
     }
 
     public function sort(Request $request)
     {
-        $updateRecordsArray = $request->get('recordsArray');
-        $listingCounter = 1;
-        foreach ($updateRecordsArray as $recordIDValue) {
-            $galleryphotos = GaleriaZdjecia::find($recordIDValue);
-            $galleryphotos->sort = $listingCounter;
-            $galleryphotos->save();
-            $listingCounter = $listingCounter + 1;
-        }
+        GaleriaZdjecia::sort($request);
     }
 
     public function destroy($id)
     {
-
         $gallery = Galeria::find($id);
         $gallery->delete();
         Galeria::deleteCatalog($id);
 
         return response()->json([
-            'success' => 'Wpis usniety'
+            'success' => 'Galeria usnięta'
         ]);
     }
 
-    public function destroyphoto($id, $gal)
+    public function destroyphoto($id)
     {
-        $galleryphotos = GaleriaZdjecia::find($id);
+        $photo = GaleriaZdjecia::find($id);
+        GaleriaZdjecia::deletePhoto($photo->plik);
+        $photo->delete();
 
-        File::delete( public_path('uploads/galeria/' . $galleryphotos->plik));
-        File::delete( public_path('uploads/galeria/thumbs/' . $galleryphotos->plik));
-
-        $galleryphotos->delete();
         return response()->json([
-            'success' => 'Wpis usniety'
+            'success' => 'Zdjęcie usunięte'
         ]);
     }
 }

@@ -20,7 +20,7 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Robimy admina
-Route::get('/admin', 'AdminUstawienia\IndexController@index')->name('admin.ustawienia.dashboard')->middleware('auth');
+Route::get('/admin', 'Admin\UstawieniaController@index')->name('admin.ustawienia.dashboard')->middleware('auth');
 
 Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/ustawienia/', 'as' => 'admin.ustawienia.', 'middleware' => 'auth'], function() {
     Route::get('/', 'UstawieniaController@index')->name('index');

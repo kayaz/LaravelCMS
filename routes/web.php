@@ -4,7 +4,8 @@
 Route::get('/', 'Front\IndexController@index')->name('front.index');
 Route::get('/kontakt', 'Front\KontaktController@index')->name('front.kontakt');
 Route::post('/kontakt', 'Front\KontaktController@send')->name('front.kontakt.send');
-//
+
+// Aktualne inwestycje
 Route::get('/aktualne-inwestycje', 'Front\InwestycjaController@index')->name('front.inwestycje');
 
 // Aktualności

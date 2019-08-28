@@ -48,20 +48,20 @@
                         <span> Użytkownicy </span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="">
-                        <i class="fe-shield"></i>
-                        <span> Blokada dostępu </span>
-                    </a>
-                </li>
+{{--                <li class="">--}}
+{{--                    <a href="">--}}
+{{--                        <i class="fe-shield"></i>--}}
+{{--                        <span> Blokada dostępu </span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="{{ Request::routeIs('admin.slider.*') ? 'active' : '' }}">
                     <a href="{{route('admin.slider.index')}}">
                         <i class="fe-airplay"></i>
                         <span> Slider </span>
                     </a>
                 </li>
-                <li class="{{ Request::routeIs('admin.boksy.*') ? 'active' : '' }}">
-                    <a href="{{route('admin.boksy.index')}}">
+                <li class="{{ Request::routeIs('admin.boks.*') ? 'active' : '' }}">
+                    <a href="{{route('admin.boks.index')}}">
                         <i class="fe-grid"></i>
                         <span> Boksy </span>
                     </a>
@@ -72,8 +72,8 @@
                         <span> Menu </span>
                     </a>
                 </li>
-                <li class="{{ Request::routeIs('admin.inwestycje.*') ? 'active' : '' }}">
-                    <a href="{{route('admin.inwestycje.index')}}">
+                <li class="{{ Request::routeIs('admin.inwestycja.*') ? 'active' : '' }}">
+                    <a href="{{route('admin.inwestycja.index')}}">
                         <i class="fe-home"></i>
                         <span> Inwestycje </span>
                     </a>

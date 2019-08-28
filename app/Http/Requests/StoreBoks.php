@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreGallery extends FormRequest
+class StoreBoks extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,9 @@ class StoreGallery extends FormRequest
     public function rules()
     {
         return [
-            'nazwa' => 'required|string|max:255'
+            'nazwa' => 'required|string|max:255',
+            'tekst' => 'required|string|max:255',
+            'link' => 'required|string|max:255'
         ];
     }
 }

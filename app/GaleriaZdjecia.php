@@ -18,26 +18,7 @@ class GaleriaZdjecia extends Model
 
     public $timestamps = false;
 
-    public static function deletePhoto($file){
-        File::delete([
-            public_path('uploads/galeria/' . $file),
-            public_path('uploads/galeria/thumbs/' . $file)
-        ]);
-    }
-
-    public static function sort($array)
-    {
-        $updateRecordsArray = $array->get('recordsArray');
-        $listingCounter = 1;
-        foreach ($updateRecordsArray as $recordIDValue) {
-            $entry = self::find($recordIDValue);
-            $entry->sort = $listingCounter;
-            $entry->save();
-            $listingCounter = $listingCounter + 1;
-        }
-    }
-
-    public static function uploadPhoto($file, $gal_id){
+    public function uploadPhoto($file, $gal_id){
 
         $filename = explode('.', $file->getClientOriginalName())[0];
         $date = date('His');
@@ -54,4 +35,24 @@ class GaleriaZdjecia extends Model
             'nazwa' => $filename,
         ]);
     }
+
+    public function deletePhoto(){
+        File::delete([
+            public_path('uploads/galeria/' . $this->plik),
+            public_path('uploads/galeria/thumbs/' . $this->plik)
+        ]);
+    }
+
+    public function sort($array)
+    {
+        $updateRecordsArray = $array->get('recordsArray');
+        $listingCounter = 1;
+        foreach ($updateRecordsArray as $recordIDValue) {
+            $entry = self::find($recordIDValue);
+            $entry->sort = $listingCounter;
+            $entry->save();
+            $listingCounter = $listingCounter + 1;
+        }
+    }
+
 }

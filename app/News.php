@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 use Image;
 use File;
@@ -29,25 +30,34 @@ class News extends Model
         'status'
     ];
 
-    public static function addThumb($slug, $file, $id){
-        $name = $slug . '.' . $file->getClientOriginalExtension();
+    public function makeThumb($nazwa, $file){
+
+        if(File::exists(public_path('uploads/news/' . $this->plik))){
+            File::delete([
+                public_path('uploads/news/' . $this->plik),
+                public_path('uploads/news/thumbs/' . $this->plik),
+                public_path('uploads/news/adminthumbs/' . $this->plik)
+            ]);
+        }
+
+        $name = Str::slug($nazwa) . '.' . $file->getClientOriginalExtension();
         $file->storeAs('news', $name, 'public_uploads');
 
         $filepath = public_path('uploads/news/' . $name);
         $thumbnailpath = public_path('uploads/news/thumbs/' . $name);
         $thumbnailadminpath = public_path('uploads/news/adminthumbs/' . $name);
         Image::make($filepath)->fit(self::THUMB_WIDTH, self::THUMB_HEIGHT)->save($filepath)
-        ->fit(self::SMALL_THUMB_WIDTH, self::SMALL_THUMB_HEIGHT)->save($thumbnailpath)
-        ->fit(self::ADMIN_THUMB_WIDTH, self::ADMIN_THUMB_HEIGHT)->save($thumbnailadminpath);
+            ->fit(self::SMALL_THUMB_WIDTH, self::SMALL_THUMB_HEIGHT)->save($thumbnailpath)
+            ->fit(self::ADMIN_THUMB_WIDTH, self::ADMIN_THUMB_HEIGHT)->save($thumbnailadminpath);
 
-        self::find($id)->update(['plik' => $name ]);
+        $this->update(['plik' => $name ]);
     }
 
-    public static function deleteThumb($file){
+    public function deleteThumb(){
         File::delete([
-            public_path('uploads/news/' . $file),
-            public_path('uploads/news/thumbs/' . $file),
-            public_path('uploads/news/adminthumbs/' . $file)
+            public_path('uploads/news/' . $this->plik),
+            public_path('uploads/news/thumbs/' . $this->plik),
+            public_path('uploads/news/adminthumbs/' . $this->plik)
         ]);
     }
 }

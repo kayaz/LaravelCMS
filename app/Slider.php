@@ -2,10 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-use Image;
 use File;
+use Image;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Slider extends Model
 {
@@ -18,8 +19,16 @@ class Slider extends Model
     protected $table = 'slider';
     protected $fillable = ['nazwa', 'plik'];
 
-    public static function addThumb($slug, $file, $id){
-        $name = $slug . '.' . $file->getClientOriginalExtension();
+    public function makeSlider($nazwa, $file){
+
+        if(File::exists(public_path('uploads/slider/' . $this->plik))){
+            File::delete([
+                public_path('uploads/slider/' . $this->plik),
+                public_path('uploads/slider/thumbs/' . $this->plik)
+            ]);
+        }
+
+        $name = Str::slug($nazwa) . '.' . $file->getClientOriginalExtension();
         $file->storeAs('slider', $name, 'public_uploads');
 
         $filepath = public_path('uploads/slider/' . $name);
@@ -27,17 +36,17 @@ class Slider extends Model
         Image::make($filepath)->fit(self::PC_WIDTH, self::PC_HEIGHT)->save($filepath)
             ->fit(self::ADMIN_WIDTH, self::ADMIN_HEIGHT)->save($thumbnailpath);
 
-        self::find($id)->update(['plik' => $name ]);
+        $this->update(['plik' => $name ]);
     }
 
-    public static function deletePanel($file){
+    public function deleteSlider(){
         File::delete([
-            public_path('uploads/slider/' . $file),
-            public_path('uploads/slider/thumbs/' . $file)
+            public_path('uploads/slider/' . $this->plik),
+            public_path('uploads/slider/thumbs/' . $this->plik)
         ]);
     }
 
-    public static function sort($array){
+    public function sort($array){
         $updateRecordsArray = $array->get('recordsArray');
         $listingCounter = 1;
         foreach ($updateRecordsArray as $recordIDValue) {

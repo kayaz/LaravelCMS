@@ -16,20 +16,18 @@ class SliderController extends Controller
     public function index()
     {
         $slider = Slider::all()->sortBy("sort");
-        return view('slider.index',
-            array('panele' => $slider)
-        );
+        return view('slider.index', ['list' => $slider]);
     }
 
     public function create()
     {
         return view('slider.form',
-            array(
+            [
                 'cardtitle' => 'Dodaj panel',
                 'imgwidth' => Slider::PC_WIDTH,
                 'imgheight' => Slider::PC_HEIGHT
-            ))
-            ->with('wpis', Slider::make());
+            ])
+            ->with('entry', Slider::make());
     }
 
     public function store(StoreSlider $request)
@@ -47,12 +45,12 @@ class SliderController extends Controller
     {
         $slider = Slider::where('id', $id)->first();
         return view('slider.form',
-            array(
-                'wpis' => $slider,
+            [
+                'entry' => $slider,
                 'cardtitle' => 'Edytuj panel',
                 'imgwidth' => Slider::PC_WIDTH,
                 'imgheight' => Slider::PC_HEIGHT
-            )
+            ]
         );
     }
 
@@ -77,8 +75,6 @@ class SliderController extends Controller
     {
         $slider->deleteSlider();
         $slider->delete();
-        return response()->json([
-            'success' => 'Boks usniety'
-        ]);
+        return response()->json(['success' => 'Boks usniety']);
     }
 }

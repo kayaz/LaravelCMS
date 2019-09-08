@@ -25,22 +25,22 @@
                                 <div class="form-group row">
                                     <label for="form_email" class="col-2 col-form-label control-label">Adres e-mail</label>
                                     <div class="col-10">
-                                        <input id="form_email" value="{{ $wpis->email }}" class="form-control" name="email" type="email" required>
+                                        <input id="form_email" value="{{ $entry->email }}" class="form-control" name="email" type="email" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="form_nazwa" class="col-2 col-form-label control-label">Nazwa</label>
                                     <div class="col-10">
-                                        <input id="form_nazwa" value="{{ $wpis->name }}" class="form-control" name="name" type="text" required>
+                                        <input id="form_nazwa" value="{{ $entry->name }}" class="form-control" name="name" type="text" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="form_role" class="col-2 col-form-label control-label">Typ konta</label>
                                     <div class="col-10">
                                         <select id="form_role" class="form-control" name="role">
-                                            <option value="admin"@if ($wpis->role == 'admin') selected @endif>Administrator</option>
-                                            <option value="editor"@if ($wpis->role == 'editor') selected @endif>Redaktor</option>
-                                            <option value="user"@if ($wpis->role == 'user') selected @endif>Użytkownik</option>
+                                            <option value="admin"@if ($entry->role == 'admin') selected @endif>Administrator</option>
+                                            <option value="editor"@if ($entry->role == 'editor') selected @endif>Redaktor</option>
+                                            <option value="user"@if ($entry->role == 'user') selected @endif>Użytkownik</option>
                                         </select>
                                     </div>
                                 </div>

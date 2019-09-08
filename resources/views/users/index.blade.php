@@ -31,7 +31,7 @@
                     </tr>
                     </thead>
                     <tbody class="content">
-                    @foreach ($users as $index => $p)
+                    @foreach ($list as $index => $p)
                         <tr id="recordsArray_{{ $p->id }}">
                             <th class="position" scope="row">{{ $index+1 }}</th>
                             <td><div class="avatar-circle"><span class="initials">{{substr($p->name, 0, 1)}}</span></div> <span class="namelist">{{ $p->name }}</span></td>

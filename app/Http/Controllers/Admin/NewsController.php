@@ -17,25 +17,33 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::orderBy('data', 'desc')->get();
-        return view('news.index',
-            array('lista' => $news)
-        );
+        return view('news.index', ['list' => $news]);
     }
 
     public function create()
     {
         return view('news.form',
-            array(
+            [
                 'cardtitle' => 'Dodaj wpis',
                 'thumbwidth' => News::THUMB_WIDTH,
                 'thumbheight' => News::THUMB_HEIGHT
-            ))
-            ->with('wpis', News::make());
+            ])
+            ->with('entry', News::make());
     }
 
     public function store(StoreNews $request)
     {
-        $news = News::create($request->merge(['slug' => Str::slug($request->nazwa)])->only(['nazwa', 'status', 'meta_tytul', 'meta_opis', 'data', 'wprowadzenie', 'tekst']));
+        $news = News::create($request->merge(['slug' => Str::slug($request->nazwa)])->only(
+            [
+                'nazwa',
+                'status',
+                'meta_tytul',
+                'meta_opis',
+                'data',
+                'wprowadzenie',
+                'tekst'
+            ]
+        ));
 
         if ($request->hasFile('plik')) {
             $news->makeThumb($request->nazwa, $request->file('plik'));
@@ -48,18 +56,28 @@ class NewsController extends Controller
     {
         $news = News::where('id', $id)->first();
         return view('news.form',
-            array(
-                'wpis' => $news,
+            [
+                'entry' => $news,
                 'cardtitle' => 'Edytuj wpis',
                 'thumbwidth' => News::THUMB_WIDTH,
                 'thumbheight' => News::THUMB_HEIGHT
-            )
+            ]
         );
     }
 
     public function update(StoreNews $request, News $news)
     {
-        $news->update($request->merge(['slug' => Str::slug($request->nazwa)])->only(['nazwa', 'status', 'meta_tytul', 'meta_opis', 'data', 'wprowadzenie', 'tekst']));
+        $news->update($request->merge(['slug' => Str::slug($request->nazwa)])->only(
+            [
+                'nazwa',
+                'status',
+                'meta_tytul',
+                'meta_opis',
+                'data',
+                'wprowadzenie',
+                'tekst'
+            ]
+        ));
 
         if ($request->hasFile('plik')) {
             $news->makeThumb($request->nazwa, $request->file('plik'));
@@ -72,8 +90,6 @@ class NewsController extends Controller
     {
         $news->deleteThumb();
         $news->delete();
-        return response()->json([
-            'success' => 'Boks usniety'
-        ]);
+        return response()->json(['success' => 'Boks usniety']);
     }
 }

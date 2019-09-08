@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <h4 class="page-title"><i class="fe-sliders"></i> &nbsp;Ustawienia</h4>
 </div>
-    <form method="POST" action="{{route('admin.ustawienia.social.update')}}">
+    <form method="POST" action="{{route('admin.settings.social.update')}}">
     @method('PUT')
         @csrf
         <div class="container-fluid">

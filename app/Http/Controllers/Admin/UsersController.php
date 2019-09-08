@@ -20,16 +20,12 @@ class UsersController extends Controller
     public function index()
     {
         $users = Users::all()->sortBy("sort");
-        return view('users.index',
-            array('users' => $users)
-        );
+        return view('users.index', ['list' => $users]);
     }
 
     public function create()
     {
-        return view('users.form',
-            array('cardtitle' => 'Dodaj użytkownika'))
-            ->with('wpis', Users::make());
+        return view('users.form', ['cardtitle' => 'Dodaj użytkownika'])->with('entry', Users::make());
     }
 
     public function store(StoreUsers $request)
@@ -44,26 +40,16 @@ class UsersController extends Controller
         return redirect($this->redirectTo)->with('success', 'Użytkownik dodany');
     }
 
-    public function edit(Users $users, $id)
+    public function edit($id)
     {
         $user = Users::where('id', $id)->first();
-        return view('users.editform',
-            array(
-                'wpis' => $user,
-                'cardtitle' => 'Edytuj użytkownika'
-            )
-        );
+        return view('users.editform', ['entry' => $user, 'cardtitle' => 'Edytuj użytkownika']);
     }
 
     public function password($id)
     {
         $user = Users::where('id', $id)->first();
-        return view('users.passwordform',
-            array(
-                'wpis' => $user,
-                'cardtitle' => 'Zmień hasło'
-            )
-        );
+        return view('users.passwordform', ['entry' => $user, 'cardtitle' => 'Zmień hasło']);
     }
 
     public function updatepassword(Request $request, $id){
@@ -107,11 +93,8 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-        // Usuwamy pliki
         $user = Users::find($id);
         $user->delete();
-        return response()->json([
-            'success' => 'Wpis usniety'
-        ]);
+        return response()->json(['success' => 'Wpis usniety']);
     }
 }

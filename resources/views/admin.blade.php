@@ -36,8 +36,8 @@
     <div class="sidemenu-holder">
         <div id="sidemenu">
             <ul class="list-unstyled mb0">
-                <li class="{{ Request::routeIs('admin.ustawienia.*') ? 'active' : '' }}">
-                    <a href="{{route('admin.ustawienia.index')}}">
+                <li class="{{ Request::routeIs('admin.settings.*') ? 'active' : '' }}">
+                    <a href="{{route('admin.settings.index')}}">
                         <i class="fe-sliders"></i>
                         <span> Ustawienia </span>
                     </a>
@@ -60,8 +60,8 @@
                         <span> Slider </span>
                     </a>
                 </li>
-                <li class="{{ Request::routeIs('admin.boks.*') ? 'active' : '' }}">
-                    <a href="{{route('admin.boks.index')}}">
+                <li class="{{ Request::routeIs('admin.boxes.*') ? 'active' : '' }}">
+                    <a href="{{route('admin.boxes.index')}}">
                         <i class="fe-grid"></i>
                         <span> Boksy </span>
                     </a>
@@ -72,14 +72,14 @@
                         <span> Menu </span>
                     </a>
                 </li>
-                <li class="{{ Request::routeIs('admin.inwestycja.*') ? 'active' : '' }}">
-                    <a href="{{route('admin.inwestycja.index')}}">
+                <li class="{{ Request::routeIs('admin.investments.*') ? 'active' : '' }}">
+                    <a href="{{route('admin.investments.index')}}">
                         <i class="fe-home"></i>
                         <span> Inwestycje </span>
                     </a>
                 </li>
-                <li class="{{ Request::routeIs('admin.galeria.*') ? 'active' : '' }}">
-                    <a href="{{route('admin.galeria.index')}}">
+                <li class="{{ Request::routeIs('admin.gallery.*') ? 'active' : '' }}">
+                    <a href="{{route('admin.gallery.index')}}">
                         <i class="fe-image"></i>
                         <span> Galeria </span>
                     </a>

@@ -1,7 +1,7 @@
 @extends('admin')
 
 @section('content')
-    <form method="POST" action="{{route('admin.users.updatepass', $wpis->id)}}">
+    <form method="POST" action="{{route('admin.users.updatepass', $entry->id)}}">
         @method('PUT')
         @csrf
         <div class="container-fluid">

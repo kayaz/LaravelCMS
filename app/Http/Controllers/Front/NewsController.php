@@ -10,18 +10,12 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::orderBy('data', 'desc')->where('status', '=', 1)->paginate(2);
-
-        return view('news.front',
-            array('news' => $news)
-        );
+        return view('news.front', ['news' => $news]);
     }
 
     public function show($slug)
     {
         $newsEntry = News::where('slug', $slug)->first();
-
-        return view('news.show',
-            array('wpis' => $newsEntry)
-        );
+        return view('news.show', ['wpis' => $newsEntry]);
     }
 }

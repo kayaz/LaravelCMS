@@ -31,7 +31,7 @@
                     </tr>
                     </thead>
                     <tbody class="content">
-                    @foreach ($lista as $index => $p)
+                    @foreach ($list as $index => $p)
                         <tr id="recordsArray_{{ $p->id }}">
                             <th class="position" scope="row">{{ $index+1 }}</th>
                             <td>{{ $p->nazwa }}</td>

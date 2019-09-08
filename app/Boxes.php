@@ -45,4 +45,5 @@ class Boxes extends Model
             $listingCounter = $listingCounter + 1;
         }
     }
+
 }

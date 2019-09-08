@@ -6,6 +6,7 @@ use App\Boxes;
 use App\Http\Requests\StoreBox;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class BoxesController extends Controller
 {
@@ -70,4 +71,10 @@ class BoxesController extends Controller
         $box->delete();
         return response()->json(['success' => 'Boks usniety']);
     }
+
+    public function sort(Request $request, Boxes $box)
+    {
+        $box->sort($request);
+    }
+
 }

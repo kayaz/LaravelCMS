@@ -19,10 +19,10 @@
         });
     </script>
     @if(Route::is('admin.investments.roomedytuj'))
-        <form method="POST" action="#" enctype="multipart/form-data" class="mappa">
+        <form method="POST" action="{{route('admin.investments.roomupdate', ['room' => $entry->id])}}" enctype="multipart/form-data" class="mappa">
             {{method_field('PUT')}}
     @else
-        <form method="POST" action="#" enctype="multipart/form-data" class="mappa">
+        <form method="POST" action="{{route('admin.investments.roomzapisz', $floor->id)}}" enctype="multipart/form-data" class="mappa">
     @endif
     @csrf
             <div class="container-fluid">

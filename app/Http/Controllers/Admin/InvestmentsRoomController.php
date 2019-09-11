@@ -9,6 +9,7 @@ use App\Investments;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class InvestmentsRoomController extends Controller
 {
@@ -17,10 +18,10 @@ class InvestmentsRoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Investments $investments, Floor $floor)
+    public function index(Floor $floor)
     {
         $investment = Investments::find($floor->investments_id);
-        $rooms = $investment->rooms;
+        $rooms = $floor->rooms;
 
         return view('room.index', [
             'investment' => $investment,
@@ -54,20 +55,21 @@ class InvestmentsRoomController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Floor $floor)
     {
-        //
-    }
+        Room::create($request->merge(['slug' => Str::slug($request->nazwa), 'floor_id' => $floor->id])->only(
+            [
+                'floor_id',
+                'nazwa',
+                'slug',
+                'meta_tytul',
+                'meta_opis',
+                'cords',
+                'html'
+            ]
+        ));
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Room $room
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Room $room)
-    {
-        //
+        return redirect('admin/investments/rooms/'.$floor->id)->with('success', 'Nowe mieszkanie dodane');
     }
 
     /**
@@ -102,7 +104,18 @@ class InvestmentsRoomController extends Controller
      */
     public function update(Request $request, Room $room)
     {
-        //
+        $room->update($request->merge(['slug' => Str::slug($request->nazwa)])->only(
+            [
+                'nazwa',
+                'slug',
+                'meta_tytul',
+                'meta_opis',
+                'cords',
+                'html'
+            ]
+        ));
+
+        return redirect('admin/investments/rooms/'.$room->floor_id)->with('success', 'Mieszkanie zaktualizowane');
     }
 
     /**

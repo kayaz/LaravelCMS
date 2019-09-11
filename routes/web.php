@@ -70,6 +70,8 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/investments/', 'as' => '
     Route::get('rooms/{floor}',                 'InvestmentsRoomController@index')->name('roomindex');
     Route::get('rooms/{floor}/create',          'InvestmentsRoomController@create')->name('roomdodaj');
     Route::get('rooms/{floor}/edit',            'InvestmentsRoomController@edit')->name('roomedytuj');
+    Route::put('rooms/{room}',                  'InvestmentsRoomController@update')->name('roomupdate');
+    Route::post('rooms/{floor}',                'InvestmentsRoomController@store')->name('roomzapisz');
 });
 //
 // Robimy slider

@@ -7,7 +7,7 @@
         <div class="row">
             @foreach($list as $p)
                 <div class="col-6">
-                    <a href="#" itemprop="url"><div class="card">
+                    <a href="{{route('front.inwestycja', ['slug' => $p->slug])}}" itemprop="url"><div class="card">
                         <img src="{{asset('inwestycje/thumbs/'.$p->miniaturka) }}" alt="{{ $p->nazwa }}">
                         <div class="card-body">
                             <img src="{{asset('inwestycje/logo/'.$p->logo) }}" alt="{{ $p->nazwa }}">

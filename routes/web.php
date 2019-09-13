@@ -7,6 +7,7 @@ Route::post('/kontakt',                         'Front\KontaktController@send')-
 
 // Aktualne inwestycje
 Route::get('/aktualne-inwestycje',              'Front\InvestmentsController@index')->name('front.inwestycje');
+Route::get('/i/{slug}',                         'Front\InvestmentsController@show')->name('front.inwestycja');
 
 // Aktualności
 Route::group(['namespace' => 'Front', 'prefix'=>'/aktualnosci/', 'as' => 'front.news.'], function() {

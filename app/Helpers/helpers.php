@@ -50,7 +50,6 @@ if (! function_exists('inwest_typ')) {
                 return "Inna oferta";
         }
     }
-
 }
 
 // Sprawdzamy status inwestycji
@@ -66,5 +65,14 @@ if (! function_exists('inwest_status')) {
                 return "Inwestycja planowana";
         }
     }
+}
 
+// Odczytujemy cordy
+if (! function_exists('cords')) {
+    function cords($string)
+    {
+        $pattern = '/coords="([^"]*)"/';
+        preg_match($pattern, $string, $matches);
+        return $matches[1];
+    }
 }

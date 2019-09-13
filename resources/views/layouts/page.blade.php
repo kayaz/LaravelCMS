@@ -46,6 +46,11 @@
 <script src="{{ URL::asset('js/pl.js') }}" charset="utf-8"></script>
 @endisset
 
+@isset($investplan)
+<script src="{{ URL::asset('js/plan/imagemapster.js') }}" charset="utf-8"></script>
+<script src="{{ URL::asset('js/plan/plan.js') }}" charset="utf-8"></script>
+@endisset
+
 <script type="text/javascript">
     $(document).ready(function(){
     @isset($validation)

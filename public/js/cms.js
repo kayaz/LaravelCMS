@@ -37,4 +37,9 @@ $(document).ready(function(){
         $('.toggleRow').toggle();
     });
 
+    $('#form_metry').keyup(function() {
+        var number = $(this).val().replace(/,/g, '.')
+        $('#form_szukaj_metry').val(Math.round(number));
+    });
+
 });

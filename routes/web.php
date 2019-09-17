@@ -8,6 +8,8 @@ Route::post('/kontakt',                         'Front\KontaktController@send')-
 // Aktualne inwestycje
 Route::get('/aktualne-inwestycje',              'Front\InvestmentsController@index')->name('front.inwestycje');
 Route::get('/i/{slug}',                         'Front\InvestmentsController@show')->name('front.inwestycja');
+Route::get('/i/{slug}/{floorslug}',             'Front\InvestmentsFloorController@index')->name('front.inwestycja.pietro');
+Route::get('/i/{slug}/{floorslug}/{roomslug}',  'Front\InvestmentsRoomController@index')->name('front.inwestycja.mieszkanie');
 
 // Aktualności
 Route::group(['namespace' => 'Front', 'prefix'=>'/aktualnosci/', 'as' => 'front.news.'], function() {

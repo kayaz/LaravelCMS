@@ -67,6 +67,23 @@ if (! function_exists('inwest_status')) {
     }
 }
 
+// Sprawdzamy status mieszkania
+if (! function_exists('room_status')) {
+    function room_status($number)
+    {
+        switch ($number) {
+            case '1':
+                return "Na sprzedaż";
+            case '2':
+                return "Sprzedane";
+            case '3':
+                return "Rezerwacja";
+            case '3':
+                return "Wynajęte";
+        }
+    }
+}
+
 // Odczytujemy cordy
 if (! function_exists('cords')) {
     function cords($string)

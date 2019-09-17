@@ -57,7 +57,7 @@ class InvestmentsRoomController extends Controller
      */
     public function store(Request $request, Floor $floor)
     {
-        Room::create($request->merge(['slug' => Str::slug($request->nazwa), 'floor_id' => $floor->id])->only(
+        $room = Room::create($request->merge(['slug' => Str::slug($request->nazwa), 'floor_id' => $floor->id])->only(
             [
                 'floor_id',
                 'nazwa',
@@ -65,9 +65,24 @@ class InvestmentsRoomController extends Controller
                 'meta_tytul',
                 'meta_opis',
                 'cords',
-                'html'
+                'html',
+                'status',
+                'pokoje',
+                'metry',
+                'szukaj_metry',
+                'cena',
+                'szukaj_cena',
+                'cena_m'
             ]
         ));
+
+        if ($request->hasFile('plik')) {
+            $room->makePlan($request->nazwa, $request->file('plik'));
+        }
+
+        if ($request->hasFile('plikpdf')) {
+            $room->makePdf($request->nazwa, $request->file('plikpdf'));
+        }
 
         return redirect('admin/investments/rooms/'.$floor->id)->with('success', 'Nowe mieszkanie dodane');
     }
@@ -111,9 +126,24 @@ class InvestmentsRoomController extends Controller
                 'meta_tytul',
                 'meta_opis',
                 'cords',
-                'html'
+                'html',
+                'status',
+                'pokoje',
+                'metry',
+                'szukaj_metry',
+                'cena',
+                'szukaj_cena',
+                'cena_m'
             ]
         ));
+
+        if ($request->hasFile('plik')) {
+            $room->makePlan($request->nazwa, $request->file('plik'));
+        }
+
+        if ($request->hasFile('plikpdf')) {
+            $room->makePdf($request->nazwa, $request->file('plikpdf'));
+        }
 
         return redirect('admin/investments/rooms/'.$room->floor_id)->with('success', 'Mieszkanie zaktualizowane');
     }

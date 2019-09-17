@@ -57,9 +57,29 @@
                                     @include('form-elements.mappa', ['label' => 'Współrzędne punktów HTML', 'name' => 'html', 'value' => $entry->html, 'rows' => 10, 'class' => 'mappa-area'])
                                 </div>
 
-                                @include('form-elements.input-text', ['label' => 'Nazwa piętra', 'name' => 'nazwa', 'value' => $entry->nazwa])
+                                @include('form-elements.select', ['label' => 'Status mieszkania', 'name' => 'status', 'selected' => $entry->status, 'options' =>
+                                [
+                                    '1' => 'Na sprzedaż',
+                                    '2' => 'Sprzedane',
+                                    '3' => 'Rezerwacja',
+                                    '4' => 'Wynajęte'
+                                ]])
+
+                                @include('form-elements.input-text', ['label' => 'Nazwa mieszkania', 'name' => 'nazwa', 'value' => $entry->nazwa])
                                 @include('form-elements.input-text', ['label' => 'Nagłówek strony', 'sublabel'=> 'Meta tag - title', 'name' => 'meta_tytul', 'value' => $entry->meta_tytul])
                                 @include('form-elements.input-text', ['label' => 'Opis strony', 'sublabel'=> 'Meta tag - description', 'name' => 'meta_opis', 'value' => $entry->meta_opis])
+
+                                @include('form-elements.input-text', ['label' => 'Pokoje', 'name' => 'pokoje', 'value' => $entry->pokoje])
+                                @include('form-elements.input-text', ['label' => 'Powierzchnia bez m<sup>2</sup>', 'sublabel'=> 'wartość wyświetlana', 'name' => 'metry', 'value' => $entry->metry])
+                                @include('form-elements.input-text', ['label' => 'Powierzchnia bez m<sup>2</sup>', 'sublabel'=> 'wartość wyszukiwana', 'name' => 'szukaj_metry', 'value' => $entry->szukaj_metry])
+
+                                @include('form-elements.input-text', ['label' => 'Cena', 'sublabel'=> 'wartość wyświetlana', 'name' => 'cena', 'value' => $entry->cena])
+                                @include('form-elements.input-text', ['label' => 'Cena', 'sublabel'=> 'wartość wyszukiwana: tylko liczby, bez spacji, bez przecinka', 'name' => 'szukaj_cena', 'value' => $entry->szukaj_cena])
+                                @include('form-elements.input-text', ['label' => 'Cena za m<sup>2</sup>', 'sublabel'=> 'wartość wyświetlana', 'name' => 'cena_m', 'value' => $entry->cena_m])
+
+                                @include('form-elements.input-file', ['label' => 'Plan mieszkania', 'name' => 'plik'])
+                                @include('form-elements.input-file', ['label' => 'Plik .pdf', 'name' => 'plikpdf'])
+
 
                             </div>
                         </div>

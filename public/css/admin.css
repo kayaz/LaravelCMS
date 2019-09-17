@@ -173,7 +173,15 @@ p {margin:0}
 	font-weight: 700;
 	padding-bottom:0
 }
-.col-form-label span {font-weight:400;font-size:11px;color:#A8A8A8}
+.col-form-label span {
+    font-weight: 400;
+    font-size: 11px;
+    color: #A8A8A8;
+    line-height: 13px;
+    display: block;
+    width: 100%;
+    margin-top: 2px;
+}
 .col-form-label i {font-weight:400}
 .form-control {border-radius:0}
 .form-group {
@@ -342,6 +350,11 @@ span.actionBtn {display:block;margin-right: 30px;padding: 8px 13px 7px;cursor:po
 .inwest-list-status-2 {background:#940000;color:white;display:inline-block;padding:3px 8px}
 .inwest-list-status-3 {background:#0063a9;color:white;display:inline-block;padding:3px 8px}
 .inwest-list-status-4 {background:#5800c5;color:white;display:inline-block;padding:3px 8px}
+
+.room-list-status-1 {background:green;color:white;display:inline-block;padding:3px 8px}
+.room-list-status-2 {background:#940000;color:white;display:inline-block;padding:3px 8px}
+.room-list-status-3 {background:#0063a9;color:white;display:inline-block;padding:3px 8px}
+.room-list-status-4 {background:#5800c5;color:white;display:inline-block;padding:3px 8px}
 
 /* Modal
 ================================================== */

@@ -233,8 +233,6 @@ article {border-bottom: 1px solid #f6f6f6;margin-bottom:30px;padding-bottom:30px
     font-weight: 400
 }
 
-
-
 /* Plan
 ================================================== */
 #plan {position: relative}
@@ -259,6 +257,17 @@ article {border-bottom: 1px solid #f6f6f6;margin-bottom:30px;padding-bottom:30px
 .plan-control a span {background:#1071b8;color:#fff;float:right;margin-left:20px;font-weight:600;z-index:10;padding:10px 17px}
 .plan-control .panel-map-name {background:#1071b8}
 
+/* Mieszkanie
+================================================== */
+.room-param span {float: right;font-weight:700}
+.room-param li {padding:10px 0;border-bottom:1px solid #DFDFDF}
+.room-param li:last-child {border-bottom:0}
+
+.room-list-status-1 {background:green;color:white;display:inline-block;padding:3px 8px}
+.room-list-status-2 {background:#940000;color:white;display:inline-block;padding:3px 8px}
+.room-list-status-3 {background:#0063a9;color:white;display:inline-block;padding:3px 8px}
+.room-list-status-4 {background:#5800c5;color:white;display:inline-block;padding:3px 8px}
+
 /* Kontakt
 ================================================== */
 .formError{position:absolute;top:300px;left:300px;display:block;z-index:500;cursor:pointer}.formError .formErrorContent{background:#ff9000;position:relative;z-index:5001;color:#fff;width:190px;font-size:12px;border:1px solid #ff9000;padding:2px 10px 2px 10px}.formError .formErrorArrow{width:12px;margin:-2px 0 0 1px;position:relative;z-index:5006}.formError .formErrorArrowBottom{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;margin:0 0 0 12px;top:2px}.formError .formErrorArrow div{font-size:0;height:1px;background:#ff9000;margin:0 auto;line-height:0;display:block}.formError .formErrorArrowBottom div{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none}.formError .formErrorArrow .line10{width:15px;border:0}.formError .formErrorArrow .line9{width:13px;border:0}.formError .formErrorArrow .line8{width:11px}.formError .formErrorArrow .line7{width:9px}.formError .formErrorArrow .line6{width:7px}.formError .formErrorArrow .line5{width:5px}.formError .formErrorArrow .line4{width:3px}.formError .formErrorArrow .line3{width:1px}.formError .formErrorArrow .line2{width:0}.formError .formErrorArrow .line1{width:0}.inputbox-error{border-bottom:1px solid #ff9000!important}
@@ -269,7 +278,7 @@ article {border-bottom: 1px solid #f6f6f6;margin-bottom:30px;padding-bottom:30px
 
 #kontakt h2 {font-size: 24px;color: #353535;margin: 0 0 20px;line-height: 24px;padding-bottom: 25px;border-bottom: 1px solid #f6f6f6;}
 #kontakt h3 {font-size: 18px;font-weight:600;color: #1774a4}
-#kontakt input, #kontakt textarea {
+form input[type="text"], form textarea {
     background: #fbfbfb;
     border: 1px solid #eaeaea;
     padding: 12px 15px;
@@ -279,11 +288,11 @@ article {border-bottom: 1px solid #f6f6f6;margin-bottom:30px;padding-bottom:30px
     -o-transition:all 200ms linear;
     transition:all 200ms linear
 }
-#kontakt textarea {height:180px}
-#kontakt input:hover,
-#kontakt input:focus,
-#kontakt textarea:hover,
-#kontakt textarea:focus {
+form textarea {height:180px}
+form input[type="text"]:hover,
+form input[type="text"]:focus,
+form textarea:hover,
+form textarea:focus {
     border-bottom: 1px solid #00aeef;
     -webkit-box-shadow: 0 2px 2px 0 rgba(50, 50, 50, 0.10);
     -moz-box-shadow:    0 2px 2px 0 rgba(50, 50, 50, 0.10);

@@ -15,7 +15,7 @@
                     <div id="plan-holder"><img src="{{ URL::asset('inwestycje/pietro/'.$floor->plik) }}" alt="{{$floor->nazwa}}" id="invesmentplan" usemap="#invesmentplan"></div>
                     <map name="invesmentplan">
                         @foreach($rooms as $r)
-                            <area shape="poly" href="{{route('front.inwestycja.mieszkanie', ['slug' => $investment->slug, 'floor' => $floor->slug, 'room' => $r->slug])}}" data-item="{{$r->id}}" title="{{$r->nazwa}}" alt="{{$r->slug}}" data-roomnumber="{{$r->numer}}" data-roomtype="{{$r->typ}}" data-roomstatus="{{$r->status}}" coords="{{cords($r->html)}}">
+                            <area shape="poly" href="{{route('front.inwestycja.mieszkanie', ['slug' => $investment->slug, 'floorslug' => $floor->slug, 'roomslug' => $r->slug])}}" data-item="{{$r->id}}" title="{{$r->nazwa}}" alt="{{$r->slug}}" data-roomnumber="{{$r->numer}}" data-roomtype="{{$r->typ}}" data-roomstatus="{{$r->status}}" coords="{{cords($r->html)}}">
                         @endforeach
                     </map>
                 </div>

@@ -47,7 +47,7 @@
                         {{ session('warning') }}
                     </div>
                 @endif
-                <form method="post" action="#" class="validateForm">
+                <form method="post" action="{{ route('front.inwestycja.mieszkanie.send', ['slug' => $investment->slug, 'floorslug' => $floor->slug, 'roomslug' => $room->slug])}}" class="validateForm">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-12 col-input">

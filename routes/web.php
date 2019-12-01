@@ -11,6 +11,8 @@ Route::get('/i/{slug}',                         'Front\InvestmentsController@sho
 Route::get('/i/{slug}/{floorslug}',             'Front\InvestmentsFloorController@index')->name('front.inwestycja.pietro');
 Route::get('/i/{slug}/{floorslug}/{roomslug}',  'Front\InvestmentsRoomController@index')->name('front.inwestycja.mieszkanie');
 
+Route::post('/i/{slug}/{floorslug}/{roomslug}',  'Front\InvestmentsRoomController@send')->name('front.inwestycja.mieszkanie.send');
+
 // Aktualności
 Route::group(['namespace' => 'Front', 'prefix'=>'/aktualnosci/', 'as' => 'front.news.'], function() {
 
@@ -60,6 +62,8 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/investments/', 'as' => '
 
     Route::get('plan/{investment}',             'InvestmentsPlanController@index')->name('planindex');
     Route::post('upload/{investment}',          'InvestmentsPlanController@update')->name('planupdate');
+
+    Route::get('buildings/{investment}',         'InvestmentsBuildingController@index')->name('budynekindex');
 
     Route::get('floors/{investment}',           'InvestmentsFloorController@index')->name('pietroindex');
     Route::get('add-floor/{investment}',        'InvestmentsFloorController@create')->name('pietrododaj');

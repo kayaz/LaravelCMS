@@ -89,6 +89,11 @@ class Investments extends Model
         return $this->hasMany('App\Floor');
     }
 
+    public function building()
+    {
+        return $this->hasMany('App\Building');
+    }
+
     public function investrooms()
     {
         return $this->hasManyThrough(

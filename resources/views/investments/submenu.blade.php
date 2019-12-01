@@ -4,7 +4,7 @@
         @if ($investment->typ == 2)
             <a class="nav-link {{ Request::routeIs('admin.investments.pietroindex') ? ' active' : '' }}" href="{{route('admin.investments.pietroindex', ['id' => $investment->id])}}"><span class="fe-layers"></span> Lista kondygnacji</a>
         @else
-            <a class="nav-link" href="#"><span class="fe-package"></span> Lista budynków</a>
+            <a class="nav-link {{ Request::routeIs('admin.investments.budynekindex') ? ' active' : '' }}" href="{{route('admin.investments.budynekindex', ['id' => $investment->id])}}"><span class="fe-package"></span> Lista budynków</a>
         @endif
 
         @if (Request::routeIs('admin.investments.roomindex'))

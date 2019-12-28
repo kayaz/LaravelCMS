@@ -38,8 +38,8 @@
                             <td>{{ $p->updated_at }}</td>
                             <td class="option-120">
                                 <div class="btn-group">
-                                    <a href="{{route('admin.investments.roomindex', ['id' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Pokaż piętro"><i class="fe-folder"></i></a>
-                                    <a href="{{route('admin.investments.pietroedytuj', ['id' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj piętro"><i class="fe-edit"></i></a>
+                                    <a href="{{route('admin.investments.roomindex', ['floor' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Pokaż piętro"><i class="fe-folder"></i></a>
+                                    <a href="{{route('admin.investments.pietroedytuj', ['floor' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj piętro"><i class="fe-edit"></i></a>
                                     <form method="POST" action="{{route('admin.investments.pietrousun', ['id' => $p->id])}}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}

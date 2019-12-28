@@ -40,8 +40,8 @@
                             <td class="text-center">{!! page_status($p->status) !!}</td>
                             <td class="option-120">
                                 <div class="btn-group">
-                                    <a href="{{route('admin.news.edytuj', ['id' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj wpis"><i class="fe-edit"></i></a>
-                                    <form method="POST" action="{{route('admin.news.usun', ['id' => $p->id])}}">
+                                    <a href="{{route('admin.news.edytuj', $p->id)}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj wpis"><i class="fe-edit"></i></a>
+                                    <form method="POST" action="{{route('admin.news.usun', $p->id)}}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button type="submit" class="btn action-button confirm" data-toggle="tooltip" data-placement="top" title="Usuń wpis" data-id="{{ $p->id }}"><i class="fe-trash-2"></i></button>

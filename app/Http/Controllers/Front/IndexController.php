@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Menu;
 use App\News;
 use App\Slider;
 use App\Boxes;
@@ -17,5 +18,12 @@ class IndexController extends Controller
         $boksy = Boxes::all()->sortBy("sort");
 
         return view('layouts.main', compact('slider', 'news', 'boksy'));
+    }
+
+    public function getPage($slug = null)
+    {
+        $page = Menu::where('uri', $slug);
+        $page = $page->firstOrFail();
+        return view('front.index.menupage')->with('page', $page);
     }
 }

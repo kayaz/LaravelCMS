@@ -51,6 +51,20 @@ input[type="text"], label, select, button, textarea {margin:0;border:0;padding:0
 #header nav li {padding-left:28px;display:inline-block;position:relative;line-height:normal}
 #header nav li.active a {color:#000}
 
+#header nav li ul {
+    position: absolute;
+    top: 100%;
+    right: -18px;
+    padding: 0;
+    width: 180px;
+    z-index: 999;
+    background: white;
+    display: none;
+}
+#header nav li:hover ul {display: block}
+#header nav li ul li {padding:0 15px;width:100%}
+#header nav li ul a {padding: 10px 0}
+
 /* Slider
 ================================================== */
 #slider {position:relative;width:100%;min-height:400px}

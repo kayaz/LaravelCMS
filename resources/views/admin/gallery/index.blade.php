@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="page-title"><i class="fe-file-text"></i> &nbsp;Menu strony</h4>
+        <h4 class="page-title"><i class="fe-image"></i> &nbsp;Galeria</h4>
     </div>
 
     <div class="container-fluid">
@@ -19,14 +19,12 @@
                         <script>window.setTimeout(function(){$(".alert").fadeTo(500,0).slideUp(500,function(){$(this).remove()})},3000);</script>
                     </div>
                 @endif
-                <table class="table mb-0">
+                <table class="table mb-0" id="sortable">
                     <thead class="thead-default">
                     <tr>
                         <th>#</th>
                         <th>Nazwa</th>
-                        <th>Typ</th>
-                        <th class="text-center">Data modyfikacji</th>
-                        <th class="text-center">Status</th>
+                        <th>Data modyfikacji</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -34,17 +32,16 @@
                     @foreach ($list as $index => $p)
                         <tr id="recordsArray_{{ $p->id }}">
                             <th class="position" scope="row">{{ $index+1 }}</th>
-                            <td>{{ $p->nazwa }}</td>
-                            <td>{{ page_type($p->typ) }}</td>
-                            <td class="text-center">{{ $p->updated_at }}</td>
-                            <td class="text-center">{!! page_status($p->menu) !!}</td>
+                            <td><a href="{{route('admin.gallery.pokaz', $p->id)}}" data-toggle="tooltip" data-placement="top" title="Pokaż katalog">{{ $p->nazwa }}</a></td>
+                            <td>{{ $p->updated_at }}</td>
                             <td class="option-120">
                                 <div class="btn-group">
-                                    <a href="{{route('admin.menu.edytuj', ['id' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj wpis"><i class="fe-edit"></i></a>
-                                    <form method="POST" action="{{route('admin.menu.usun', ['id' => $p->id])}}">
+                                    <a href="{{route('admin.gallery.pokaz', $p->id)}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Pokaż katalog"><i class="fe-folder"></i></a>
+                                    <a href="{{route('admin.gallery.edytuj', $p->id)}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj katalog"><i class="fe-edit"></i></a>
+                                    <form method="POST" action="{{route('admin.gallery.usun', $p->id)}}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn action-button confirm" data-toggle="tooltip" data-placement="top" title="Usuń wpis" data-id="{{ $p->id }}"><i class="fe-trash-2"></i></button>
+                                        <button type="submit" class="btn action-button confirm" data-toggle="tooltip" data-placement="top" title="Usuń katalog" data-id="{{ $p->id }}"><i class="fe-trash-2"></i></button>
                                     </form>
                                 </div>
                             </td>
@@ -57,8 +54,7 @@
     </div>
     <div class="form-group form-group-submit row">
         <div class="col-12">
-            <a href="{{route('admin.menu.dodaj')}}" class="btn btn-primary">Dodaj stronę</a>
-            <a href="{{route('admin.menu.dodaj')}}" class="btn btn-primary">Dodaj link</a>
+            <a href="{{ route('admin.gallery.dodaj') }}" class="btn btn-primary">Dodaj katalog</a>
         </div>
     </div>
 @endsection

@@ -16,12 +16,12 @@ class BoxesController extends Controller
     public function index()
     {
         $boxes = Boxes::all()->sortBy("sort");
-        return view('boxes.index', ['list' => $boxes]);
+        return view('admin.boxes.index', ['list' => $boxes]);
     }
 
     public function create()
     {
-        return view('boxes.form',
+        return view('admin.boxes.form',
             [
                 'cardtitle' => 'Dodaj boks',
                 'iconwidth' => Boxes::ICON_HEIGHT,
@@ -44,7 +44,7 @@ class BoxesController extends Controller
     public function edit($id)
     {
         $box = Boxes::where('id', $id)->first();
-        return view('boxes.form',
+        return view('admin.boxes.form',
             [
                 'entry' => $box,
                 'cardtitle' => 'Edytuj boks',

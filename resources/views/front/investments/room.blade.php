@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-4"></div>
-            <div class="col-4"><a href="{{route('front.inwestycja.pietro', ['slug' => $investment->slug, 'floor' => $floor->slug])}}" title="" class="bttn">PLAN PIĘTRA</a></div>
+            <div class="col-4"><a href="{{route('front.inwestycja.pietro', ['slug' => $investment->slug, 'floorslug' => $floor->slug])}}" title="" class="bttn">PLAN PIĘTRA</a></div>
             <div class="col-4"></div>
         </div>
         <div class="row">

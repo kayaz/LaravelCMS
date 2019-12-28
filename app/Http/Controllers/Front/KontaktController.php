@@ -12,7 +12,7 @@ class KontaktController extends Controller
 {
     public function index()
     {
-        return view('kontakt.index', ['validation' => 1]);
+        return view('front.kontakt.index', ['validation' => 1]);
     }
 
     public function send(Request $request)

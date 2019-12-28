@@ -39,8 +39,8 @@
                         <td class="option-120">
                             <div class="btn-group">
                                 <span class="btn action-button move-button mr-1"><i class="fe-move"></i></span>
-                                <a href="{{route('admin.slider.edytuj', ['id' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj wpis"><i class="fe-edit"></i></a>
-                                <form method="POST" action="{{route('admin.slider.usun', ['id' => $p->id])}}">
+                                <a href="{{route('admin.slider.edytuj', $p->id)}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj wpis"><i class="fe-edit"></i></a>
+                                <form method="POST" action="{{route('admin.slider.usun', $p->id)}}">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn action-button confirm" data-toggle="tooltip" data-placement="top" title="Usuń wpis" data-id="{{ $p->id }}"><i class="fe-trash-2"></i></button>

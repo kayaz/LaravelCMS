@@ -17,12 +17,12 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::orderBy('data', 'desc')->get();
-        return view('news.index', ['list' => $news]);
+        return view('admin.news.index', ['list' => $news]);
     }
 
     public function create()
     {
-        return view('news.form',
+        return view('admin.news.form',
             [
                 'cardtitle' => 'Dodaj wpis',
                 'thumbwidth' => News::THUMB_WIDTH,
@@ -55,7 +55,7 @@ class NewsController extends Controller
     public function edit($id)
     {
         $news = News::where('id', $id)->first();
-        return view('news.form',
+        return view('admin.news.form',
             [
                 'entry' => $news,
                 'cardtitle' => 'Edytuj wpis',

@@ -16,12 +16,12 @@ class GalleryController extends Controller
     public function index()
     {
         $gallery = Gallery::all('id', 'nazwa', 'updated_at')->sortBy("nazwa");
-        return view('gallery.index', ['list' => $gallery]);
+        return view('admin.gallery.index', ['list' => $gallery]);
     }
 
     public function create()
     {
-        return view('gallery.form', ['cardtitle' => 'Dodaj katalog'])->with('entry', Gallery::make());
+        return view('admin.gallery.form', ['cardtitle' => 'Dodaj katalog'])->with('entry', Gallery::make());
     }
 
     public function store(StoreGallery $request)
@@ -33,13 +33,13 @@ class GalleryController extends Controller
     public function show(Gallery $gallery)
     {
         $photos = GalleryPhotos::all()->sortBy("sort")->where('id_gal', $gallery->id);
-        return view('gallery.show', ['nazwa' => $gallery->nazwa, 'id' => $gallery->id, 'list' => $photos]);
+        return view('admin.gallery.show', ['nazwa' => $gallery->nazwa, 'id' => $gallery->id, 'list' => $photos]);
     }
 
     public function edit($id)
     {
         $gallery = Gallery::where('id', $id)->first();
-        return view('gallery.form', ['entry' => $gallery, 'cardtitle' => 'Edytuj galerię']);
+        return view('admin.gallery.form', ['entry' => $gallery, 'cardtitle' => 'Edytuj galerię']);
     }
 
     public function update(StoreGallery $request, Gallery $gallery)

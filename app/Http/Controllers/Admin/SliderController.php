@@ -16,12 +16,12 @@ class SliderController extends Controller
     public function index()
     {
         $slider = Slider::all()->sortBy("sort");
-        return view('slider.index', ['list' => $slider]);
+        return view('admin.slider.index', ['list' => $slider]);
     }
 
     public function create()
     {
-        return view('slider.form',
+        return view('admin.slider.form',
             [
                 'cardtitle' => 'Dodaj panel',
                 'imgwidth' => Slider::PC_WIDTH,
@@ -44,7 +44,7 @@ class SliderController extends Controller
     public function edit($id)
     {
         $slider = Slider::where('id', $id)->first();
-        return view('slider.form',
+        return view('admin.slider.form',
             [
                 'entry' => $slider,
                 'cardtitle' => 'Edytuj panel',
@@ -62,7 +62,7 @@ class SliderController extends Controller
             $slider->makeSlider($request->nazwa, $request->file('plik'));
         }
 
-        return redirect($this->redirectTo)->with('success', 'Boks zaktualizowany');
+        return redirect($this->redirectTo)->with('success', 'Panel zaktualizowany');
 
     }
 
@@ -75,6 +75,6 @@ class SliderController extends Controller
     {
         $slider->deleteSlider();
         $slider->delete();
-        return response()->json(['success' => 'Boks usniety']);
+        return response()->json(['success' => 'Panel usniety']);
     }
 }

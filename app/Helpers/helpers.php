@@ -78,7 +78,7 @@ if (! function_exists('room_status')) {
                 return "Sprzedane";
             case '3':
                 return "Rezerwacja";
-            case '3':
+            case '4':
                 return "Wynajęte";
         }
     }

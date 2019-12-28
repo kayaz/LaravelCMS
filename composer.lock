@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "34986d51fac54a40e5e5eafab41528ed",
+    "content-hash": "49210de5eead81f706edbf2651392c6e",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3239,6 +3239,71 @@
                 "environment"
             ],
             "time": "2019-09-10T21:37:39+00:00"
+        },
+        {
+            "name": "webreinvent/laravel-nestable",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webreinvent/laravel-nestable.git",
+                "reference": "4a0d223e7b28dc290041ac4d2a849003e12f8837"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webreinvent/laravel-nestable/zipball/4a0d223e7b28dc290041ac4d2a849003e12f8837",
+                "reference": "4a0d223e7b28dc290041ac4d2a849003e12f8837",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "orchestra/database": "~3.1",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "^4.0|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nestable\\NestableServiceProvider"
+                    ],
+                    "aliases": {
+                        "Nestable": "Nestable\\Facades\\NestableService"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nestable\\": "src/",
+                    "Nestable\\Tests\\": "tests/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "WebReinvent",
+                    "email": "we@webreinvent.com",
+                    "homepage": "https://www.webreinvent.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Laravel 6 nested categories library",
+            "homepage": "https://github.com/webreinvent",
+            "keywords": [
+                "category",
+                "laravel",
+                "nestable",
+                "nested",
+                "nestedset"
+            ],
+            "time": "2019-09-16T21:28:33+00:00"
         }
     ],
     "packages-dev": [
@@ -5131,7 +5196,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "webreinvent/laravel-nestable": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="page-title"><i class="fe-users"></i> &nbsp;Użytkownicy</h4>
+        <h4 class="page-title"><i class="fe-grid"></i> &nbsp;Przeglądaj boksy</h4>
     </div>
 
     <div class="container-fluid">
@@ -24,8 +24,7 @@
                     <tr>
                         <th>#</th>
                         <th>Nazwa</th>
-                        <th>Adres e-mail</th>
-                        <th>Typ konta</th>
+                        <th>Ikonka</th>
                         <th>Data modyfikacji</th>
                         <th></th>
                     </tr>
@@ -34,18 +33,17 @@
                     @foreach ($list as $index => $p)
                         <tr id="recordsArray_{{ $p->id }}">
                             <th class="position" scope="row">{{ $index+1 }}</th>
-                            <td><div class="avatar-circle"><span class="initials">{{substr($p->name, 0, 1)}}</span></div> <span class="namelist">{{ $p->name }}</span></td>
-                            <td>{{ $p->email }}</td>
-                            <td><span class="badge badge-info">{{ $p->role }}</span></td>
+                            <td>{{ $p->nazwa }}</td>
+                            <td><img src="<?php echo asset("uploads/boksy/".$p->plik)?>" style="width:60px" alt="{{ $p->nazwa }}"></td>
                             <td>{{ $p->updated_at }}</td>
                             <td class="option-120">
                                 <div class="btn-group">
-                                    <a href="{{route('admin.users.haslo', ['id' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj hasło"><i class="fe-shield"></i></a>
-                                    <a href="{{route('admin.users.edytuj', ['id' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj użytkownika"><i class="fe-edit"></i></a>
-                                    <form method="POST" action="{{route('admin.users.usun', ['id' => $p->id])}}">
+                                    <span class="btn action-button move-button mr-1"><i class="fe-move"></i></span>
+                                    <a href="{{route('admin.boxes.edytuj', $p->id)}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj wpis"><i class="fe-edit"></i></a>
+                                    <form method="POST" action="{{route('admin.boxes.usun', $p->id)}}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn action-button confirm" data-toggle="tooltip" data-placement="top" title="Usuń użytkownika" data-id="{{ $p->id }}"><i class="fe-trash-2"></i></button>
+                                        <button type="submit" class="btn action-button confirm" data-toggle="tooltip" data-placement="top" title="Usuń wpis" data-id="{{ $p->id }}"><i class="fe-trash-2"></i></button>
                                     </form>
                                 </div>
                             </td>
@@ -58,7 +56,14 @@
     </div>
     <div class="form-group form-group-submit row">
         <div class="col-12">
-            <a href="{{route('admin.users.dodaj')}}" class="btn btn-primary">Dodaj użytkownika</a>
+            <a href="{{route('admin.boxes.dodaj')}}" class="btn btn-primary">Dodaj boks</a>
         </div>
     </div>
+    <script type="text/javascript" language="javascript">
+        //<![CDATA[
+        $(document).ready(function(){
+            $("#sortable tbody.content").sortuj('{{route('admin.boxes.sort')}}');
+        });
+        //]]>
+    </script>
 @endsection

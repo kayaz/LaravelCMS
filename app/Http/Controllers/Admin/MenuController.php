@@ -17,12 +17,12 @@ class MenuController extends Controller
     public function index()
     {
         $memu = Menu::all()->sortBy("sort");
-        return view('menu.index', ['list' => $memu]);
+        return view('admin.menu.index', ['list' => $memu]);
     }
 
     public function create()
     {
-        return view('menu.form', ['cardtitle' => 'Dodaj stronę'])->with('entry', Menu::make());
+        return view('admin.menu.form', ['cardtitle' => 'Dodaj stronę'])->with('entry', Menu::make());
     }
 
     public function store(StoreMenu $request)
@@ -43,7 +43,7 @@ class MenuController extends Controller
     public function edit($id)
     {
         $menu = Menu::where('id', $id)->first();
-        return view('menu.form',
+        return view('admin.menu.form',
             [
                 'entry' => $menu,
                 'cardtitle' => 'Edytuj stronę'

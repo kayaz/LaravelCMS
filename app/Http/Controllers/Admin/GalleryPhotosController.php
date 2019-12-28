@@ -19,10 +19,10 @@ class GalleryPhotosController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function destroy(GalleryPhotos $photos)
+    public function destroy(GalleryPhotos $photo)
     {
-        $photos->deletePhoto();
-        $photos->delete();
+        $photo->deletePhoto();
+        $photo->delete();
         return response()->json(['success' => 'Zdjęcie usunięte']);
     }
 

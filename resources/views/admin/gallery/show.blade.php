@@ -15,7 +15,7 @@
                         <div class="btn-group">
                             <a href="" class="btn action-button action-small mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj zdjęcie"><i class="fe-edit"></i></a>
                             <a href="" class="btn action-button move-button action-small mr-1"><i class="fe-move"></i></a>
-                            <form method="POST" action="{{route('admin.gallery.usunzdjecie', ['id' => $p->id, 'id_gal' => $p->id_gal])}}">
+                            <form method="POST" action="{{route('admin.gallery.usunzdjecie', $p->id)}}">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="btn action-button action-small confirm" data-toggle="tooltip" data-placement="top" data-id="{{ $p->id }}" title="Usuń zdjęcie"><i class="fe-trash-2"></i></button>
@@ -53,7 +53,7 @@
         </div>
     </div>
     <script type="text/javascript" language="javascript">
-        $(window).on('shown.bs.modal', function() { $('#bootstrapmodal').modal('show'); var fileCount = 0; $('#jquery-wrapped-fine-uploader').fineUploader({debug: true, request: {endpoint: '{{route('admin.gallery.upload', ['id' => $id])}}', customHeaders: {"X-CSRF-Token": $("meta[name='csrf-token']").attr("content")}}}).on('error', function(event, id, name, reason) {}).on('submit', function(id, nameN){fileCount++;}).on('complete', function(event, id, name, response){if(response.success==true){fileCount--;if(fileCount == 0){location.reload();}}});});
+        $(window).on('shown.bs.modal', function() { $('#bootstrapmodal').modal('show'); var fileCount = 0; $('#jquery-wrapped-fine-uploader').fineUploader({debug: true, request: {endpoint: '{{route('admin.gallery.upload', $id)}}', customHeaders: {"X-CSRF-Token": $("meta[name='csrf-token']").attr("content")}}}).on('error', function(event, id, name, reason) {}).on('submit', function(id, nameN){fileCount++;}).on('complete', function(event, id, name, response){if(response.success==true){fileCount--;if(fileCount == 0){location.reload();}}});});
         $(document).ready(function(){$("#sortable").sortujGal('{{route('admin.gallery.sort')}}');});
     </script>
 @endsection

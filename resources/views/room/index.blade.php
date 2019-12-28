@@ -40,7 +40,7 @@
                             <td>{{ $p->updated_at }}</td>
                             <td class="option-120">
                                 <div class="btn-group">
-                                    <a href="{{route('admin.investments.roomedytuj', ['id' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj mieszkanie"><i class="fe-edit"></i></a>
+                                    <a href="{{route('admin.investments.roomedytuj', ['room' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj mieszkanie"><i class="fe-edit"></i></a>
                                     <form method="POST" action="#">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}

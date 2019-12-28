@@ -20,12 +20,12 @@ class UsersController extends Controller
     public function index()
     {
         $users = Users::all()->sortBy("sort");
-        return view('users.index', ['list' => $users]);
+        return view('admin.users.index', ['list' => $users]);
     }
 
     public function create()
     {
-        return view('users.form', ['cardtitle' => 'Dodaj użytkownika'])->with('entry', Users::make());
+        return view('admin.users.form', ['cardtitle' => 'Dodaj użytkownika'])->with('entry', Users::make());
     }
 
     public function store(StoreUsers $request)
@@ -43,13 +43,13 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = Users::where('id', $id)->first();
-        return view('users.editform', ['entry' => $user, 'cardtitle' => 'Edytuj użytkownika']);
+        return view('admin.users.editform', ['entry' => $user, 'cardtitle' => 'Edytuj użytkownika']);
     }
 
     public function password($id)
     {
         $user = Users::where('id', $id)->first();
-        return view('users.passwordform', ['entry' => $user, 'cardtitle' => 'Zmień hasło']);
+        return view('admin.users.passwordform', ['entry' => $user, 'cardtitle' => 'Zmień hasło']);
     }
 
     public function updatepassword(Request $request, $id){

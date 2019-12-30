@@ -575,6 +575,16 @@ span.actionBtn {display:block;margin-right: 30px;padding: 8px 13px 7px;cursor:po
 }
 .online, .offline {width:12px;height:12px;display:block;border-radius:50%;margin: 7px auto 0;background:#00acc1}
 .offline {background:#c6c6c6}
+.table tr.submenu td:first-child:before {
+    content: "\21b3";
+    font-size: 20px;
+}
+.table tr.submenu.submenu-1 td:first-child:before {margin:0 20px 0 10px}
+.table tr.submenu.submenu-2 td:first-child:before {margin:0 20px 0 40px}
+.table tr.submenu.submenu-3 td:first-child:before {margin:0 20px 0 70px}
+.table tr.submenu.submenu-4 td:first-child:before {margin:0 20px 0 100px}
+
+
 #sortable tbody>tr.ui-sortable-placeholder{height:30px;visibility:visible!important}
 #sortable tbody>tr.ui-sortable-placeholder td{background-color:#fff1b0}
 #sortable .ui-sortable-helper {display: table}

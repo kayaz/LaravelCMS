@@ -20,10 +20,9 @@ class IndexController extends Controller
         return view('layouts.main', compact('slider', 'news', 'boksy'));
     }
 
-    public function getPage($slug = null)
+    public function getPage($uri = null)
     {
-        $page = Menu::where('uri', $slug);
-        $page = $page->firstOrFail();
+        $page = Menu::where('uri', $uri)->firstOrFail();
         return view('front.index.menupage')->with('page', $page);
     }
 }

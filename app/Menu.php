@@ -18,21 +18,50 @@ class Menu extends Model
         'nazwa',
         'meta_tytul',
         'meta_opis',
-        'tekst'
+        'tekst',
+        'uri'
     ];
 
     public static function renderMenu(){
-
-        $checkSlug = request()->route()->uri();
-        if($checkSlug == '{slug}'){
-            $currentURI = request()->route()->parameters['slug'];
+        $checkUri = request()->route()->uri();
+        if($checkUri == '{uri}'){
+            $currentURI = request()->route()->parameters['uri'];
         } else {
-            $currentURI = $checkSlug;
+            $currentURI = $checkUri;
         }
 
-        return Menu::firstUlAttr(['class' => 'mainmenu mb-0 list-unstyled clearfix'])
+        return static::firstUlAttr(['class' => 'mainmenu mb-0 list-unstyled clearfix'])
             ->ulAttr(['class' => 'submenu'])
             ->active($currentURI)
             ->renderAsHtml();
+    }
+
+    public static function urigenerate($id){
+        $data = static::all()->sortBy("sort");
+        $crumbs = Array();
+        $c = count($data);
+
+        do {
+            $found = false;
+            for($i = 0; $i<$c; ++$i){
+                if($data[$i]['id'] == $id){
+
+                    $url = $data[$i]['slug'];
+                    array_unshift($crumbs, empty($crumbs)?($data[$i]['slug']):($url));
+
+                    $id = $data[$i]['id_parent'];
+                    $found = true;
+                    break;
+                }
+            }
+        } while ($id != 0 AND $found);
+        return implode('/', $crumbs);
+    }
+
+    public static function renderAdminMenu(){
+        echo '<table class="table mb-0"><thead class="thead-default"><tr><th>Nazwa</th><th>URI</th><th>Typ</th><th class="text-center">Data modyfikacji</th><th class="text-center">Status</th><th>&nbsp;</th></tr></thead>';
+        $array = self::renderAsArray();
+        recursive($array);
+        echo '</table>';
     }
 }

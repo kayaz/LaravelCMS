@@ -131,6 +131,4 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/users/', 'as' => 'admin.
 
 });
 
-Route::get('{slug}', [
-    'uses' => 'Front\IndexController@getPage'
-])->where('slug', '([A-Za-z0-9\-\/]+)');
+Route::get('{uri}', 'Front\IndexController@getPage')->where('uri', '([A-Za-z0-9\-\/]+)');

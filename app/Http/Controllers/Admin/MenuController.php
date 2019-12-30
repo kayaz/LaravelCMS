@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Menu;
 use App\Http\Requests\StoreMenu;
 
-use Illuminate\Support\Str;
-
 use App\Http\Controllers\Controller;
 
 class MenuController extends Controller
@@ -16,36 +14,45 @@ class MenuController extends Controller
 
     public function index()
     {
-        $memu = Menu::all()->sortBy("sort");
-        return view('admin.menu.index', ['list' => $memu]);
+        return view('admin.menu.index');
     }
 
     public function create()
     {
-        return view('admin.menu.form', ['cardtitle' => 'Dodaj stronę'])->with('entry', Menu::make());
+        $selectMenu = Menu::pluck('nazwa', 'id');
+        return view('admin.menu.form', ['cardtitle' => 'Dodaj stronę', 'selectMenu' => $selectMenu])->with('entry', Menu::make());
     }
 
     public function store(StoreMenu $request)
     {
-        Menu::create($request->merge(['slug' => Str::slug($request->nazwa)])->only(
+        $result = Menu::create($request->only(
             [
                 'nazwa',
                 'menu',
                 'id_parent',
                 'meta_tytul',
                 'meta_opis',
-                'tekst'
+                'tekst',
+                'slug'
             ]
         ));
+
+        $uri = Menu::urigenerate($result->id);
+        $justCreated = Menu::find($result->id);
+        $justCreated->uri = $uri;
+        $justCreated->save();
+
         return redirect($this->redirectTo)->with('success', 'Nowa strona dodana');
     }
 
     public function edit($id)
     {
         $menu = Menu::where('id', $id)->first();
+        $selectMenu = Menu::where('id', '!=' , $id)->pluck('nazwa', 'id');
         return view('admin.menu.form',
             [
                 'entry' => $menu,
+                'selectMenu' => $selectMenu,
                 'cardtitle' => 'Edytuj stronę'
             ]
         );
@@ -53,16 +60,22 @@ class MenuController extends Controller
 
     public function update(StoreMenu $request, Menu $menu)
     {
-        $menu->update($request->merge(['slug' => Str::slug($request->nazwa)])->only(
+        $menu->update($request->only(
             [
                 'nazwa',
                 'menu',
                 'id_parent',
                 'meta_tytul',
                 'meta_opis',
-                'tekst'
+                'tekst',
+                'slug'
             ]
         ));
+
+        $uri = Menu::urigenerate($menu->id);
+        $menu->uri = $uri;
+        $menu->save();
+
         return redirect($this->redirectTo)->with('success', 'Strona zaktualizowana');
     }
 

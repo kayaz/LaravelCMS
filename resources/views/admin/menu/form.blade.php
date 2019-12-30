@@ -15,8 +15,13 @@
                     <div class="row">
                         @include('form-elements.errors')
                         <div class="col-12">
-                            @include('form-elements.select', ['label' => 'Status', 'name' => 'status', 'selected' => $entry->menu, 'options' => ['1' => 'Pokaż w menu', '2' => 'Ukryj w menu']])
-                            @include('form-elements.select', ['label' => 'Podstrona', 'name' => 'status', 'selected' => $entry->id_parent, 'options' => ['0' => 'Brak']])
+                            @include('form-elements.select', ['label' => 'Status', 'name' => 'menu', 'selected' => $entry->menu, 'options' => ['1' => 'Pokaż w menu', '2' => 'Ukryj w menu']])
+                            @include('form-elements.select', [
+                                'label' => 'Podstrona',
+                                'name' => 'id_parent',
+                                'selected' => $entry->id_parent,
+                                'options' => $selectMenu
+                            ])
                             @include('form-elements.input-text', ['label' => 'Tytuł strony', 'name' => 'nazwa', 'value' => $entry->nazwa])
                             @include('form-elements.input-text', ['label' => 'Nagłówek strony', 'sublabel'=> 'Meta tag - title', 'name' => 'meta_tytul', 'value' => $entry->meta_tytul])
                             @include('form-elements.input-text', ['label' => 'Opis strony', 'sublabel'=> 'Meta tag - description', 'name' => 'meta_opis', 'value' => $entry->meta_opis])

@@ -9,6 +9,11 @@ return [
         'id',
         'nazwa',
         'slug',
+        'typ',
+        'slug',
+        'updated_at',
+        'menu',
+        'uri',
     ],
     'html' => [
         'label'     => 'nazwa',

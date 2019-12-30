@@ -2,11 +2,26 @@
 
 namespace App\Http\Requests;
 
+use App\Menu;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class StoreMenu extends FormRequest
 {
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => Str::slug($this->nazwa)
+        ]);
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -29,4 +44,5 @@ class StoreMenu extends FormRequest
             'tekst' => 'required'
         ];
     }
+
 }

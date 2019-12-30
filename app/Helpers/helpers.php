@@ -18,8 +18,33 @@ if (! function_exists('page_type')) {
         if($number == '3'){
             return 'Link';
         }
+        if($number == '2'){
+            return 'Moduł CMS';
+        }
         if($number == '0'){
             return 'Strona';
+        }
+    }
+}
+
+// Generujemy menu w adminie
+if (! function_exists('recursive')) {
+    function recursive($array, $level = 0, $child = null)
+    {
+        foreach($array as $index => $node)
+        {
+            echo '<tr'.$child.'>';
+            echo '<td>'.$node['nazwa'].'</td>';
+            echo '<td>'.$node['uri'].'</td>';
+            echo '<td>'.page_type($node['typ']).'</td>';
+            echo '<td class="text-center">'.$node['updated_at'].'</td>';
+            echo '<td class="text-center">'.page_status($node['menu']).'</td>';
+            echo '<td class="option-120"><div class="btn-group"><a href="'.route('admin.menu.edytuj', $node['id']).'" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj wpis"><i class="fe-edit"></i></a><form method="POST" action="'.route('admin.menu.usun', $node['id']).'">'.csrf_field().''. method_field('DELETE') .'<button type="submit" class="btn action-button confirm" data-toggle="tooltip" data-placement="top" title="Usuń wpis" data-id="'.$node['id'].'"><i class="fe-trash-2"></i></button></form></div></td>';
+            if(isset($node['child']) && !empty($node['child'])) {
+                $newLevel = $level+1;
+                recursive($node['child'], $newLevel, ' class="submenu submenu-'. $newLevel .'"');
+            }
+            echo "</tr>";
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
+use App\Rodo;
 use App\Http\Controllers\Controller;
 
 use App\Mail\ContactForm;
@@ -12,7 +13,8 @@ class KontaktController extends Controller
 {
     public function index()
     {
-        return view('front.kontakt.index', ['validation' => 1]);
+        $rules = Rodo::orderBy('sort')->get();
+        return view('front.kontakt.index', ['validation' => 1, 'rules' => $rules]);
     }
 
     public function send(Request $request)

@@ -98,6 +98,23 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/news/', 'as' => 'admin.n
 
 });
 
+// Robimy RODO
+Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/rodo/', 'as' => 'admin.rodo.', 'middleware' => 'auth'], function() {
+
+    Route::get('/',                             'RodoController@index')->name('index');
+    Route::get('add',                           'RodoController@create')->name('dodaj');
+    Route::post('save',                         'RodoController@store')->name('zapisz');
+    Route::get('edit/{rodo}',                   'RodoController@edit')->name('edytuj');
+    Route::put('update/{rodo}',                 'RodoController@update')->name('update');
+    Route::delete('delete/{rodo}',              'RodoController@destroy')->name('usun');
+
+});
+
+// Robimy listę RODO klientów
+Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/rodoclient/', 'as' => 'admin.rodoclient.', 'middleware' => 'auth'], function() {
+    Route::get('/',                             'RodoClientController@index')->name('index');
+});
+
 // Robimy galerie
 Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/galeria/', 'as' => 'admin.gallery.', 'middleware' => 'auth'], function() {
 

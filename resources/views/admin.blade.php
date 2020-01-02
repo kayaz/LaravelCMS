@@ -42,6 +42,12 @@
                         <span> Ustawienia </span>
                     </a>
                 </li>
+                <li class="{{ Request::routeIs('admin.rodo.*') ? 'active' : '' }}">
+                    <a href="{{route('admin.rodo.index')}}">
+                        <i class="fe-hard-drive"></i>
+                        <span> RODO </span>
+                    </a>
+                </li>
                 <li class="{{ Request::routeIs('admin.users.*') ? 'active' : '' }}">
                     <a href="{{route('admin.users.index')}}">
                         <i class="fe-users"></i>

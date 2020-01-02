@@ -19,9 +19,21 @@
                         <script>window.setTimeout(function(){$(".alert").fadeTo(500,0).slideUp(500,function(){$(this).remove()})},3000);</script>
                     </div>
                 @endif
-
-                {!! App\Menu::renderAdminMenu() !!}
-
+                    <table class="table mb-0">
+                        <thead class="thead-default">
+                            <tr>
+                                <th>Nazwa</th>
+                                <th>URI</th>
+                                <th>Typ</th>
+                                <th class="text-center">Data modyfikacji</th>
+                                <th class="text-center">Status</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php recursive(App\Menu::renderAsArray()); ?>
+                        </tbody>
+                    </table>
             </div>
         </div>
     </div>

@@ -23,5 +23,11 @@ Route::group(['namespace' => 'Front', 'prefix'=>'/aktualnosci/', 'as' => 'front.
 // Galeria
 Route::group(['namespace' => 'Front', 'prefix'=>'/galeria/', 'as' => 'front.galeria.'], function() {
     Route::get('/',                             'GalleryController@index')->name('index');
-    Route::get('/{gallery}',            'GalleryController@show')->name('katalog');
+    Route::get('/{gallery}',                    'GalleryController@show')->name('katalog');
+});
+
+// Inline
+Route::group(['namespace' => 'Front', 'prefix'=>'/inline/', 'as' => 'front.inline.'], function() {
+    Route::get('/',                             'InlineController@index')->name('index');
+    Route::post('/update/{inline}',              'InlineController@update')->name('update');
 });

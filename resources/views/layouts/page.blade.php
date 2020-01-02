@@ -72,6 +72,6 @@
     });
 </script>
 <!-- Tutaj kod stopki -->
-
+@yield('inline')
 </body>
 </html>

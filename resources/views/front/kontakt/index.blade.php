@@ -65,8 +65,9 @@
                         </div>
 
                         <div class="col-12 regulki">
-                            <label for="zgoda_1" class="rules-text"><input name="zgoda_1" id="zgoda_1" value="1" type="checkbox"><p>Na otrzymywanie ofert  handlowych  drogą elektroniczną od firmy ....., na podany przez Państwo adres e-mail</p></label>
-                            <label for="zgoda_1" class="rules-text"><input name="zgoda_1" id="zgoda_1" value="1" type="checkbox"><p>Na otrzymywanie ofert  handlowych  drogą elektroniczną od firmy ....., na podany przez Państwo adres e-mail</p></label>
+                                @foreach ($rules as $r)
+                                <label for="zgoda_{{$r->id}}" class="rules-text"><input name="zgoda_{{$r->id}}" id="zgoda_{{$r->id}}" value="1" type="checkbox" @if($r->required === 1) class="validate[required]" @endif data-prompt-position="topLeft:0"><p>{!! $r->text !!}</p></label>
+                                @endforeach
                         </div>
                     </div>
                     <div class="row row-form-submit">

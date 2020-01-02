@@ -57,11 +57,4 @@ class Menu extends Model
         } while ($id != 0 AND $found);
         return implode('/', $crumbs);
     }
-
-    public static function renderAdminMenu(){
-        echo '<table class="table mb-0"><thead class="thead-default"><tr><th>Nazwa</th><th>URI</th><th>Typ</th><th class="text-center">Data modyfikacji</th><th class="text-center">Status</th><th>&nbsp;</th></tr></thead>';
-        $array = self::renderAsArray();
-        recursive($array);
-        echo '</table>';
-    }
 }

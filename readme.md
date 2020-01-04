@@ -23,3 +23,5 @@ Demo: https://laravel.jk-design.pl/
 * System tłumaczeń
 
 ![](http://www.kcms.pl/cms.png)
+![](http://www.kcms.pl/menu.png)
+![](http://www.kcms.pl/users.png)

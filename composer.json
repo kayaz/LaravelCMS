@@ -14,7 +14,8 @@
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "spatie/valuestore": "^1.2",
-        "webreinvent/laravel-nestable": "dev-master"
+        "webreinvent/laravel-nestable": "dev-master",
+        "symfony/translation": "4.3.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

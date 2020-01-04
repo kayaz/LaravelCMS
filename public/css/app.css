@@ -203,9 +203,16 @@ button:focus {
     background: white;
     display: none;
 }
-#header nav li:hover ul {display: block}
+#header nav li:hover > ul {display: block}
 #header nav li ul li {padding:0 15px;width:100%}
 #header nav li ul a {padding: 10px 0}
+
+#header nav li ul ul {
+    right: auto;
+    top: 0;
+    left: 100%;
+}
+
 
 /* Slider
 ================================================== */

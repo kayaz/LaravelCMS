@@ -27,6 +27,22 @@ if (! function_exists('page_type')) {
     }
 }
 
+// Pobieramy element dla inline
+if (! function_exists('getInline')) {
+    function getInline($array, $id, $element){
+        foreach($array as $a){
+            if($a->id == $id){
+                $elementArray = json_decode(json_encode($a), true);
+                if($element == 'obrazek') {
+                    return $elementArray[$element];
+                } else {
+                    return $elementArray[$element];
+                }
+            }
+        }
+    }
+}
+
 // Generujemy menu w adminie
 if (! function_exists('recursive')) {
     function recursive($array, $level = 0, $child = null)

@@ -2,13 +2,17 @@
 
 @section('meta_title', 'Inline Test')
 
+@php
+    $array = App\Inline::getElements(1);
+@endphp
+
 @section('content')
 <div id="inline" class="container pt-5 pb-5">
     <div class="row">
         <div class="col-12 inline inline-tc">
-            <h2 data-modaltytul="1">Przykładowy tytuł</h2>
+            <h2 data-modaltytul="1">{{ getInline($array, 1, 'modaltytul') }}</h2>
             <div data-modaleditor="1">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget consequat nisl, sit amet ornare augue. Pellentesque et magna aliquet mauris mollis sollicitudin vel nec eros. In finibus tortor sem, quis iaculis urna suscipit et. Morbi sit amet dolor posuere, lobortis massa id, tempor nisl. Sed ut erat non ligula aliquam lacinia id in lacus. Fusce fringilla velit eget enim venenatis ultrices. Nunc id arcu ultrices, auctor ex ac, condimentum erat. Integer nunc turpis, imperdiet vel interdum at, fermentum ultrices orci. Suspendisse at urna nec nisi dictum dapibus. Donec sodales lobortis lacus, quis pulvinar enim rhoncus eu.</p>
+                <p>{{ getInline($array, 1, 'modaleditor') }}</p>
             </div>
 
             <div class="inline-btn"><button type="button" class="btn btn-primary btn-modal btn-sm" data-toggle="modal" data-target="#inlineModal" data-inline="1" data-hideinput="modaleditortext,modallink,modallinkbutton,obrazek,obrazek_alt" data-method="update" data-imgwidth="100" data-imgheight="100"></button></div>
@@ -158,7 +162,28 @@
         }
         if (f !== undefined)
         {
-
+            $.ajax({
+                type: "GET",
+                url: baseURL + "inline/loadinline/" + f + "/",
+                success: function (i) {
+                    if (i.error) {
+                        alert(i.error);
+                        $("#inlineModal").modal("toggle")
+                    } else {
+                        process_response(i);
+                        if (c !== undefined) {
+                            $("label[for='obrazek']").append(" - szerokość: " + c + " px")
+                        }
+                        if (g !== undefined) {
+                            $("label[for='obrazek']").append(" - wysokość: " + g + " px")
+                        }
+                        $("#id_element").val(f);
+                    }
+                },
+                error: function () {
+                    alert("Wystąpił błąd połączenia z bazą")
+                }
+            })
         } else {
             if (c !== undefined)
             {

@@ -19,16 +19,6 @@ class InlineController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -47,18 +37,14 @@ class InlineController extends Controller
      */
     public function show(Inline $inline)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Inline  $inline
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Inline $inline)
-    {
-        //
+        if($inline)
+        {
+            return response()->json($inline);
+        } else {
+            return response()->json([
+                'error' => 'Brak wpisu w bazie',
+            ]);
+        }
     }
 
     /**

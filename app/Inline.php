@@ -22,4 +22,8 @@ class Inline extends Model
         'obrazek_height',
         'sort '
     ];
+
+    public static function getElements($id){
+        return static::where('id_place', $id)->get();
+    }
 }

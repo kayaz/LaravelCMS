@@ -28,7 +28,7 @@ Route::group(['namespace' => 'Front', 'prefix'=>'/galeria/', 'as' => 'front.gale
 
 // Inline
 Route::group(['namespace' => 'Front', 'prefix'=>'/inline/', 'as' => 'front.inline.'], function() {
-    Route::get('/',                             'InlineController@index')->name('index');
+    Route::get('/',                              'InlineController@index')->name('index');
     Route::get('/loadinline/{inline}',           'InlineController@show')->name('show');
     Route::post('/update/{inline}',              'InlineController@update')->name('update');
 });

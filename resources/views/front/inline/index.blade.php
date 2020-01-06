@@ -164,7 +164,7 @@
         {
             $.ajax({
                 type: "GET",
-                url: baseURL + "inline/loadinline/" + f + "/",
+                url: baseURL + "inline/loadinline/" + f,
                 success: function (i) {
                     if (i.error) {
                         alert(i.error);
@@ -204,12 +204,12 @@
 
             let n, type, o = $(this).serialize(), l = $("#id_element").val();
             if (l === "") {
-                n = baseURL + "inline/create/" + k + "/";
+                n = baseURL + "inline/create/" + k;
                 type = 'POST';
                 console.log("Dodaje nowy element")
                 console.log(n)
             } else {
-                n = baseURL + "inline/update/" + l + "/";
+                n = baseURL + "inline/update/" + l;
                 type = 'POST';
                 console.log("Aktualizuje element")
                 console.log(n)

@@ -95,6 +95,6 @@ class UsersController extends Controller
     {
         $user = Users::find($id);
         $user->delete();
-        return response()->json(['success' => 'Wpis usniety']);
+        return response()->json(['success' => 'Użytkownik usniety']);
     }
 }

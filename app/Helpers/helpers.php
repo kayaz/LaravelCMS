@@ -34,7 +34,7 @@ if (! function_exists('getInline')) {
             if($a->id == $id){
                 $elementArray = json_decode(json_encode($a), true);
                 if($element == 'obrazek') {
-                    return $elementArray[$element];
+                    return '/uploads/inline/'.$elementArray[$element];
                 } else {
                     return $elementArray[$element];
                 }

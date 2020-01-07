@@ -2,7 +2,11 @@
 
 namespace App;
 
+use File;
+use Image;
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Inline extends Model
 {
@@ -25,5 +29,24 @@ class Inline extends Model
 
     public static function getElements($id){
         return static::where('id_place', $id)->get();
+    }
+
+    public function makeImg($nazwa, $file, $width, $height){
+
+        if(File::exists(public_path('uploads/inline/' . $this->obrazek))){
+            File::delete([
+                public_path('uploads/inline/' . $this->obrazek),
+            ]);
+        }
+
+        $name = Str::slug($nazwa) . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('inline', $name, 'public_uploads');
+
+        $filepath = public_path('uploads/inline/' . $name);
+        Image::make($filepath)->fit($width, $height)->save($filepath);
+
+        $this->update(['obrazek' => $name ]);
+
+        return $name;
     }
 }

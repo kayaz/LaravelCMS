@@ -17,6 +17,37 @@
 
             <div class="inline-btn"><button type="button" class="btn btn-primary btn-modal btn-sm" data-toggle="modal" data-target="#inlineModal" data-inline="1" data-hideinput="modaleditortext,modallink,modallinkbutton,obrazek,obrazek_alt" data-method="update" data-imgwidth="100" data-imgheight="100"></button></div>
         </div>
+
+        <div class="col-12 mt-5 mb-5"><hr></div>
+
+        <div class="col-12 inline inline-tc">
+            <div class="row">
+                <div class="col-4"><img src="{{ getInline($array, 2, 'obrazek') }}" alt="{{ getInline($array, 2, 'obrazek_alt') }}" data-img="2"></div>
+                <div class="col-8">
+                    <h2 data-modaltytul="2">{{ getInline($array, 2, 'modaltytul') }}</h2>
+                    <div data-modaleditor="2">
+                        <p>{{ getInline($array, 2, 'modaleditor') }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inline-btn"><button type="button" class="btn btn-primary btn-modal btn-sm" data-toggle="modal" data-target="#inlineModal" data-inline="2" data-hideinput="modaleditortext,modallink,modallinkbutton" data-method="update" data-imgwidth="600" data-imgheight="400"></button></div>
+        </div>
+
+        <div class="col-12 mt-5 mb-5"><hr></div>
+
+        <div class="col-12 inline inline-tc">
+            <div class="row">
+                <div class="col-4"><img src="{{ getInline($array, 3, 'obrazek') }}" alt="{{ getInline($array, 3, 'obrazek_alt') }}" data-img="3"></div>
+                <div class="col-8">
+                    <h2 data-modaltytul="3">{{ getInline($array, 3, 'modaltytul') }}</h2>
+                    <div data-modaleditor="3" class="mb-4">
+                        <p>{{ getInline($array, 3, 'modaleditor') }}</p>
+                    </div>
+                    <a href="{{ getInline($array, 3, 'modallink') }}" class="btn btn-info" data-modalbutton="3" data-modallink="3">{{ getInline($array, 3, 'modallinkbutton') }}</a>
+                </div>
+            </div>
+            <div class="inline-btn"><button type="button" class="btn btn-primary btn-modal btn-sm" data-toggle="modal" data-target="#inlineModal" data-inline="3" data-hideinput="modaleditortext" data-method="update" data-imgwidth="600" data-imgheight="400"></button></div>
+        </div>
     </div>
 </div>
 @endsection
@@ -33,44 +64,51 @@
                 <div class="inlineform">
                     <form method="POST" action="" enctype="multipart/form-data" id="inlineForm" name="inlineForm">
                         @csrf
-                        <div class="form-group form-modaltytul"><label for="modaltytul" class="required">Tytuł</label>
+                        <div class="form-group form-modaltytul">
+                            <label for="modaltytul" class="required">Tytuł</label>
                             <div class="formRight">
                                 <input type="text" name="modaltytul" id="modaltytul" value="" size="83" class="validate[required] form-control">
                             </div>
                         </div>
 
-                        <div class="form-group form-modaleditor"><label for="modaleditor" class="required">Tekst</label>
+                        <div class="form-group form-modaleditor">
+                            <label for="modaleditor" class="required">Tekst</label>
                             <div class="formRight">
                                 <input type="text" name="modaleditor" id="modaleditor" value="" size="83" class="validate[required] form-control">
                             </div>
                         </div>
 
-                        <div class="form-group form-modaleditortext" style="display: none;"><label for="modaleditortext" class="required">Treść</label>
+                        <div class="form-group form-modaleditortext">
+                            <label for="modaleditortext" class="required">Treść</label>
                             <div class="fullformRowtext">
                                 <textarea name="modaleditortext" id="modaleditortext" rows="19" cols="100" class="editor"></textarea>
                             </div>
                         </div>
 
-                        <div class="form-group form-modallink" style="display: none;"><label for="modallink" class="required">Button link</label>
+                        <div class="form-group form-modallink">
+                            <label for="modallink" class="required">Button link</label>
                             <div class="formRight">
                                 <input type="text" name="modallink" id="modallink" value="" size="83" class="validate[required] form-control">
                             </div>
                         </div>
 
-                        <div class="form-group form-modallinkbutton" style="display: none;"><label for="modallinkbutton" class="required">Button tekst</label>
+                        <div class="form-group form-modallinkbutton">
+                            <label for="modallinkbutton" class="required">Button tekst</label>
                             <div class="formRight">
                                 <input type="text" name="modallinkbutton" id="modallinkbutton" value="" size="83" class="validate[required] form-control">
                             </div>
                         </div>
 
-                        <div class="form-group form-obrazek"><label for="obrazek" class="optional">Obrazek - szerokość: 1920 px - wysokość: 960 px</label>
+                        <div class="form-group form-obrazek">
+                            <label for="obrazek" class="optional">Obrazek - szerokość: 1920 px - wysokość: 960 px</label>
                             <div class="formRight">
                                 <input type="hidden" name="MAX_FILE_SIZE" value="16777216" id="MAX_FILE_SIZE">
                                 <input type="file" name="obrazek" id="obrazek" class="validate[checkFileType[jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF]]">
                             </div>
                         </div>
 
-                        <div class="form-group form-obrazek_alt" style="display: none;"><label for="obrazek_alt" class="required">Tytuł obrazka</label>
+                        <div class="form-group form-obrazek_alt">
+                            <label for="obrazek_alt" class="required">Tytuł obrazka</label>
                             <div class="formRight">
                                 <input type="text" name="obrazek_alt" id="obrazek_alt" value="" size="83" class="validate[required] form-control">
                             </div>
@@ -98,37 +136,23 @@
 
 
 <script type="text/javascript">
-    const baseURL = '';
+    const baseURL = 'http://127.0.0.1:8000/';
 
-    function process_response(e)
-    {
-        var f = $("#inlineModal form");
-        var d;
-        for (d in e)
-        {
-            f.find('[name="' + d + '"]').val(e[d])
-        }
+    function process_response(obj) {
+        const f = $("#inlineModal form");
+        const newObj = Object.keys(obj)
+            .filter(e => obj[e] !== null)
+            .reduce( (o, e) => {
+                o[e]  = obj[e]
+                return o;
+            }, {});
+        ['id', 'id_place', 'sort', 'obrazek'].forEach(i => delete newObj[i]);
+        $.each(newObj, function (key, val) {
+            f.find('[name="' + key + '"]').val(val);
+        });
     }
-    var is_editor_active = function (b)
-    {
-        if (typeof tinyMCE == "undefined")
-        {
-            return false
-        }
-        if (typeof b == "undefined")
-        {
-            editor = tinyMCE.activeEditor
-        }
-        else
-        {
-            editor = tinyMCE.EditorManager.get(b)
-        }
-        if (editor == null)
-        {
-            return false
-        }
-        return !editor.isHidden()
-    };
+
+    var is_editor_active=function(a){if(typeof tinyMCE=="undefined"){return false}if(typeof a=="undefined"){editor=tinyMCE.activeEditor}else{editor=tinyMCE.EditorManager.get(a)}if(editor==null){return false}return !editor.isHidden()};
 
     function cleanModal(){
         $("#inlineForm, #inlineForm .form-group, .progress").removeAttr("style");
@@ -143,7 +167,7 @@
     $("#inlineModal").on("shown.bs.modal", function (j)
     {
         cleanModal();
-        const form = document.getElementById("inlineForm");
+        const form = document.forms.namedItem("inlineForm");
         let f = j.relatedTarget.dataset.inline,
             k = j.relatedTarget.dataset.place,
             a = j.relatedTarget.dataset.method,
@@ -202,7 +226,14 @@
             event.preventDefault();
             event.stopImmediatePropagation();
 
-            let n, type, o = $(this).serialize(), l = $("#id_element").val();
+            let formData = new FormData($(this)[0]);
+            for(let pair of formData.entries()) {
+                console.log(pair[0]+ ', '+ pair[1]);
+            }
+
+            console.log(formData.get("id_element"));
+
+            let n, type, l = formData.get("id_element");
             if (l === "") {
                 n = baseURL + "inline/create/" + k;
                 type = 'POST';
@@ -214,16 +245,24 @@
                 console.log("Aktualizuje element")
                 console.log(n)
             }
-            console.log(o);
+            const i = $("input[type=file]")[0].files[0];
+            if (i !== undefined) {
+                formData.append("obrazek", i);
+                formData.append("obrazek_width", c);
+                formData.append("obrazek_height", g)
+            }
+
+            console.log(formData.values());
 
             $.ajaxSetup({headers: {"X-CSRF-TOKEN": $('input[name="_token"]').val()}});
             $.ajax({
-                type: type,
-                url: n,
-                data: o,
-                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                enctype: "multipart/form-data",
-                processData: false,
+                type        : type,
+                url         : n,
+                data        : formData,
+                enctype     : "multipart/form-data",
+                cache       : false,
+                contentType : false,
+                processData : false,
                 beforeSend: function () {
                     $(".modal form").hide();
                     $(".modal h5").text("Zapisuje...");
@@ -231,9 +270,8 @@
                         display: "flex"
                     })
                 },
-                cache: false,
                 success: function (p) {
-                    if (p.status == "success") {
+                    if (p.status === "success") {
                         $(".progress").removeAttr("style");
                         console.log(p);
 
@@ -256,7 +294,7 @@
                             $("[data-img=" + p.item + "]").attr("alt", p.items.obrazek_alt)
                         }
                         if (p.items.obrazek) {
-                            $("[data-img=" + p.item + "]").attr("src", baseClearURL + "files/inline/" + p.items.obrazek)
+                            $("[data-img=" + p.item + "]").attr("src", baseURL + "uploads/inline/" + p.items.obrazek)
                         }
                         if (p.items.id_place) {
                             $("[data-placeholder=" + p.items.id_place + "]").append(p.html)

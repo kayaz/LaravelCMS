@@ -33,7 +33,7 @@ class InlineController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Inline  $inline
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Inline $inline)
     {
@@ -52,21 +52,22 @@ class InlineController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Inline  $inline
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Inline $inline)
     {
         if ($request->ajax()) {
             $inline->fill($request->all());
-            $saved = $inline->save();
-        }
-        if(!$saved){
+            $inline->save();
 
-        } else {
+            if ($request->hasFile('obrazek')) {
+                $inline->makeImg($request->obrazek_alt, $request->file('obrazek'), $request->obrazek_width, $request->obrazek_height);
+            }
+
             return response()->json([
                 'status' => 'success',
                 'item' => $inline->id,
-                'items' =>  array_filter($request->all())
+                'items' =>  array_filter($inline->toArray())
             ]);
         }
     }

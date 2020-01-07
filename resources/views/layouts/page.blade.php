@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
 
     <!-- tutaj trzeba wstawić kod od head -->

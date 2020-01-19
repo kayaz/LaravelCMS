@@ -83,7 +83,7 @@ class UsersController extends Controller
 
         $email = $request->get('email');
         $user->name = $request->get('name');
-        if($email) {
+        if ($email) {
             $user->email = $email;
         }
         $user->role = $request->get('role');

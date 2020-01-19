@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Menu;
 use App\News;
 use App\Slider;
-use App\Boxes;
+use App\Box;
 
 use App\Http\Controllers\Controller;
 
@@ -15,9 +15,9 @@ class IndexController extends Controller
     {
         $slider = Slider::all()->sortBy("sort");
         $news = News::all()->sortBy("sort");
-        $boksy = Boxes::all()->sortBy("sort");
+        $boxes = Box::all()->sortBy("sort");
 
-        return view('layouts.main', compact('slider', 'news', 'boksy'));
+        return view('layouts.main', compact('slider', 'news', 'boxes'));
     }
 
     public function getPage($uri = null)

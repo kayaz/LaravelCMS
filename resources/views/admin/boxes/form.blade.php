@@ -14,10 +14,10 @@
                     <div class="row">
                         @include('form-elements.errors')
                         <div class="col-12">
-                            @include('form-elements.input-text', ['label' => 'Nazwa', 'name' => 'nazwa', 'value' => $entry->nazwa])
-                            @include('form-elements.input-text', ['label' => 'Tekst', 'name' => 'tekst', 'value' => $entry->tekst])
-                            @include('form-elements.input-text', ['label' => 'Link', 'name' => 'link', 'value' => $entry->link])
-                            @include('form-elements.input-file', ['label' => 'Ikonka', 'sublabel' => '(wymiary: '.$iconwidth.'px / '.$iconheight.'px)', 'name' => 'plik'])
+                            @include('form-elements.input-text', ['label' => 'Nazwa', 'name' => 'title', 'value' => $entry->title])
+                            @include('form-elements.input-text', ['label' => 'Tekst', 'name' => 'content', 'value' => $entry->content])
+                            @include('form-elements.input-text', ['label' => 'Link', 'name' => 'url', 'value' => $entry->url])
+                            @include('form-elements.input-file', ['label' => 'Ikonka', 'sublabel' => '(wymiary: '.$iconwidth.'px / '.$iconheight.'px)', 'name' => 'file'])
                         </div>
                     </div>
                 </div>

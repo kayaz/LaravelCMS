@@ -8,7 +8,8 @@ font-family: 'Muli', sans-serif;
 ================================================== */
 body, html {background:#f1f2f7;height:100%}
 body {font-family: 'Muli', sans-serif}
-a:hover {text-decoration:none}
+a {color:#00acc1}
+a:hover {text-decoration:none;color:#222222}
 img {display:block;max-width: 100%;height: auto}
 @media (min-width: 1140px) {
   .container {

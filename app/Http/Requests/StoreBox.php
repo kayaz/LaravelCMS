@@ -14,7 +14,7 @@ class StoreBox extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -25,9 +25,9 @@ class StoreBox extends FormRequest
     public function rules()
     {
         return [
-            'nazwa' => 'required|string|max:255',
-            'tekst' => 'required|string|max:255',
-            'link' => 'required|string|max:255'
+            'title' => 'required|string|max:255',
+            'content' => 'required|string|max:255',
+            'url' => 'required|string|max:255'
         ];
     }
 }

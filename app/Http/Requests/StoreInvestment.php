@@ -3,10 +3,22 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class StoreInvestment extends FormRequest
 {
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => Str::slug($this->name)
+        ]);
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -14,7 +26,7 @@ class StoreInvestment extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -27,13 +39,13 @@ class StoreInvestment extends FormRequest
         return [
             'typ' => 'required',
             'status' => 'required',
-            'nazwa' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required',
-            'telefon' => '',
-            'adres' => '',
-            'biuro' => '',
-            'lista' => 'required',
-            'tekst' => 'required'
+            'phone' => '',
+            'address' => '',
+            'office' => '',
+            'content_list' => 'required',
+            'content' => 'required'
         ];
     }
 }

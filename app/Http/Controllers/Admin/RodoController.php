@@ -28,8 +28,7 @@ class RodoController extends Controller
      */
     public function create()
     {
-        return view('admin.rodo.form',
-            [
+        return view('admin.rodo.form', [
                 'cardtitle' => 'Dodaj wpis'
             ])
             ->with('entry', Rodo::make());
@@ -65,12 +64,10 @@ class RodoController extends Controller
     public function edit($id)
     {
         $rodo = Rodo::where('id', $id)->first();
-        return view('admin.rodo.form',
-            [
+        return view('admin.rodo.form', [
                 'entry' => $rodo,
                 'cardtitle' => 'Edytuj regułkę'
-            ]
-        );
+            ]);
     }
 
     /**

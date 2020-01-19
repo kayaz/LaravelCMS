@@ -56,7 +56,7 @@
     </div>
     <div class="form-group form-group-submit row">
         <div class="col-12">
-            <a href="#" class="btn btn-primary">Dodaj budynek</a>
+            <a href="{{route('admin.investments.budynekdodaj', $investment->id)}}" class="btn btn-primary">Dodaj budynek</a>
         </div>
     </div>
 @endsection

@@ -6,7 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rodo extends Model
 {
-    protected $table = 'rodo_regulki';
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'rodo_rules';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+
     protected $fillable = [
         'title',
         'text',

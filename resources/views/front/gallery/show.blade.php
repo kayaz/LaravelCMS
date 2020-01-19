@@ -1,13 +1,13 @@
 @extends('layouts.page')
 
-@section('meta_title', $nazwa)
+@section('meta_title', $name)
 
 @section('content')
     <div id="photos-list" class="container pt-5 pb-5">
         <div class="row">
             @foreach ($list as $p)
                 <div class="col-3">
-                    <img src="<?php echo asset("uploads/galeria/thumbs/".$p->plik)?>" alt="{{ $p->nazwa }}">
+                    <img src="/uploads/galeria/thumbs/{{$p->file}}" alt="{{ $p->name }}">
                 </div>
             @endforeach
         </div>

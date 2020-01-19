@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Floor;
-use App\Investments;
+use App\Investment;
 
 use App\Http\Controllers\Controller;
 
@@ -11,7 +11,7 @@ class InvestmentsFloorController extends Controller
 {
     public function index($slug, $floorslug)
     {
-        $investment = Investments::where('slug', $slug)->first();
+        $investment = Investment::where('slug', $slug)->first();
         $floor = Floor::where('slug', $floorslug)->first();
         $rooms = $floor->rooms;
 

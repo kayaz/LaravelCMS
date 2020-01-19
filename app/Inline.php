@@ -12,7 +12,19 @@ class Inline extends Model
 {
     const UPDATED_AT = null;
     const CREATED_AT = null;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'inline';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'id_place',
         'modaltytul',
@@ -20,10 +32,10 @@ class Inline extends Model
         'modaleditortext',
         'modallink',
         'modallinkbutton',
-        'obrazek',
-        'obrazek_alt',
-        'obrazek_width',
-        'obrazek_height',
+        'file',
+        'file_alt',
+        'file_width',
+        'file_height',
         'sort '
     ];
 
@@ -31,7 +43,7 @@ class Inline extends Model
         return static::where('id_place', $id)->get();
     }
 
-    public function makeImg($nazwa, $file, $width, $height){
+    public function makeImg($name, $file, $width, $height){
 
         if(File::exists(public_path('uploads/inline/' . $this->obrazek))){
             File::delete([
@@ -39,14 +51,14 @@ class Inline extends Model
             ]);
         }
 
-        $name = Str::slug($nazwa) . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('inline', $name, 'public_uploads');
+        $filename = Str::slug($name) . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('inline', $filename, 'public_uploads');
 
-        $filepath = public_path('uploads/inline/' . $name);
+        $filepath = public_path('uploads/inline/' . $filename);
         Image::make($filepath)->fit($width, $height)->save($filepath);
 
-        $this->update(['obrazek' => $name ]);
+        $this->update(['file' => $filename ]);
 
-        return $name;
+        return $filename;
     }
 }

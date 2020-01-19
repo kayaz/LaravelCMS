@@ -11,21 +11,21 @@
                     <div class="list-post">
                         <div class="row">
                             <div class="col-4">
-                                <a href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->nazwa }}" itemprop="url"><img src="{{asset('uploads/news/thumbs/'.$n->plik) }}" alt="{{ $n->nazwa }}"></a>
+                                <a href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->title }}" itemprop="url"><img src="{{asset('uploads/news/thumbs/'.$n->file) }}" alt="{{ $n->title }}"></a>
                             </div>
                             <div class="col-8">
                                 <div class="list-post-content">
                                     <header>
-                                        <div class="list-post-date">Data publikacji: <span itemprop="datePublished" content="{{ $n->data }}">{{ $n->data }}</span></div>
-                                        <h2 class="list-post-title"><a href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->nazwa }}" itemprop="url"><span itemprop="name headline">{{ $n->nazwa }}</span></a></h2>
+                                        <div class="list-post-date">Data publikacji: <span itemprop="datePublished" content="{{ $n->date }}">{{ $n->date }}</span></div>
+                                        <h2 class="list-post-title"><a href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->title }}" itemprop="url"><span itemprop="name headline">{{ $n->title }}</span></a></h2>
                                     </header>
 
                                     <div class="list-post-entry" itemprop="articleBody">
-                                        <p class="text-muted">{{ $n->wprowadzenie }}</p>
+                                        <p class="text-muted">{{ $n->content_entry }}</p>
                                     </div>
 
                                     <footer>
-                                        <a itemprop="url" href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->nazwa }}" class="bttn">CZYTAJ WIĘCEJ</a>
+                                        <a itemprop="url" href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->title }}" class="bttn">CZYTAJ WIĘCEJ</a>
                                         <meta itemprop="author" content="JK Design">
                                         <meta itemprop="mainEntityOfPage" content="{{route('front.news.wpis', ['slug' => $n->slug])}}">
                                     </footer>

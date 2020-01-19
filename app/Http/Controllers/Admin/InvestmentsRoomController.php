@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Floor;
 use App\Room;
-use App\Investments;
+use App\Investment;
 
 use Illuminate\Http\Request;
 
@@ -16,33 +16,29 @@ class InvestmentsRoomController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Floor $floor)
     {
-        $investment = Investments::find($floor->investments_id);
-        $rooms = $floor->rooms;
-
         return view('room.index', [
-            'investment' => $investment,
+            'investment' => Investment::find($floor->investment_id),
             'floor' => $floor,
-            'list' => $rooms
+            'list' => $floor->rooms
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(Floor $floor)
     {
-        $investment = Investments::where('id', $floor->investments_id)->first();
-        return view('room.form',
-            [
+        $investment = Investment::where('id', $floor->investment_id)->first();
+        return view('room.form', [
                 'cardtitle' => 'Edytuj mieszkanie',
-                'planwidth' => Investments::PLAN_WIDTH,
-                'planheight' => Investments::PLAN_HEIGHT,
+                'planwidth' => Investment::PLAN_WIDTH,
+                'planheight' => Investment::PLAN_HEIGHT,
                 'floor' => $floor,
                 'investment' => $investment
             ])
@@ -57,31 +53,32 @@ class InvestmentsRoomController extends Controller
      */
     public function store(Request $request, Floor $floor)
     {
-        $room = Room::create($request->merge(['slug' => Str::slug($request->nazwa), 'floor_id' => $floor->id])->only(
+        $room = Room::create($request->merge(['slug' => Str::slug($request->name), 'floor_id' => $floor->id])->only(
             [
                 'floor_id',
-                'nazwa',
+                'name',
+                'number',
                 'slug',
-                'meta_tytul',
-                'meta_opis',
+                'meta_title',
+                'meta_description',
                 'cords',
                 'html',
                 'status',
-                'pokoje',
-                'metry',
-                'szukaj_metry',
-                'cena',
-                'szukaj_cena',
-                'cena_m'
+                'rooms',
+                'area',
+                'area_search',
+                'price',
+                'price_search',
+                'price_m'
             ]
         ));
 
-        if ($request->hasFile('plik')) {
-            $room->makePlan($request->nazwa, $request->file('plik'));
+        if ($request->hasFile('file')) {
+            $room->makePlan($request->name, $request->file('file'));
         }
 
-        if ($request->hasFile('plikpdf')) {
-            $room->makePdf($request->nazwa, $request->file('plikpdf'));
+        if ($request->hasFile('pdf')) {
+            $room->makePdf($request->name, $request->file('pdf'));
         }
 
         return redirect('admin/investments/rooms/'.$floor->id)->with('success', 'Nowe mieszkanie dodane');
@@ -91,23 +88,21 @@ class InvestmentsRoomController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Room $room
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
         $room = Room::where('id', $id)->first();
         $floor = Floor::where('id', $room->floor_id)->first();
-        $investment = Investments::where('id', $floor->investments_id)->first();
-        return view('room.form',
-            [
+        $investment = Investment::where('id', $floor->investment_id)->first();
+        return view('room.form', [
                 'cardtitle' => 'Edytuj mieszkanie',
-                'planwidth' => Investments::PLAN_WIDTH,
-                'planheight' => Investments::PLAN_HEIGHT,
+                'planwidth' => Investment::PLAN_WIDTH,
+                'planheight' => Investment::PLAN_HEIGHT,
                 'entry' => $room,
                 'floor' => $floor,
                 'investment' => $investment
-            ]
-        );
+            ]);
     }
 
     /**
@@ -119,30 +114,31 @@ class InvestmentsRoomController extends Controller
      */
     public function update(Request $request, Room $room)
     {
-        $room->update($request->merge(['slug' => Str::slug($request->nazwa)])->only(
+        $room->update($request->merge(['slug' => Str::slug($request->name)])->only(
             [
-                'nazwa',
+                'name',
+                'number',
                 'slug',
-                'meta_tytul',
-                'meta_opis',
+                'meta_title',
+                'meta_description',
                 'cords',
                 'html',
                 'status',
-                'pokoje',
-                'metry',
-                'szukaj_metry',
-                'cena',
-                'szukaj_cena',
-                'cena_m'
+                'rooms',
+                'area',
+                'area_search',
+                'price',
+                'price_search',
+                'price_m'
             ]
         ));
 
-        if ($request->hasFile('plik')) {
-            $room->makePlan($request->nazwa, $request->file('plik'));
+        if ($request->hasFile('file')) {
+            $room->makePlan($request->name, $request->file('file'));
         }
 
-        if ($request->hasFile('plikpdf')) {
-            $room->makePdf($request->nazwa, $request->file('plikpdf'));
+        if ($request->hasFile('pdf')) {
+            $room->makePdf($request->name, $request->file('pdf'));
         }
 
         return redirect('admin/investments/rooms/'.$room->floor_id)->with('success', 'Mieszkanie zaktualizowane');
@@ -157,5 +153,4 @@ class InvestmentsRoomController extends Controller
     public function destroy(Room $room)
     {
     }
-
 }

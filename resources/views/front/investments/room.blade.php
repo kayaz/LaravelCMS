@@ -1,6 +1,6 @@
 @extends('layouts.page')
 
-@section('meta_title', 'Inwestycja - '.$investment->nazwa.' - '.$floor->nazwa.' - '.$room->nazwa)
+@section('meta_title', 'Inwestycja - '.$investment->name.' - '.$floor->name.' - '.$room->name)
 
 @section('content')
     <div class="container">
@@ -11,19 +11,19 @@
         </div>
         <div class="row">
             <div class="col-3">
-                <h2>{{$room->nazwa}}</h2>
+                <h2>{{$room->name}}</h2>
                 <span class="room-list-status-{{ $room->status }}">{{ room_status($room->status) }}</span>
                 <ul class="list-unstyled room-param mt-5">
-                    @if($room->pokoje)<li>Pokoje<span>{{$room->pokoje}}</span></li>@endif
-                    @if($room->metry)<li>Powierzchnia<span>{{$room->metry}} m<sup>2</sup></span></li>@endif
-                    @if($room->cena)<li>Cena<span>{{$room->cena}}</span></li>@endif
+                    @if($room->rooms)<li>Pokoje<span>{{$room->rooms}}</span></li>@endif
+                    @if($room->area)<li>Powierzchnia<span>{{$room->area}} m<sup>2</sup></span></li>@endif
+                    @if($room->price)<li>Cena<span>{{$room->price}}</span></li>@endif
                 </ul>
                 @if($room->pdf)
-                    <a href="{{ URL::asset('inwestycje/mieszkanie/pdf/'.$room->pdf) }}" target="_blank">Pobierz kartę .pdf</a>
+                    <a href="/inwestycje/mieszkanie/pdf/{{$room->pdf}}" target="_blank">Pobierz kartę .pdf</a>
                 @endif
             </div>
             <div class="col-4">
-                @if($room->plik)<img src="{{ URL::asset('inwestycje/mieszkanie/thumbs/'.$room->plik) }}" alt="{{$room->nazwa}}">@endif
+                @if($room->file)<img src="/inwestycje/mieszkanie/thumbs/{{$room->file}}" alt="{{$room->name}}">@endif
             </div>
             <div class="col-5">
                 <h2>Zapytaj o mieszkanie</h2>

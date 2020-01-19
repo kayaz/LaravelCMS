@@ -18,14 +18,14 @@
                             @include('form-elements.select', ['label' => 'Status', 'name' => 'menu', 'selected' => $entry->menu, 'options' => ['1' => 'Pokaż w menu', '2' => 'Ukryj w menu']])
                             @include('form-elements.select', [
                                 'label' => 'Podstrona',
-                                'name' => 'id_parent',
-                                'selected' => $entry->id_parent,
+                                'name' => 'parent_id',
+                                'selected' => $entry->parent_id,
                                 'options' => $selectMenu
                             ])
-                            @include('form-elements.input-text', ['label' => 'Tytuł strony', 'name' => 'nazwa', 'value' => $entry->nazwa])
-                            @include('form-elements.input-text', ['label' => 'Nagłówek strony', 'sublabel'=> 'Meta tag - title', 'name' => 'meta_tytul', 'value' => $entry->meta_tytul])
-                            @include('form-elements.input-text', ['label' => 'Opis strony', 'sublabel'=> 'Meta tag - description', 'name' => 'meta_opis', 'value' => $entry->meta_opis])
-                            @include('form-elements.textarea', ['label' => 'Wprowadź tekst', 'name' => 'tekst', 'value' => $entry->tekst, 'rows' => 11, 'class' => 'tinymce'])
+                            @include('form-elements.input-text', ['label' => 'Tytuł strony', 'name' => 'title', 'value' => $entry->title])
+                            @include('form-elements.input-text', ['label' => 'Nagłówek strony', 'sublabel'=> 'Meta tag - title', 'name' => 'meta_title', 'value' => $entry->meta_title])
+                            @include('form-elements.input-text', ['label' => 'Opis strony', 'sublabel'=> 'Meta tag - description', 'name' => 'meta_description', 'value' => $entry->meta_description])
+                            @include('form-elements.textarea', ['label' => 'Wprowadź tekst', 'name' => 'content', 'value' => $entry->content, 'rows' => 11, 'class' => 'tinymce'])
                         </div>
                     </div>
                 </div>

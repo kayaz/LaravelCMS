@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="page-title"><i class="fe-home"></i> <a href="{{route('admin.investments.index')}}">Inwestycje</a> / {{$investment->nazwa}}: Lista kondygnacji</h4>
+        <h4 class="page-title"><i class="fe-home"></i> <a href="{{route('admin.investments.index')}}">Inwestycje</a> / {{$investment->name}}: Lista kondygnacji</h4>
     </div>
     <div class="container-fluid">
         <div class="card">
@@ -34,13 +34,13 @@
                     @foreach ($list as $index => $p)
                         <tr id="recordsArray_{{ $p->id }}">
                             <th class="position" scope="row">{{ $index+1 }}</th>
-                            <td>{{ $p->nazwa }}</td>
+                            <td><a href="{{route('admin.investments.roomindex', $p->id)}}">{{ $p->name }}</a></td>
                             <td>{{ $p->updated_at }}</td>
                             <td class="option-120">
                                 <div class="btn-group">
-                                    <a href="{{route('admin.investments.roomindex', ['floor' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Pokaż piętro"><i class="fe-folder"></i></a>
-                                    <a href="{{route('admin.investments.pietroedytuj', ['floor' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj piętro"><i class="fe-edit"></i></a>
-                                    <form method="POST" action="{{route('admin.investments.pietrousun', ['id' => $p->id])}}">
+                                    <a href="{{route('admin.investments.roomindex', $p->id)}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Pokaż piętro"><i class="fe-folder"></i></a>
+                                    <a href="{{route('admin.investments.pietroedytuj', $p->id)}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj piętro"><i class="fe-edit"></i></a>
+                                    <form method="POST" action="{{route('admin.investments.pietrousun', $p->id)}}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button type="submit" class="btn action-button confirm" data-toggle="tooltip" data-placement="top" title="Usuń piętro" data-id="{{ $p->id }}"><i class="fe-trash-2"></i></button>

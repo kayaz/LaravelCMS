@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Investments;
+use App\Investment;
 
 use App\Http\Controllers\Controller;
 
@@ -10,15 +10,14 @@ class InvestmentsController extends Controller
 {
     public function index()
     {
-        $inwestycje = Investments::all('slug', 'nazwa', 'miniaturka', 'logo', 'lista');
-        return view('front.investments.lista', ['list' => $inwestycje]);
+        $investments = Investment::all('slug', 'name', 'thumb', 'logo', 'content_list');
+        return view('front.investments.lista', ['list' => $investments]);
     }
 
     public function show($slug)
     {
-        $investment = Investments::where('slug', $slug)->first();
+        $investment = Investment::where('slug', $slug)->first();
         $floor = $investment->floors;
-
 
         return view('front.investments.show',
             [

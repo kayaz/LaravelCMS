@@ -7,7 +7,7 @@
         <div class="row">
             @foreach ($list as $l)
             <div class="col-12">
-                <h2 class="list-post-title"><a href="{{route('front.galeria.katalog', $l->id)}}" title="{{ $l->nazwa }}">{{ $l->nazwa }}</a></h2>
+                <h2 class="list-post-title"><a href="{{route('front.galeria.katalog', $l->id)}}" title="{{ $l->name }}">{{ $l->name }}</a></h2>
             </div>
             @endforeach
         </div>

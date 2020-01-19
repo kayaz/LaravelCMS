@@ -10,10 +10,10 @@ class SendMail extends FormRequest
     public function rules()
     {
         return [
-            'imie' => 'required',
-            'email' => 'required',
-            'telefon' => 'required',
-            'wiadomosc' => 'required'
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'message' => 'required'
         ];
     }
     /**
@@ -24,10 +24,10 @@ class SendMail extends FormRequest
     public function messages()
     {
         return [
-            'imie.required' => 'Wpisz swoje imię!',
+            'name.required' => 'Wpisz swoje imię!',
             'email.required' => 'Podaj adres e-mail!',
-            'telefon.required' => 'Podaj prawidłowy numer telefonu!',
-            'wiadomosc.required' => 'Brak wiadomości?'
+            'phone.required' => 'Podaj prawidłowy numer telefonu!',
+            'message.required' => 'Brak wiadomości?'
         ];
     }
 }

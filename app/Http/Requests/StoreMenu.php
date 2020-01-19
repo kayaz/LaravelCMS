@@ -18,7 +18,7 @@ class StoreMenu extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'slug' => Str::slug($this->nazwa)
+            'slug' => Str::slug($this->title)
         ]);
     }
 
@@ -29,7 +29,7 @@ class StoreMenu extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -40,8 +40,8 @@ class StoreMenu extends FormRequest
     public function rules()
     {
         return [
-            'nazwa' => 'required|string|max:255',
-            'tekst' => 'required'
+            'title' => 'required|string|max:255',
+            'content' => 'required'
         ];
     }
 

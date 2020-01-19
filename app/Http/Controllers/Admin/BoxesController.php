@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Boxes;
+use App\Box;
 use App\Http\Requests\StoreBox;
 
 use App\Http\Controllers\Controller;
@@ -15,27 +15,25 @@ class BoxesController extends Controller
 
     public function index()
     {
-        $boxes = Boxes::all()->sortBy("sort");
-        return view('admin.boxes.index', ['list' => $boxes]);
+        return view('admin.boxes.index', ['list' => Box::all()->sortBy("sort")]);
     }
 
     public function create()
     {
-        return view('admin.boxes.form',
-            [
+        return view('admin.boxes.form', [
                 'cardtitle' => 'Dodaj boks',
-                'iconwidth' => Boxes::ICON_HEIGHT,
-                'iconheight' => Boxes::ICON_HEIGHT
+                'iconwidth' => Box::ICON_HEIGHT,
+                'iconheight' => Box::ICON_HEIGHT
             ])
-            ->with('entry', Boxes::make());
+            ->with('entry', Box::make());
     }
 
     public function store(StoreBox $request)
     {
-        $box = Boxes::create($request->only(['nazwa', 'tekst', 'link']));
+        $box = Box::create($request->only(['title', 'content', 'url']));
 
-        if ($request->hasFile('plik')) {
-            $box->makeIcon($request->nazwa, $request->file('plik'));
+        if ($request->hasFile('file')) {
+            $box->makeIcon($request->title, $request->file('file'));
         }
 
         return redirect($this->redirectTo)->with('success', 'Nowy boks dodany');
@@ -43,38 +41,35 @@ class BoxesController extends Controller
 
     public function edit($id)
     {
-        $box = Boxes::where('id', $id)->first();
-        return view('admin.boxes.form',
-            [
+        $box = Box::where('id', $id)->first();
+        return view('admin.boxes.form', [
                 'entry' => $box,
                 'cardtitle' => 'Edytuj boks',
-                'iconwidth' => Boxes::ICON_HEIGHT,
-                'iconheight' => Boxes::ICON_HEIGHT
-            ]
-        );
+                'iconwidth' => Box::ICON_HEIGHT,
+                'iconheight' => Box::ICON_HEIGHT
+            ]);
     }
 
-    public function update(StoreBox $request, Boxes $box)
+    public function update(StoreBox $request, Box $box)
     {
-        $box->update($request->only(['nazwa', 'tekst', 'link']));
+        $box->update($request->only(['title', 'content', 'url']));
 
-        if ($request->hasFile('plik')) {
-            $box->makeIcon($request->nazwa, $request->file('plik'));
+        if ($request->hasFile('file')) {
+            $box->makeIcon($request->title, $request->file('file'));
         }
 
         return redirect($this->redirectTo)->with('success', 'Boks zaktualizowany');
     }
 
-    public function destroy(Boxes $box)
+    public function destroy(Box $box)
     {
         $box->deleteIcon();
         $box->delete();
         return response()->json(['success' => 'Boks usniety']);
     }
 
-    public function sort(Request $request, Boxes $box)
+    public function sort(Request $request, Box $box)
     {
         $box->sort($request);
     }
-
 }

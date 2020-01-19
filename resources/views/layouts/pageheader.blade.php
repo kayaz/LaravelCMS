@@ -6,7 +6,7 @@
                 <nav itemscope itemtype="https://schema.org/Breadcrumb" role="navigation">
                     <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
                         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <a itemprop="item" href="{{route('front.index')}}"><span itemprop="name">Strona główna</span></a><meta itemprop="position" content="1" />
+                            <a itemprop="item" href="{{route('home')}}"><span itemprop="name">Strona główna</span></a><meta itemprop="position" content="1" />
                         </li>
                         <li class="sep"></li>
 

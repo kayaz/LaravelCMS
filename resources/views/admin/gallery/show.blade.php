@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="page-title"><i class="fe-image"></i> &nbsp;Galeria - {{$nazwa}}</h4>
+        <h4 class="page-title"><i class="fe-image"></i> &nbsp;Galeria - {{$name}}</h4>
     </div>
 
     <div class="container-fluid">
@@ -10,7 +10,7 @@
             @foreach ($list as $index => $p)
             <li id="recordsArray_{{ $p->id }}">
                 <div class="card thumb-card">
-                    <img class="img-fluid" src="<?php echo asset("uploads/galeria/thumbs/".$p->plik)?>" alt="{{ $p->nazwa }}">
+                    <img class="img-fluid" src="/uploads/galeria/thumbs/{{$p->file}}" alt="{{ $p->name }}">
                     <div class="card-body">
                         <div class="btn-group">
                             <a href="" class="btn action-button action-small mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj zdjęcie"><i class="fe-edit"></i></a>

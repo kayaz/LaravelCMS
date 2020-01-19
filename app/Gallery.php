@@ -1,26 +1,30 @@
 <?php
 
 namespace App;
-use App\GalleryPhotos;
 
+use Photo;
 use File;
-
 use Illuminate\Database\Eloquent\Model;
 
 class Gallery extends Model
 {
-    protected $table = 'galeria';
-    protected $fillable = ['nazwa'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name'];
 
-    public static function deleteCatalog($id){
-        $galleryphotos = GalleryPhotos::all()->where('id_gal', $id);
-        foreach($galleryphotos as $element) {
-            $zdjecie = GalleryPhotos::where('id', $element->id)->firstOrFail();
+    public static function deleteCatalog($id)
+    {
+        $gallery = Photo::all()->where('gal_id', $id);
+        foreach ($gallery as $element) {
+            $photo = Photo::where('id', $element->id)->firstOrFail();
             File::delete([
-                public_path('uploads/galeria/' . $element->plik),
-                public_path('uploads/galeria/thumbs/' . $element->plik)
+                public_path('uploads/galeria/' . $element->file),
+                public_path('uploads/galeria/thumbs/' . $element->file)
             ]);
-            $zdjecie->delete();
+            $photo->delete();
         }
     }
 }

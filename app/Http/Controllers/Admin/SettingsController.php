@@ -25,12 +25,12 @@ class SettingsController extends Controller
     {
         $settings = Settings::make(storage_path('app/settings.json'));
         $settings->put([
-            'meta_title' => $request->get('meta_nazwa_strony'),
-            'meta_description' => $request->get('meta_opis_strony'),
-            'author' => $request->get('autor'),
+            'meta_title' => $request->get('meta_title'),
+            'meta_description' => $request->get('meta_description'),
+            'author' => $request->get('author'),
             'email' => $request->get('email'),
-            'page_url' => $request->get('adres_strony'),
-            'robots' => $request->get('indeksowanie_strony')
+            'url' => $request->get('url'),
+            'robots' => $request->get('robots')
         ]);
 
         return redirect('admin/settings/')->with('success', 'Ustawienia zostały zaktualizowane');

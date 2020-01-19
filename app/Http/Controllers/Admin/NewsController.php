@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\News;
 use App\Http\Requests\StoreNews;
 
-use Illuminate\Support\Str;
-
 use App\Http\Controllers\Controller;
 
 class NewsController extends Controller
@@ -16,14 +14,12 @@ class NewsController extends Controller
 
     public function index()
     {
-        $news = News::orderBy('data', 'desc')->get();
-        return view('admin.news.index', ['list' => $news]);
+        return view('admin.news.index', ['list' => News::orderBy('date', 'desc')->get()]);
     }
 
     public function create()
     {
-        return view('admin.news.form',
-            [
+        return view('admin.news.form', [
                 'cardtitle' => 'Dodaj wpis',
                 'thumbwidth' => News::THUMB_WIDTH,
                 'thumbheight' => News::THUMB_HEIGHT
@@ -33,20 +29,21 @@ class NewsController extends Controller
 
     public function store(StoreNews $request)
     {
-        $news = News::create($request->merge(['slug' => Str::slug($request->nazwa)])->only(
+        $news = News::create($request->only(
             [
-                'nazwa',
+                'title',
+                'slug',
                 'status',
-                'meta_tytul',
-                'meta_opis',
-                'data',
-                'wprowadzenie',
-                'tekst'
+                'meta_title',
+                'meta_description',
+                'date',
+                'content_entry',
+                'content'
             ]
         ));
 
-        if ($request->hasFile('plik')) {
-            $news->makeThumb($request->nazwa, $request->file('plik'));
+        if ($request->hasFile('file')) {
+            $news->makeThumb($request->title, $request->file('file'));
         }
 
         return redirect($this->redirectTo)->with('success', 'Nowy wpis dodany');
@@ -55,32 +52,31 @@ class NewsController extends Controller
     public function edit($id)
     {
         $news = News::where('id', $id)->first();
-        return view('admin.news.form',
-            [
+        return view('admin.news.form', [
                 'entry' => $news,
                 'cardtitle' => 'Edytuj wpis',
                 'thumbwidth' => News::THUMB_WIDTH,
                 'thumbheight' => News::THUMB_HEIGHT
-            ]
-        );
+            ]);
     }
 
     public function update(StoreNews $request, News $news)
     {
-        $news->update($request->merge(['slug' => Str::slug($request->nazwa)])->only(
+        $news->update($request->only(
             [
-                'nazwa',
+                'title',
+                'slug',
                 'status',
-                'meta_tytul',
-                'meta_opis',
-                'data',
-                'wprowadzenie',
-                'tekst'
+                'meta_title',
+                'meta_description',
+                'date',
+                'content_entry',
+                'content'
             ]
         ));
 
-        if ($request->hasFile('plik')) {
-            $news->makeThumb($request->nazwa, $request->file('plik'));
+        if ($request->hasFile('file')) {
+            $news->makeThumb($request->title, $request->file('file'));
         }
 
         return redirect($this->redirectTo)->with('success', 'Wpis zaktualizowany');

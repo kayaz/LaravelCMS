@@ -18,58 +18,66 @@ class Room extends Model
     const LIST_WIDTH = 100;
     const LIST_HEIGHT = 100;
 
-    protected $table = 'inwestycje_powierzchnia';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'floor_id',
-        'nazwa',
+        'name',
+        'number',
         'slug',
-        'meta_opis',
-        'meta_tytul',
+        'meta_description',
+        'meta_title',
         'html',
         'cords',
         'status',
-        'pokoje',
-        'plik',
+        'rooms',
+        'file',
         'pdf',
-        'metry',
-        'szukaj_metry',
-        'cena',
-        'szukaj_cena',
-        'cena_m'
+        'area',
+        'area_search',
+        'price',
+        'price_search',
+        'price_m'
     ];
 
-    public function makePlan($nazwa, $file){
-
-        if(File::exists(public_path('inwestycje/mieszkanie/' . $this->plik))){
+    public function makePlan($name, $file)
+    {
+        if (File::exists(public_path('inwestycje/mieszkanie/' . $this->file))) {
             File::delete([
-                public_path('inwestycje/mieszkanie/' . $this->plik),
-                public_path('inwestycje/mieszkanie/thumbs/' . $this->plik),
-                public_path('inwestycje/mieszkanie/lista/' . $this->plik)
+                public_path('inwestycje/mieszkanie/' . $this->file),
+                public_path('inwestycje/mieszkanie/thumbs/' . $this->file),
+                public_path('inwestycje/mieszkanie/lista/' . $this->file)
             ]);
         }
 
-        $name = Str::slug($nazwa) . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('mieszkanie', $name, 'inwest_uploads');
+        $filename = Str::slug($name) . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('mieszkanie', $filename, 'inwest_uploads');
 
-        $filepath = public_path('inwestycje/mieszkanie/' . $name);
-        $thumbnailpath = public_path('inwestycje/mieszkanie/thumbs/' . $name);
-        $listpath = public_path('inwestycje/mieszkanie/lista/' . $name);
-        Image::make($filepath)->resize(self::PLAN_WIDTH, null, function ($constraint) {$constraint->aspectRatio();})->save($filepath)
-            ->resize(self::THUMB_WIDTH, null, function ($constraint) {$constraint->aspectRatio();})->save($thumbnailpath)
+        $filepath = public_path('inwestycje/mieszkanie/' . $filename);
+        $thumbnailpath = public_path('inwestycje/mieszkanie/thumbs/' . $filename);
+        $listpath = public_path('inwestycje/mieszkanie/lista/' . $filename);
+        Image::make($filepath)
+            ->resize(self::PLAN_WIDTH, null, function ($constraint) {$constraint->aspectRatio();})
+            ->save($filepath)
+            ->resize(self::THUMB_WIDTH, null, function ($constraint) {$constraint->aspectRatio();})
+            ->save($thumbnailpath)
             ->fit(self::LIST_WIDTH, self::LIST_HEIGHT)->save($listpath);
 
-        $this->update(['plik' => $name ]);
+        $this->update(['file' => $filename ]);
     }
 
-    public function makePdf($nazwa, $file){
+    public function makePdf($name, $file){
 
-        if(File::exists(public_path('inwestycje/mieszkanie/pdf/' . $this->plik))){
+        if (File::exists(public_path('inwestycje/mieszkanie/pdf/' . $this->pdf))) {
             File::delete([
-                public_path('inwestycje/mieszkanie/pdf/' . $this->plik)
+                public_path('inwestycje/mieszkanie/pdf/' . $this->pdf)
             ]);
         }
 
-        $pdfname = Str::slug($nazwa) . '.' . $file->getClientOriginalExtension();
+        $pdfname = Str::slug($name) . '.' . $file->getClientOriginalExtension();
         $file->storeAs('mieszkanie/pdf', $pdfname, 'inwest_uploads');
 
         $this->update(['pdf' => $pdfname ]);

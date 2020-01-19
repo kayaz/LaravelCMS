@@ -13,42 +13,45 @@ class Floor extends Model
     const PLAN_WIDTH = 1200;
     const PLAN_HEIGHT = 560;
 
-    protected $table = 'pietro';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'investments_id',
-        'budynek',
+        'investment_id',
+        'building',
         'typ',
-        'nazwa',
+        'name',
         'slug',
-        'numer',
-        'plik',
-        'meta_opis',
-        'meta_tytul',
-        'zakres_powierzchnia',
-        'zakres_pokoje',
-        'zakres_cena',
+        'number',
+        'file',
+        'meta_description',
+        'meta_title',
+        'area_range',
+        'rooms_range',
+        'price_range',
         'html',
         'cords'
     ];
 
-    public function makePlan($nazwa, $file){
-
-        if(File::exists(public_path('inwestycje/pietro/' . $this->plik))){
-            File::delete(public_path('inwestycje/pietro/' . $this->plik));
+    public function makePlan($name, $file)
+    {
+        if (File::exists(public_path('inwestycje/pietro/' . $this->file))) {
+            File::delete(public_path('inwestycje/pietro/' . $this->file));
         }
 
-        $name = Str::slug($nazwa) . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('pietro', $name, 'inwest_uploads');
+        $filename = Str::slug($name) . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('pietro', $filename, 'inwest_uploads');
 
-        $filepath = public_path('inwestycje/pietro/' . $name);
+        $filepath = public_path('inwestycje/pietro/' . $filename);
         Image::make($filepath)->fit(self::PLAN_WIDTH, self::PLAN_HEIGHT)->save($filepath);
 
-        $this->update(['plik' => $name ]);
+        $this->update(['file' => $filename]);
     }
 
     public function rooms()
     {
         return $this->hasMany('App\Room');
     }
-
 }

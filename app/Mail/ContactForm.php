@@ -48,7 +48,7 @@ class ContactForm extends Mailable
 
             //Klient nie istnieje, tworzymy profil. Pobieramy też ID dodanego rekordu
             $saveUser = RodoClient::create([
-                'name' => $this->request['imie'],
+                'name' => $this->request['name'],
                 'mail'  => $this->request['email'],
                 'ip' => $this->request->ip(),
                 'host' => gethostbyaddr($this->request->ip()),
@@ -56,7 +56,7 @@ class ContactForm extends Mailable
             ]);
 
             // Pobieramy zaznaczone regułki
-            $checkbox = preg_grep("/zgoda_([0-9])/i", array_keys($this->request->all()));
+            $checkbox = preg_grep("/rule_([0-9])/i", array_keys($this->request->all()));
 
             foreach($checkbox as $rule) {
 

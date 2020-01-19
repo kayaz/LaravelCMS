@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Building;
-use App\Investments;
+use App\Investment;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,20 +15,26 @@ class InvestmentsBuildingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Investments $investment)
+    public function index(Investment $investment)
     {
-        $building = $investment->building;
-        return view('building.index', ['investment' => $investment, 'list' => $building]);
+        return view('building.index', ['investment' => $investment, 'list' => $investment->building]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Investment $investment
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(Investment $investment)
     {
-        //
+        return view('building.form', [
+                'cardtitle' => 'Dodaj budynek',
+                'planwidth' => Investment::PLAN_WIDTH,
+                'planheight' => Investment::PLAN_HEIGHT,
+                'investment' => $investment,
+            ])
+            ->with('entry', Building::make());
     }
 
     /**

@@ -30,9 +30,9 @@
     <ul class="rslidess list-unstyled mb-0">
         @foreach ($slider as $s)
         <li>
-            <img src="{{asset('uploads/slider/'.$s->plik) }}" alt="{{ $s->nazwa }}">
+            <img src="{{asset('uploads/slider/'.$s->file) }}" alt="{{ $s->name }}">
             <div class="apla">
-                <h2>{{ $s->nazwa }}<span></span></h2>
+                <h2>{{ $s->name }}<span></span></h2>
             </div>
         </li>
         @endforeach
@@ -42,12 +42,12 @@
 <div id="mainbox">
     <div class="container">
         <div class="row">
-@foreach ($boksy as $b)
+@foreach ($boxes as $b)
             <div class="col-md-4">
                 <div class="boks p-4 pt-5 pb-5 shadow rounded bg-white text-center">
-                    <img src="{{asset('uploads/boksy/'.$b->plik) }}" class="img-fluid" alt="{{ $b->nazwa }}">
-                    <h4 class="title text-uppercase mt-3">{{ $b->nazwa }}</h4>
-                    <p class="text-muted">{{ $b->tekst }}</p>
+                    <img src="{{asset('uploads/boksy/'.$b->file) }}" class="img-fluid" alt="{{ $b->title }}">
+                    <h4 class="title text-uppercase mt-3">{{ $b->title }}</h4>
+                    <p class="text-muted">{{ $b->content }}</p>
                 </div>
             </div><!--end col-->
 @endforeach
@@ -63,21 +63,21 @@
                     <div class="list-post">
                         <div class="row">
                             <div class="col-4">
-                                <a href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->nazwa }}" itemprop="url"><img src="{{asset('uploads/news/thumbs/'.$n->plik) }}" alt="{{ $n->nazwa }}"></a>
+                                <a href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->title }}" itemprop="url"><img src="{{asset('uploads/news/thumbs/'.$n->file) }}" alt="{{ $n->title }}"></a>
                             </div>
                             <div class="col-8">
                                 <div class="list-post-content">
                                     <header>
-                                        <div class="list-post-date">Data publikacji: <span itemprop="datePublished" content="{{ $n->data }}">{{ $n->data }}</span></div>
-                                        <h2 class="list-post-title"><a href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->nazwa }}" itemprop="url"><span itemprop="name headline">{{ $n->nazwa }}</span></a></h2>
+                                        <div class="list-post-date">Data publikacji: <span itemprop="datePublished" content="{{ $n->date }}">{{ $n->date }}</span></div>
+                                        <h2 class="list-post-title"><a href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->title }}" itemprop="url"><span itemprop="name headline">{{ $n->title }}</span></a></h2>
                                     </header>
 
                                     <div class="list-post-entry" itemprop="articleBody">
-                                        <p class="text-muted">{{ $n->wprowadzenie }}</p>
+                                        <p class="text-muted">{{ $n->content_entry }}</p>
                                     </div>
 
                                     <footer>
-                                        <a itemprop="url" href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->nazwa }}" class="bttn">CZYTAJ WIĘCEJ</a>
+                                        <a itemprop="url" href="{{route('front.news.wpis', ['slug' => $n->slug])}}" title="{{ $n->title }}" class="bttn">CZYTAJ WIĘCEJ</a>
                                         <meta itemprop="author" content="JK Design">
                                         <meta itemprop="mainEntityOfPage" content="{{route('front.news.wpis', ['slug' => $n->slug])}}">
                                     </footer>

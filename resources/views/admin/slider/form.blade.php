@@ -14,8 +14,8 @@
                     <div class="row">
                         @include('form-elements.errors')
                         <div class="col-12">
-                            @include('form-elements.input-text', ['label' => 'Nazwa', 'name' => 'nazwa', 'value' => $entry->nazwa])
-                            @include('form-elements.input-file', ['label' => 'Plik', 'sublabel' => '(wymiary: '.$imgwidth.'px / '.$imgheight.'px)', 'name' => 'plik'])
+                            @include('form-elements.input-text', ['label' => 'Nazwa', 'name' => 'name', 'value' => $entry->name])
+                            @include('form-elements.input-file', ['label' => 'Plik', 'sublabel' => '(wymiary: '.$imgwidth.'px / '.$imgheight.'px)', 'name' => 'file'])
                         </div>
                     </div>
                 </div>

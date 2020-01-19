@@ -6,7 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class RodoClient extends Model
 {
-    protected $table = 'rodo_klient';
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'rodo_client';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'mail',
@@ -14,5 +25,4 @@ class RodoClient extends Model
         'host',
         'browser'
     ];
-
 }

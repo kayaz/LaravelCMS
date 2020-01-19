@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="page-title"><i class="fe-home"></i> <a href="{{route('admin.investments.index')}}">Inwestycje</a> / {{$investment->nazwa}}: Dodaj plan inwestycji</h4>
+        <h4 class="page-title"><i class="fe-home"></i> <a href="{{route('admin.investments.index')}}">Inwestycje</a> / {{$investment->name}}: Dodaj plan inwestycji</h4>
     </div>
     <div class="container-fluid">
         <div class="card">
@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="alert alert-info" role="alert">Rzut planu inwestycji: 1200px szerokości / 560px wysokości</div>
                 @if($investment->plan)
-                    <img class="img-fluid" src="<?php echo asset("inwestycje/plan/".$investment->plan)?>" alt="{{ $investment->nazwa }}">
+                    <img class="img-fluid" src="<?php echo asset("inwestycje/plan/".$investment->plan)?>" alt="{{ $investment->name }}">
                 @endif
             </div>
         </div>

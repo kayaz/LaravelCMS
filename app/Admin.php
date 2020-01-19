@@ -6,13 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Model
 {
-    protected $table = 'ustawienia';
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'settings';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'meta_nazwa_strony',
-        'meta_opis_strony',
-        'adres_strony',
+        'meta_title',
+        'meta_description',
+        'url',
         'email',
-        'autor',
-        'indeksowanie_strony'
+        'author',
+        'robots'
     ];
 }

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use App\Gallery;
-use App\GalleryPhotos;
+use App\Photo;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
@@ -16,19 +15,18 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $gallery = Gallery::all('id', 'nazwa')->sortBy("nazwa");
-        return view('front.gallery.index', ['list' => $gallery]);
+        return view('front.gallery.index', ['list' => Gallery::all('id', 'name')->sortBy("name")]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Gallery $gallery
      * @return \Illuminate\Http\Response
      */
     public function show(Gallery $gallery)
     {
-        $photos = GalleryPhotos::all()->sortBy("sort")->where('id_gal', $gallery->id);
-        return view('front.gallery.show', ['nazwa' => $gallery->nazwa, 'list' => $photos]);
+        $photos = Photo::all()->sortBy("sort")->where('gallery_id', $gallery->id);
+        return view('front.gallery.show', ['name' => $gallery->name, 'list' => $photos]);
     }
 }

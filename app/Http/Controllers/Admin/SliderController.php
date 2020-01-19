@@ -15,8 +15,7 @@ class SliderController extends Controller
 
     public function index()
     {
-        $slider = Slider::all()->sortBy("sort");
-        return view('admin.slider.index', ['list' => $slider]);
+        return view('admin.slider.index', ['list' => Slider::all()->sortBy("sort")]);
     }
 
     public function create()
@@ -32,10 +31,10 @@ class SliderController extends Controller
 
     public function store(StoreSlider $request)
     {
-        $slider = Slider::create($request->only(['nazwa']));
+        $slider = Slider::create($request->only(['name']));
 
-        if ($request->hasFile('plik')) {
-            $slider->makeSlider($request->nazwa, $request->file('plik'));
+        if ($request->hasFile('file')) {
+            $slider->makeSlider($request->name, $request->file('file'));
         }
 
         return redirect($this->redirectTo)->with('success', 'Nowy panel dodany');
@@ -56,14 +55,13 @@ class SliderController extends Controller
 
     public function update(StoreSlider $request, Slider $slider)
     {
-        $slider->update($request->only(['nazwa',]));
+        $slider->update($request->only(['name',]));
 
-        if ($request->hasFile('plik')) {
-            $slider->makeSlider($request->nazwa, $request->file('plik'));
+        if ($request->hasFile('file')) {
+            $slider->makeSlider($request->name, $request->file('file'));
         }
 
         return redirect($this->redirectTo)->with('success', 'Panel zaktualizowany');
-
     }
 
     public function sort(Request $request, Slider $slider)

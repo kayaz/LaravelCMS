@@ -14,7 +14,7 @@ class StoreAdmin extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -25,22 +25,22 @@ class StoreAdmin extends FormRequest
     public function rules()
     {
         return [
-            'autor' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
             'email' => 'required|email',
-            'meta_nazwa_strony' => 'required|string|max:255',
-            'meta_opis_strony' => 'required|string|max:255',
-            'adres_strony' => 'required|string|max:255'
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string|max:255',
+            'url' => 'required|string|max:255'
         ];
     }
 
     public function messages()
     {
         return [
-            'autor.required' => 'Podaj autora strony',
+            'author.required' => 'Podaj autora strony',
             'email.required' => 'Podaj adres e-mail!',
-            'meta_nazwa_strony.required' => 'Podaj meta tag - nazwa strony',
-            'meta_opis_strony.required' => 'Podaj meta tag - opis strony',
-            'adres_strony.required' => 'Podaj adres strony',
+            'meta_title.required' => 'Podaj meta tag - nazwa strony',
+            'meta_description.required' => 'Podaj meta tag - opis strony',
+            'url.required' => 'Podaj adres strony',
         ];
     }
 }

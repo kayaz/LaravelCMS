@@ -22,7 +22,6 @@
         </div>
     </div>
 
-
 <script src="{{ URL::asset('js/plan/underscore.js') }}" charset="utf-8"></script>
 <script src="{{ URL::asset('js/plan/backbone.js') }}" charset="utf-8"></script>
 <script src="{{ URL::asset('js/plan/backbone-relational.js') }}" charset="utf-8"></script>

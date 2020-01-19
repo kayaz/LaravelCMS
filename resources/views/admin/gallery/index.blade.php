@@ -32,7 +32,7 @@
                     @foreach ($list as $index => $p)
                         <tr id="recordsArray_{{ $p->id }}">
                             <th class="position" scope="row">{{ $index+1 }}</th>
-                            <td><a href="{{route('admin.gallery.pokaz', $p->id)}}" data-toggle="tooltip" data-placement="top" title="Pokaż katalog">{{ $p->nazwa }}</a></td>
+                            <td><a href="{{route('admin.gallery.pokaz', $p->id)}}" data-toggle="tooltip" data-placement="top" title="Pokaż katalog">{{ $p->name }}</a></td>
                             <td>{{ $p->updated_at }}</td>
                             <td class="option-120">
                                 <div class="btn-group">

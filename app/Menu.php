@@ -9,34 +9,48 @@ class Menu extends Model
 {
     use NestableTrait;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'menu';
-    protected $parent = 'id_parent';
+
+    protected $parent = 'parent_id';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'menu',
         'slug',
-        'id_parent',
-        'nazwa',
-        'meta_tytul',
-        'meta_opis',
-        'tekst',
+        'parent_id',
+        'title',
+        'meta_title',
+        'meta_description',
+        'content',
         'uri'
     ];
 
-    public static function renderMenu(){
+    public static function renderMenu()
+    {
         $checkUri = request()->route()->uri();
-        if($checkUri == '{uri}'){
+        if ($checkUri == '{uri}') {
             $currentURI = request()->route()->parameters['uri'];
         } else {
             $currentURI = $checkUri;
         }
 
-        return static::firstUlAttr(['class' => 'mainmenu mb-0 list-unstyled clearfix'])
+        return static::orderBy('sort', 'asc')->firstUlAttr(['class' => 'mainmenu mb-0 list-unstyled clearfix'])
             ->ulAttr(['class' => 'submenu'])
             ->active($currentURI)
             ->renderAsHtml();
     }
 
-    public static function urigenerate($id){
+    public static function urigenerate($id)
+    {
         $data = static::all()->sortBy("sort");
         $crumbs = Array();
         $c = count($data);
@@ -49,7 +63,7 @@ class Menu extends Model
                     $url = $data[$i]['slug'];
                     array_unshift($crumbs, empty($crumbs)?($data[$i]['slug']):($url));
 
-                    $id = $data[$i]['id_parent'];
+                    $id = $data[$i]['parent_id'];
                     $found = true;
                     break;
                 }

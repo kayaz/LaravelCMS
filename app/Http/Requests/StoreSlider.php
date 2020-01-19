@@ -14,7 +14,7 @@ class StoreSlider extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class StoreSlider extends FormRequest
     public function rules()
     {
         return [
-            'nazwa' => 'required|string|max:255'
+            'name' => 'required|string|max:255'
         ];
     }
 }

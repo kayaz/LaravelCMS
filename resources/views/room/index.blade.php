@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="page-title"><i class="fe-home"></i> <a href="#">Inwestycje</a> / {{$investment->nazwa}} / {{$floor->nazwa}}: Lista mieszkań</h4>
+        <h4 class="page-title"><i class="fe-home"></i> <a href="#">Inwestycje</a> / {{$investment->name}} / {{$floor->name}}: Lista mieszkań</h4>
     </div>
     <div class="container-fluid">
         <div class="card">
@@ -35,7 +35,7 @@
                     @foreach ($list as $index => $p)
                         <tr id="recordsArray_{{ $p->id }}">
                             <th class="position" scope="row">{{ $index+1 }}</th>
-                            <td>{{ $p->nazwa }}</td>
+                            <td>{{ $p->name }}</td>
                             <td><span class="room-list-status-{{ $p->status }}">{{ room_status($p->status) }}</span></td>
                             <td>{{ $p->updated_at }}</td>
                             <td class="option-120">

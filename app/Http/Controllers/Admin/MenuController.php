@@ -19,20 +19,24 @@ class MenuController extends Controller
 
     public function create()
     {
-        $selectMenu = Menu::pluck('nazwa', 'id');
-        return view('admin.menu.form', ['cardtitle' => 'Dodaj stronę', 'selectMenu' => $selectMenu])->with('entry', Menu::make());
+        $selectMenu = Menu::pluck('title', 'id');
+        return view('admin.menu.form', [
+            'cardtitle' => 'Dodaj stronę',
+            'selectMenu' => $selectMenu
+        ])
+        ->with('entry', Menu::make());
     }
 
     public function store(StoreMenu $request)
     {
         $result = Menu::create($request->only(
             [
-                'nazwa',
+                'title',
                 'menu',
-                'id_parent',
-                'meta_tytul',
-                'meta_opis',
-                'tekst',
+                'parent_id',
+                'meta_title',
+                'meta_description',
+                'content',
                 'slug'
             ]
         ));
@@ -48,26 +52,24 @@ class MenuController extends Controller
     public function edit($id)
     {
         $menu = Menu::where('id', $id)->first();
-        $selectMenu = Menu::where('id', '!=' , $id)->pluck('nazwa', 'id');
-        return view('admin.menu.form',
-            [
+        $selectMenu = Menu::where('id', '!=', $id)->pluck('title', 'id');
+        return view('admin.menu.form', [
                 'entry' => $menu,
                 'selectMenu' => $selectMenu,
                 'cardtitle' => 'Edytuj stronę'
-            ]
-        );
+            ]);
     }
 
     public function update(StoreMenu $request, Menu $menu)
     {
         $menu->update($request->only(
             [
-                'nazwa',
+                'title',
                 'menu',
-                'id_parent',
-                'meta_tytul',
-                'meta_opis',
-                'tekst',
+                'parent_id',
+                'meta_title',
+                'meta_description',
+                'content',
                 'slug'
             ]
         ));

@@ -50,7 +50,7 @@ if (! function_exists('recursive')) {
         foreach($array as $index => $node)
         {
             echo '<tr'.$child.'>';
-            echo '<td>'.$node['nazwa'].'</td>';
+            echo '<td>'.$node['title'].'</td>';
             echo '<td>'.$node['uri'].'</td>';
             echo '<td>'.page_type($node['typ']).'</td>';
             echo '<td class="text-center">'.$node['updated_at'].'</td>';
@@ -69,7 +69,6 @@ function settings($key = null, $default = null) {
     if ($key === null) {
         return app(App\Settings::class);
     }
-
     return app(App\Settings::class)->get($key, $default);
 }
 

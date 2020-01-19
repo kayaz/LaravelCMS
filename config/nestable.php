@@ -1,27 +1,26 @@
 <?php
 
 return [
-    'parent'        => 'id_parent',
+    'parent'        => 'parent_id',
     'primary_key'   => 'id',
     'generate_url'  => true,
     'childNode'     => 'child',
     'body' => [
         'id',
-        'nazwa',
+        'title',
         'slug',
         'typ',
-        'slug',
         'updated_at',
         'menu',
         'uri',
     ],
     'html' => [
-        'label'     => 'nazwa',
+        'label'     => 'title',
         'href'      => 'uri'
     ],
     'dropdown' => [
         'prefix'    => '',
-        'label'     => 'nazwa',
+        'label'     => 'title',
         'value'     => 'id'
     ]
 ];

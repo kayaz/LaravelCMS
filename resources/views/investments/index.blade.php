@@ -34,20 +34,26 @@
                     @foreach ($list as $index => $p)
                         <tr id="recordsArray_{{ $p->id }}">
                             <th class="position" scope="row">{{ $index+1 }}</th>
-                            <td>{{ $p->nazwa }}</td>
+                            <td>
+                                @if ($p->typ == 2)
+                                    <a href="{{route('admin.investments.pietroindex', $p->id)}}">{{ $p->name }}</a>
+                                @else
+                                    <a href="{{route('admin.investments.budynekindex', $p->id)}}">{{ $p->name }}</a>
+                                @endif
+                            </td>
                             <td><span class="inwest-list-status-{{ $p->status }}">{{ inwest_status($p->status) }}</span></td>
                             <td>{{ inwest_typ($p->typ) }}</td>
                             <td>{{ $p->updated_at }}</td>
                             <td class="option-120">
                                 <div class="btn-group">
-                                    <a href="{{route('admin.investments.planindex', ['investment' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Plan inwestycji"><i class="fe-image"></i></a>
+                                    <a href="{{route('admin.investments.planindex', $p->id)}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Plan inwestycji"><i class="fe-image"></i></a>
                                     @if ($p->typ == 2)
-                                    <a href="{{route('admin.investments.pietroindex', ['investment' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Lista kondygnacji"><i class="fe-layers"></i></a>
+                                    <a href="{{route('admin.investments.pietroindex', $p->id)}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Lista kondygnacji"><i class="fe-layers"></i></a>
                                     @else
-                                    <a href="" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Lista budynków"><i class="fe-package"></i></a>
+                                    <a href="{{route('admin.investments.budynekindex', $p->id)}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Lista budynków"><i class="fe-package"></i></a>
                                     @endif
 
-                                    <a href="{{route('admin.investments.edytuj', ['investment' => $p->id])}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj wpis"><i class="fe-edit"></i></a>
+                                    <a href="{{route('admin.investments.edytuj', $p->id)}}" class="btn action-button mr-1" data-toggle="tooltip" data-placement="top" title="Edytuj wpis"><i class="fe-edit"></i></a>
                                     <form method="POST" action="{{route('admin.investments.usun', ['investment' => $p->id])}}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}

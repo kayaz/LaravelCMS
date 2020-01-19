@@ -33,8 +33,8 @@
                     @foreach ($list as $index => $p)
                     <tr id="recordsArray_{{ $p->id }}">
                         <th class="position" scope="row">{{ $index+1 }}</th>
-                        <td>{{ $p->nazwa }}</td>
-                        <td><img src="<?php echo asset("uploads/slider/thumbs/".$p->plik)?>" alt="{{ $p->nazwa }}"></td>
+                        <td>{{ $p->name }}</td>
+                        <td><img src="/uploads/slider/thumbs/{{$p->file}}" alt="{{ $p->name }}"></td>
                         <td>{{ $p->updated_at }}</td>
                         <td class="option-120">
                             <div class="btn-group">

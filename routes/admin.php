@@ -42,7 +42,8 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/investments/', 'as' => '
     Route::get('plan/{investment}',             'InvestmentsPlanController@index')->name('planindex');
     Route::post('upload/{investment}',          'InvestmentsPlanController@update')->name('planupdate');
 
-    Route::get('buildings/{investment}',         'InvestmentsBuildingController@index')->name('budynekindex');
+    Route::get('buildings/{investment}',        'InvestmentsBuildingController@index')->name('budynekindex');
+    Route::get('add-building/{investment}',     'InvestmentsBuildingController@create')->name('budynekdodaj');
 
     Route::get('floors/{investment}',           'InvestmentsFloorController@index')->name('pietroindex');
     Route::get('add-floor/{investment}',        'InvestmentsFloorController@create')->name('pietrododaj');
@@ -52,10 +53,9 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/investments/', 'as' => '
     Route::delete('delete-floor/{floor}',       'InvestmentsFloorController@destroy')->name('pietrousun');
     Route::get('show/{floor}',                  'InvestmentsFloorController@show')->name('pietropokaz');
 
-
     Route::get('rooms/{floor}',                 'InvestmentsRoomController@index')->name('roomindex');
-    Route::get('add-room/{floor}',          'InvestmentsRoomController@create')->name('roomdodaj');
-    Route::get('edit-room/{room}',            'InvestmentsRoomController@edit')->name('roomedytuj');
+    Route::get('add-room/{floor}',              'InvestmentsRoomController@create')->name('roomdodaj');
+    Route::get('edit-room/{room}',              'InvestmentsRoomController@edit')->name('roomedytuj');
     Route::put('rooms/{room}',                  'InvestmentsRoomController@update')->name('roomupdate');
     Route::post('rooms/{floor}',                'InvestmentsRoomController@store')->name('roomzapisz');
 });

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Investments;
+use App\Investment;
 use App\Http\Requests\StoreInvestment;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 use App\Http\Controllers\Controller;
@@ -13,103 +12,99 @@ use App\Http\Controllers\Controller;
 class InvestmentsController extends Controller
 {
 
-    protected $redirectTo = 'admin/inwestycja';
+    protected $redirectTo = 'admin/investments';
 
     public function index()
     {
-        $investment = Investments::all()->sortBy("sort");
-        return view('investments.index', ['list' => $investment]);
+        return view('investments.index', ['list' => Investment::all()->sortBy("sort")]);
     }
 
     public function create()
     {
-        return view('investments.inwestycja-form',
-            [
+        return view('investments.inwestycja-form', [
                 'cardtitle' => 'Dodaj inwestycje',
-                'logowidth' => Investments::LOGO_WIDTH,
-                'logoheight' => Investments::LOGO_HEIGHT,
-                'thumbwidth' => Investments::THUMB_WIDTH,
-                'thumbheight' => Investments::THUMB_HEIGHT,
+                'logowidth' => Investment::LOGO_WIDTH,
+                'logoheight' => Investment::LOGO_HEIGHT,
+                'thumbwidth' => Investment::THUMB_WIDTH,
+                'thumbheight' => Investment::THUMB_HEIGHT,
             ])
-            ->with('investment', Investments::make());
+            ->with('investment', Investment::make());
     }
 
     public function store(StoreInvestment $request)
     {
-        $investment = Investments::create($request->merge(['slug' => Str::slug($request->nazwa)])->only(
+        $investment = Investment::create($request->only(
             [
                 'typ',
                 'status',
-                'nazwa',
+                'name',
                 'slug',
-                'meta_tytul',
-                'meta_opis',
+                'meta_title',
+                'meta_description',
                 'email',
-                'telefon',
-                'adres',
-                'biuro',
-                'tekst',
-                'lista'
+                'phone',
+                'address',
+                'office',
+                'content',
+                'content_list'
             ]
         ));
 
         if ($request->hasFile('logo')) {
-            $investment->makeLogo($request->nazwa, $request->file('logo'));
+            $investment->makeLogo($request->name, $request->file('logo'));
         }
 
-        if ($request->hasFile('miniaturka')) {
-            $investment->makeThumb($request->nazwa, $request->file('miniaturka'));
+        if ($request->hasFile('thumb')) {
+            $investment->makeThumb($request->name, $request->file('thumb'));
         }
         return redirect($this->redirectTo)->with('success', 'Nowa inwestycja dodana');
     }
 
     public function edit($id)
     {
-        $investment = Investments::where('id', $id)->first();
-        return view('investments.inwestycja-form',
-             [
+        $investment = Investment::where('id', $id)->first();
+        return view('investments.inwestycja-form', [
                 'investment' => $investment,
                 'cardtitle' => '',
-                'logowidth' => Investments::LOGO_WIDTH,
-                'logoheight' => Investments::LOGO_HEIGHT,
-                'thumbwidth' => Investments::THUMB_WIDTH,
-                'thumbheight' => Investments::THUMB_HEIGHT,
-             ]
-        );
+                'logowidth' => Investment::LOGO_WIDTH,
+                'logoheight' => Investment::LOGO_HEIGHT,
+                'thumbwidth' => Investment::THUMB_WIDTH,
+                'thumbheight' => Investment::THUMB_HEIGHT,
+             ]);
     }
 
-    public function update(StoreInvestment $request, Investments $investment)
+    public function update(StoreInvestment $request, Investment $investment)
     {
-        $investment->update($request->merge(['slug' => Str::slug($request->nazwa)])->only(
+        $investment->update($request->only(
             [
                 'typ',
                 'status',
-                'nazwa',
+                'name',
                 'slug',
-                'meta_tytul',
-                'meta_opis',
+                'meta_title',
+                'meta_description',
                 'email',
-                'telefon',
-                'adres',
-                'biuro',
-                'tekst',
-                'lista'
+                'phone',
+                'address',
+                'office',
+                'content',
+                'content_list'
             ]
         ));
 
         // Upload logo
         if ($request->hasFile('logo')) {
-            $investment->makeLogo($request->nazwa, $request->file('logo'));
+            $investment->makeLogo($request->name, $request->file('logo'));
         }
 
         // Upload thumb
-        if ($request->hasFile('miniaturka')) {
-            $investment->makeThumb($request->nazwa, $request->file('miniaturka'));
+        if ($request->hasFile('thumb')) {
+            $investment->makeThumb($request->name, $request->file('thumb'));
         }
         return redirect($this->redirectTo)->with('success', 'Inwestycja zaktualizowana');
     }
 
-    public function destroy(Investments $investment)
+    public function destroy(Investment $investment)
     {
         //
     }

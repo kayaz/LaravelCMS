@@ -15,7 +15,7 @@
                     <div class="row">
                         @include('form-elements.errors')
                         <div class="col-12">
-                            @include('form-elements.input-text', ['label' => 'Nazwa katalogu', 'name' => 'nazwa', 'value' => $entry->nazwa])
+                            @include('form-elements.input-text', ['label' => 'Nazwa katalogu', 'name' => 'name', 'value' => $entry->name])
                         </div>
                     </div>
                 </div>

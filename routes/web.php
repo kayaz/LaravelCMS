@@ -1,10 +1,10 @@
 <?php
 
 // Front
-Route::get('/',                                 'Front\IndexController@index')->name('front.index');
+Route::get('/',                                 'Front\IndexController@index')->name('home');
 
-Route::get('/kontakt',                          'Front\KontaktController@index')->name('front.kontakt');
-Route::post('/kontakt',                         'Front\KontaktController@send')->name('front.kontakt.send');
+Route::get('/kontakt',                          'Front\ContactController@index')->name('front.contact');
+Route::post('/kontakt',                         'Front\ContactController@send')->name('front.contact.send');
 
 // Aktualne inwestycje
 Route::get('/aktualne-inwestycje',              'Front\InvestmentsController@index')->name('front.inwestycje');

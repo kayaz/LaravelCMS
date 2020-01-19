@@ -1,6 +1,6 @@
 @extends('layouts.page')
 
-@section('meta_title', $wpis->nazwa)
+@section('meta_title', $wpis->title)
 
 @section('content')
     <div class="container wpis-page">
@@ -8,16 +8,16 @@
             <div class="col-12 col-md-10">
                 <div class="single-news">
                     <div class="main-entry-img">
-                        <img src="{{asset('uploads/news/'.$wpis->plik) }}" alt="{{ $wpis->nazwa }}" class="img-news">
+                        <img src="{{asset('uploads/news/'.$wpis->file) }}" alt="{{ $wpis->title }}" class="img-news">
                     </div>
 
                     <div class="main-entry-outer">
                         <div class="main-entry-text">
-                            <div class="list-post-date">Data publikacji: <span itemprop="datePublished" content="{{ $wpis->data }}">{{ $wpis->data }}</span></div>
-                            <h1>{{ $wpis->nazwa }}</h1>
-                            <p><i>{{ $wpis->wprowadzenie }}</i></p>
+                            <div class="list-post-date">Data publikacji: <span itemprop="datePublished" content="{{ $wpis->date }}">{{ $wpis->date }}</span></div>
+                            <h1>{{ $wpis->title }}</h1>
+                            <p><i>{{ $wpis->content_entry }}</i></p>
                             <p>&nbsp;</p>
-                            {!! $wpis->tekst !!}
+                            {!! $wpis->content !!}
                             <a href="{{route('front.news.index')}}" class="bttn">WRÓĆ DO AKTUALNOŚCI</a>
                         </div>
                     </div>

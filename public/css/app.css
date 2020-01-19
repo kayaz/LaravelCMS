@@ -420,6 +420,34 @@ article {border-bottom: 1px solid #f6f6f6;margin-bottom:30px;padding-bottom:30px
 .plan-control a span {background:#1071b8;color:#fff;float:right;margin-left:20px;font-weight:600;z-index:10;padding:10px 17px}
 .plan-control .panel-map-name {background:#1071b8}
 
+a .card-body h1 {color:#303030}
+a .card-body p {color:#505050}
+
+.pozycja-ap h2 {
+    font-size: 23px;
+    font-weight: 900;
+    margin: 0;
+    color: #292929
+}
+.pozycja-ap .bttn {
+    padding: 10px 55px;
+    margin-top: 0;
+    font-size: 11px;
+    font-weight: 500
+}
+
+.pozycja-ap {
+    border-bottom: 1px solid #cfcfcf;
+    padding: 20px 0;
+    cursor: pointer;
+}
+.pozycja-ap ul {width: 100%;margin:0}
+.pozycja-ap ul li {border-bottom:1px solid #ececec;font-size:12px;padding:9px 0;line-height:normal}
+.pozycja-ap ul li:first-child {padding:0 0 9px}
+.pozycja-ap ul li:last-child {border:0;padding:9px 0 0}
+.pozycja-ap ul li span {float:right}
+.pozycja-ap ul li b {font-weight:600}
+
 /* Mieszkanie
 ================================================== */
 .room-param span {float: right;font-weight:700}

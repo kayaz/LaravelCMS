@@ -34,9 +34,9 @@
                     @foreach ($list as $index => $p)
                         <tr id="recordsArray_{{ $p->id }}">
                             <th class="position" scope="row">{{ $index+1 }}</th>
-                            <td>{{ $p->nazwa }}</td>
-                            <td><img src="<?php echo asset("uploads/news/adminthumbs/".$p->plik)?>" alt="{{ $p->nazwa }}"></td>
-                            <td class="text-center">{{ $p->data }}</td>
+                            <td>{{ $p->title }}</td>
+                            <td><img src="/uploads/news/adminthumbs/{!! $p->file !!}" alt="{{ $p->title }}"></td>
+                            <td class="text-center">{{ $p->date }}</td>
                             <td class="text-center">{!! page_status($p->status) !!}</td>
                             <td class="option-120">
                                 <div class="btn-group">

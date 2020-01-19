@@ -1,7 +1,7 @@
 @extends('admin')
 @section('content')
     <div class="container-fluid">
-        <h4 class="page-title"><i class="fe-home"></i> <a href="{{route('admin.investments.index')}}">Inwestycje</a> / {{$investment->nazwa}} / <a href="{{route('admin.investments.roomindex', ['id' => $floor->id])}}">{{$floor->nazwa}}</a></h4>
+        <h4 class="page-title"><i class="fe-home"></i> <a href="{{route('admin.investments.index')}}">Inwestycje</a> / {{$investment->name}} / <a href="{{route('admin.investments.roomindex', $floor->id)}}">{{$floor->name}}</a></h4>
     </div>
 
     <script src="{{ URL::asset('js/plan/underscore.js') }}" charset="utf-8"></script>
@@ -15,11 +15,11 @@
     <script type="text/javascript">
         $(document).ready(function() {
             mapview = new MapView({el:'.mappa'}, map);
-            mapview.loadImage('{{ URL::asset('inwestycje/pietro/'.$floor->plik) }}');
+            mapview.loadImage('{{ URL::asset('inwestycje/pietro/'.$floor->file) }}');
         });
     </script>
     @if(Route::is('admin.investments.roomedytuj'))
-        <form method="POST" action="{{route('admin.investments.roomupdate', ['room' => $entry->id])}}" enctype="multipart/form-data" class="mappa">
+        <form method="POST" action="{{route('admin.investments.roomupdate', $entry->id)}}" enctype="multipart/form-data" class="mappa">
             {{method_field('PUT')}}
     @else
         <form method="POST" action="{{route('admin.investments.roomzapisz', $floor->id)}}" enctype="multipart/form-data" class="mappa">
@@ -65,22 +65,20 @@
                                     '4' => 'Wynajęte'
                                 ]])
 
-                                @include('form-elements.input-text', ['label' => 'Nazwa mieszkania', 'name' => 'nazwa', 'value' => $entry->nazwa])
-                                @include('form-elements.input-text', ['label' => 'Nagłówek strony', 'sublabel'=> 'Meta tag - title', 'name' => 'meta_tytul', 'value' => $entry->meta_tytul])
-                                @include('form-elements.input-text', ['label' => 'Opis strony', 'sublabel'=> 'Meta tag - description', 'name' => 'meta_opis', 'value' => $entry->meta_opis])
+                                @include('form-elements.input-text', ['label' => 'Nazwa mieszkania', 'name' => 'name', 'value' => $entry->name])
+                                @include('form-elements.input-text', ['label' => 'Numer mieszkania', 'name' => 'number', 'value' => $entry->number])
+                                @include('form-elements.input-text', ['label' => 'Nagłówek strony', 'sublabel'=> 'Meta tag - title', 'name' => 'meta_title', 'value' => $entry->meta_title])
+                                @include('form-elements.input-text', ['label' => 'Opis strony', 'sublabel'=> 'Meta tag - description', 'name' => 'meta_description', 'value' => $entry->meta_description])
 
-                                @include('form-elements.input-text', ['label' => 'Pokoje', 'name' => 'pokoje', 'value' => $entry->pokoje])
-                                @include('form-elements.input-text', ['label' => 'Powierzchnia bez m<sup>2</sup>', 'sublabel'=> 'wartość wyświetlana', 'name' => 'metry', 'value' => $entry->metry])
-                                @include('form-elements.input-text', ['label' => 'Powierzchnia bez m<sup>2</sup>', 'sublabel'=> 'wartość wyszukiwana', 'name' => 'szukaj_metry', 'value' => $entry->szukaj_metry])
+                                @include('form-elements.input-text', ['label' => 'Pokoje', 'name' => 'rooms', 'value' => $entry->rooms])
+                                @include('form-elements.input-text', ['label' => 'Powierzchnia bez m<sup>2</sup>', 'sublabel'=> 'wartość wyświetlana', 'name' => 'area', 'value' => $entry->area])
+                                @include('form-elements.input-text', ['label' => 'Powierzchnia bez m<sup>2</sup>', 'sublabel'=> 'wartość wyszukiwana', 'name' => 'area_search', 'value' => $entry->area_search])
 
-                                @include('form-elements.input-text', ['label' => 'Cena', 'sublabel'=> 'wartość wyświetlana', 'name' => 'cena', 'value' => $entry->cena])
-                                @include('form-elements.input-text', ['label' => 'Cena', 'sublabel'=> 'wartość wyszukiwana: tylko liczby, bez spacji, bez przecinka', 'name' => 'szukaj_cena', 'value' => $entry->szukaj_cena])
-                                @include('form-elements.input-text', ['label' => 'Cena za m<sup>2</sup>', 'sublabel'=> 'wartość wyświetlana', 'name' => 'cena_m', 'value' => $entry->cena_m])
-
-                                @include('form-elements.input-file', ['label' => 'Plan mieszkania', 'name' => 'plik'])
-                                @include('form-elements.input-file', ['label' => 'Plik .pdf', 'name' => 'plikpdf'])
-
-
+                                @include('form-elements.input-text', ['label' => 'Cena', 'sublabel'=> 'wartość wyświetlana', 'name' => 'price', 'value' => $entry->price])
+                                @include('form-elements.input-text', ['label' => 'Cena', 'sublabel'=> 'wartość wyszukiwana: tylko liczby, bez spacji, bez przecinka', 'name' => 'price_search', 'value' => $entry->price_search])
+                                @include('form-elements.input-text', ['label' => 'Cena za m<sup>2</sup>', 'sublabel'=> 'wartość wyświetlana', 'name' => 'price_m', 'value' => $entry->price_m])
+                                @include('form-elements.input-file', ['label' => 'Plan mieszkania', 'name' => 'file'])
+                                @include('form-elements.input-file', ['label' => 'Plik .pdf', 'name' => 'pdf'])
                             </div>
                         </div>
                     </div>

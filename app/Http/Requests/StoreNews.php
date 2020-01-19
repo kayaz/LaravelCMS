@@ -3,10 +3,22 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class StoreNews extends FormRequest
 {
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => Str::slug($this->title)
+        ]);
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -14,7 +26,7 @@ class StoreNews extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -25,10 +37,10 @@ class StoreNews extends FormRequest
     public function rules()
     {
         return [
-            'nazwa' => 'required|string|max:255',
-            'wprowadzenie' => 'required|string|max:255',
-            'tekst' => 'required',
-            'data' => 'required|string|max:10'
+            'title' => 'required|string|max:255',
+            'content_entry' => 'required|string|max:255',
+            'content' => 'required',
+            'date' => 'required|string|max:10'
         ];
     }
 }

@@ -6,18 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Building extends Model
 {
-    protected $table = 'inwestycje_budynki';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'investments_id',
-        'nazwa',
+        'name',
         'slug',
-        'numer',
-        'plik',
-        'meta_opis',
-        'meta_tytul',
-        'zakres_powierzchnia',
-        'zakres_pokoje',
-        'zakres_cena',
+        'number',
+        'file',
+        'meta_description',
+        'meta_title',
+        'area_range',
+        'rooms_range',
+        'price_range',
         'html',
         'cords'
     ];

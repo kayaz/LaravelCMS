@@ -98,6 +98,18 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/news/', 'as' => 'admin.n
 
 });
 
+// Robimy mapy
+Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/map/', 'as' => 'admin.map.', 'middleware' => 'auth'], function() {
+
+    Route::get('/',                             'MapController@index')->name('index');
+    Route::get('add',                           'MapController@create')->name('create');
+    Route::post('save',                         'MapController@store')->name('store');
+    Route::get('edit/{map}',                   'MapController@edit')->name('edit');
+    Route::put('update/{map}',                  'MapController@update')->name('update');
+    Route::delete('delete/{map}',              'MapController@destroy')->name('delete');
+
+});
+
 // Robimy RODO
 Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/rodo/', 'as' => 'admin.rodo.', 'middleware' => 'auth'], function() {
 

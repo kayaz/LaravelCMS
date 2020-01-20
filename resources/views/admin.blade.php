@@ -96,6 +96,12 @@
                         <span> Aktualności </span>
                     </a>
                 </li>
+                <li class="{{ Request::routeIs('admin.map.*') ? 'active' : '' }}">
+                    <a href="{{route('admin.map.index')}}">
+                        <i class="fe-map-pin"></i>
+                        <span> Google Maps </span>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="clearfix"></div>

@@ -401,6 +401,10 @@ span.actionBtn {display:block;margin-right: 30px;padding: 8px 13px 7px;cursor:po
     z-index: 1040
 }
 
+/* Mapa
+================================================== */
+#map {height:400px}
+
 /* Upload
 ================================================== */
 .progress-bar {

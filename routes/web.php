@@ -6,6 +6,8 @@ Route::get('/',                                 'Front\IndexController@index')->
 Route::get('/kontakt',                          'Front\ContactController@index')->name('front.contact');
 Route::post('/kontakt',                         'Front\ContactController@send')->name('front.contact.send');
 
+Route::get('/mapa',                             'Front\MapController@index')->name('front.mapa');
+
 // Aktualne inwestycje
 Route::get('/aktualne-inwestycje',              'Front\InvestmentsController@index')->name('front.inwestycje');
 Route::get('/i/{slug}',                         'Front\InvestmentsController@show')->name('front.inwestycja');

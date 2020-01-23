@@ -448,6 +448,19 @@ a .card-body p {color:#505050}
 .pozycja-ap ul li span {float:right}
 .pozycja-ap ul li b {font-weight:600}
 
+.list-sort {background: #e7e7e7;padding:20px}
+.list-sort label {margin-bottom:9px;display:block;width:100%}
+.list-sort select {background:white;padding:10px}
+
+.lista-toggle {padding:15px;border-bottom:1px solid #f4f4f4}
+.view {margin-top: 7px;float: right;line-height: normal}
+.view span {color:#7d7d7d;cursor:pointer;padding-left:10px;font-size:14px;font-weight:normal;text-transform:none}
+.view span:hover {color:#000}
+.view span#list:before, .view span#grid:before {font-family:FontAwesome;margin-right:8px;font-size:14px}
+.view span#list:before {content:"\f0ca"}
+.view span#grid:before {content:"\f039"}
+
+
 /* Mieszkanie
 ================================================== */
 .room-param span {float: right;font-weight:700}

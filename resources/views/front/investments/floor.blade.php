@@ -22,9 +22,34 @@
             </div>
         </div>
 
+        <div class="list-sort mt-4">
+            <form method="GET" action="{{url()->current()}}" class="row">
+                <div class="col-3">
+                    <select name="orderRooms" value="{{$orderByRooms}}" onchange="this.form.submit()">
+                        @foreach([['name' => 'Pokoje rosnąco', 'order' => 'asc'], ['name' => 'Pokoje malejąco', 'order' => 'desc']] as $order)
+                            <option @if($order['order'] == $orderByRooms) selected @endif value="{{$order['order']}}">{{ucfirst($order['name'])}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-3">
+                    <select name="orderArea" value="{{$orderByArea}}" onchange="this.form.submit()">
+                        @foreach([['name' => 'Powierzchnia rosnąco', 'order' => 'asc'], ['name' => 'Powierzchnia malejąco', 'order' => 'desc']] as $order)
+                            <option @if($order['order'] == $orderByArea) selected @endif value="{{$order['order']}}">{{ucfirst($order['name'])}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-6">
+                    <div class="view">
+                        <span id="grid">Mała lista</span>
+                        <span id="list">Duża lista</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <div class="row">
             <div class="col-12">
-                <div id="offerList" class="container mt-5">
+                <div id="offerList" class="container">
                     @foreach($rooms as $r)
                     <div class="row pozycja-ap">
                         <div class="col-2 d-flex align-items-center">

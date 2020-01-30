@@ -1,7 +1,7 @@
 @extends('admin')
 @section('content')
     <div class="container-fluid">
-        <h4 class="page-title"><i class="fe-home"></i> <a href="{{route('admin.investments.index')}}">Inwestycje</a> / {{$investment->nazwa}} / <a href="{{route('admin.investments.budynekindex', $investment->id)}}">Lista budynków</a></h4>
+        <h4 class="page-title"><i class="fe-home"></i> <a href="{{route('admin.investments.index')}}">Inwestycje</a> / {{$investment->name}} / <a href="{{route('admin.investments.budynekindex', $investment->id)}}">Lista budynków</a></h4>
     </div>
 
     <script src="{{ URL::asset('js/plan/underscore.js') }}" charset="utf-8"></script>
@@ -18,11 +18,11 @@
             mapview.loadImage('{{ URL::asset('inwestycje/plan/'.$investment->plan) }}');
         });
     </script>
-    @if(Route::is('admin.investments.pietroedytuj'))
-        <form method="POST" action="{{route('admin.investments.pietroupdate', $entry->id)}}" enctype="multipart/form-data" class="mappa">
+    @if(Route::is('admin.investments.budynekedytuj'))
+        <form method="POST" action="{{route('admin.investments.budynekupdate', $entry->id)}}" enctype="multipart/form-data" class="mappa">
             {{method_field('PUT')}}
             @else
-                <form method="POST" action="{{route('admin.investments.pietrozapisz', $investment->id)}}" enctype="multipart/form-data" class="mappa">
+                <form method="POST" action="{{route('admin.investments.budynekzapisz', $investment->id)}}" enctype="multipart/form-data" class="mappa">
                     @endif
                     @csrf
                     <div class="container-fluid">
@@ -57,14 +57,14 @@
                                             @include('form-elements.mappa', ['label' => 'Współrzędne punktów HTML', 'name' => 'html', 'value' => $entry->html, 'rows' => 10, 'class' => 'mappa-area'])
                                         </div>
 
-                                        @include('form-elements.input-text', ['label' => 'Nazwa budynku', 'name' => 'nazwa', 'value' => $entry->nazwa])
-                                        @include('form-elements.input-text', ['label' => 'Nagłówek strony', 'sublabel'=> 'Meta tag - title', 'name' => 'meta_tytul', 'value' => $entry->meta_tytul])
-                                        @include('form-elements.input-text', ['label' => 'Opis strony', 'sublabel'=> 'Meta tag - description', 'name' => 'meta_opis', 'value' => $entry->meta_opis])
-                                        @include('form-elements.input-text', ['label' => 'Numer budynku', 'name' => 'numer', 'value' => $entry->numer])
-                                        @include('form-elements.input-text', ['label' => 'Zakres powierzchni w wyszukiwarce xx-xx', 'sublabel' => '(zakresy oddzielone przecinkiem)', 'name' => 'zakres_powierzchnia', 'value' => $entry->zakres_powierzchnia])
-                                        @include('form-elements.input-text', ['label' => 'Zakres pokoi w wyszukiwarce', 'sublabel' => '(liczby oddzielone przecinkiem)', 'name' => 'zakres_pokoje', 'value' => $entry->zakres_pokoje])
-                                        @include('form-elements.input-text', ['label' => 'Zakres cen w wyszukiwarce xx-xx', 'sublabel' => '(zakresy oddzielone przecinkiem)', 'name' => 'zakres_cena', 'value' => $entry->zakres_cena])
-                                        @include('form-elements.input-file', ['label' => 'Rzut budynku', 'sublabel' => '(wymiary: '.$planwidth.'px / '.$planheight.'px)', 'name' => 'plik'])
+                                        @include('form-elements.input-text', ['label' => 'Nazwa budynku', 'name' => 'name', 'value' => $entry->name])
+                                        @include('form-elements.input-text', ['label' => 'Nagłówek strony', 'sublabel'=> 'Meta tag - title', 'name' => 'meta_title', 'value' => $entry->meta_title])
+                                        @include('form-elements.input-text', ['label' => 'Opis strony', 'sublabel'=> 'Meta tag - description', 'name' => 'meta_description', 'value' => $entry->meta_description])
+                                        @include('form-elements.input-text', ['label' => 'Numer budynku', 'name' => 'number', 'value' => $entry->number])
+                                        @include('form-elements.input-text', ['label' => 'Zakres powierzchni w wyszukiwarce xx-xx', 'sublabel' => '(zakresy oddzielone przecinkiem)', 'name' => 'area_range', 'value' => $entry->area_range])
+                                        @include('form-elements.input-text', ['label' => 'Zakres pokoi w wyszukiwarce', 'sublabel' => '(liczby oddzielone przecinkiem)', 'name' => 'rooms_range', 'value' => $entry->rooms_range])
+                                        @include('form-elements.input-text', ['label' => 'Zakres cen w wyszukiwarce xx-xx', 'sublabel' => '(zakresy oddzielone przecinkiem)', 'name' => 'price_range', 'value' => $entry->price_range])
+                                        @include('form-elements.input-file', ['label' => 'Rzut budynku', 'sublabel' => '(wymiary: '.$planwidth.'px / '.$planheight.'px)', 'name' => 'file'])
                                     </div>
                                 </div>
                             </div>

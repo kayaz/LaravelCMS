@@ -44,6 +44,10 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/investments/', 'as' => '
 
     Route::get('buildings/{investment}',        'InvestmentsBuildingController@index')->name('budynekindex');
     Route::get('add-building/{investment}',     'InvestmentsBuildingController@create')->name('budynekdodaj');
+    Route::get('edit-building/{building}',      'InvestmentsBuildingController@edit')->name('budynekedytuj');
+    Route::put('update-building/{building}',    'InvestmentsBuildingController@update')->name('budynekupdate');
+    Route::post('save-building/{investment}',   'InvestmentsBuildingController@store')->name('budynekzapisz');
+    Route::delete('delete-building/{building}', 'InvestmentsBuildingController@destroy')->name('budynekusun');
 
     Route::get('floors/{investment}',           'InvestmentsFloorController@index')->name('pietroindex');
     Route::get('add-floor/{investment}',        'InvestmentsFloorController@create')->name('pietrododaj');

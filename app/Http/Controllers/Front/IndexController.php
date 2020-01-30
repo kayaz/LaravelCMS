@@ -9,6 +9,8 @@ use App\Box;
 
 use App\Http\Controllers\Controller;
 
+use MetaTag;
+
 class IndexController extends Controller
 {
     public function index()
@@ -23,6 +25,11 @@ class IndexController extends Controller
     public function getPage($uri = null)
     {
         $page = Menu::where('uri', $uri)->firstOrFail();
+
+        // SEO
+        MetaTag::set('title', $page->title);
+        MetaTag::set('meta_title', $page->meta_title);
+
         return view('front.index.menupage')->with('page', $page);
     }
 }

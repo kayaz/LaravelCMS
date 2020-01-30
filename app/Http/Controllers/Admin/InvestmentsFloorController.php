@@ -144,6 +144,6 @@ class InvestmentsFloorController extends Controller
     public function destroy(Floor $floor)
     {
         $floor->delete();
-        return response()->json(['success' => 'Boks usniety']);
+        return response()->json(['success' => 'Piętro usunięte']);
     }
 }

@@ -11,10 +11,14 @@ Route::get('/mapa',                             'Front\MapController@index')->na
 // Aktualne inwestycje
 Route::get('/aktualne-inwestycje',              'Front\InvestmentsController@index')->name('front.inwestycje');
 Route::get('/i/{slug}',                         'Front\InvestmentsController@show')->name('front.inwestycja');
+
+// Inwestycja osiedlowa
+Route::get('/i/{slug}/b/{buildingslug}',         'Front\InvestmentsBuildingController@index')->name('front.inwestycja.budynek');
+
+// Inwestycja budynkowa
 Route::get('/i/{slug}/{floorslug}',             'Front\InvestmentsFloorController@index')->name('front.inwestycja.pietro');
 Route::get('/i/{slug}/{floorslug}/{roomslug}',  'Front\InvestmentsRoomController@index')->name('front.inwestycja.mieszkanie');
-
-Route::post('/i/{slug}/{floorslug}/{roomslug}',  'Front\InvestmentsRoomController@send')->name('front.inwestycja.mieszkanie.send');
+Route::post('/i/{slug}/{floorslug}/{roomslug}', 'Front\InvestmentsRoomController@send')->name('front.inwestycja.mieszkanie.send');
 
 // Aktualności
 Route::group(['namespace' => 'Front', 'prefix'=>'/aktualnosci/', 'as' => 'front.news.'], function() {

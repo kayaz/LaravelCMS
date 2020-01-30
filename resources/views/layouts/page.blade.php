@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>{{ settings()->get('meta_title') }} - @yield('meta_title')</title>
-    <meta name="description" content="{{ settings()->get('meta_title') }}">
+    <title>{{ MetaTag::get('meta_title') ?? settings()->get('meta_title').' - '.MetaTag::get('title') }}</title>
+    <meta name="description" content="{{ $page->meta_description ?? settings()->get('meta_description') }}">
     <meta name="author" content="{{ settings()->get('author') }}">
     <meta name="robots" content="{{ settings()->get('robots') }}">
 

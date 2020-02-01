@@ -1,6 +1,8 @@
 @extends('layouts.page')
 
 @section('meta_title', $wpis->title)
+@section('seo_title', $wpis->meta_title)
+@section('seo_description', $wpis->meta_description)
 
 @section('content')
     <div class="container wpis-page">

@@ -1,12 +1,14 @@
 @extends('layouts.page')
 
-@section('meta_title', 'Mapa')
+@section('meta_title', $page->title)
+@section('seo_title', $page->meta_title)
+@section('seo_description', $page->meta_description)
 
 @section('content')
     <div id="map"></div>
 
-    <link href="/css/leaflet.css" rel="stylesheet">
-    <script src="/js/leaflet.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="{{ URL::asset('css/leaflet.css') }}">
+    <script type="text/javascript" src="{{ URL::asset('js/leaflet.js') }}"></script>
 
     <script type="text/javascript">
         let map = L.map('map').setView([52.227388, 21.011063], 13),

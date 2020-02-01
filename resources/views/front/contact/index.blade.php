@@ -1,6 +1,8 @@
 @extends('layouts.page')
 
-@section('meta_title', 'Kontakt')
+@section('meta_title', $page->title)
+@section('seo_title', $page->meta_title)
+@section('seo_description', $page->meta_description)
 
 @section('content')
     <div id="googlemap" style="margin-top: -3rem !important;">

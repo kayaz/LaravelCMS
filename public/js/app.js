@@ -24,4 +24,23 @@ $(document).ready(function(){
 // Cookies
     $(".closecookies").click(function(b){b.preventDefault();var a=$("#cookies").is(":hidden");if(a){$("#cookies").show()}else{$("#cookies").hide()}$.cookie("open",a,{expires:365,path:"/"})});var openToggle=getCookie("open");if(openToggle=="false"){$("#cookies").hide()}else{$("#cookies").show()};
 
+
+// Slider w tekscie
+    if ( $( ".textSlider" ).length ) {
+        $(".textSlider").responsiveSlides({
+            auto: true,
+            pager: false,
+            nav: true,
+            timeout: 5000,
+            random: false,
+            speed: 500
+        });
+    }
+
+});
+$(window).load(function() {
+    if ( $( ".textSlider" ).length ) {
+        $(".textSlider").show();
+        $(".rslides_nav").show();
+    }
 });

@@ -175,8 +175,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        App\Providers\MetaTagsProvider::class
+        App\Providers\RouteServiceProvider::class
     ],
 
     /*
@@ -228,8 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'Nestable' => Nestable\Facades\NestableService::class,
-        'MetaTag'   => App\Providers\Facades\MetaTag::class,
+        'Nestable' => Nestable\Facades\NestableService::class
     ],
 
 ];

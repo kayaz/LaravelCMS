@@ -16,12 +16,12 @@ class ContactController extends Controller
 {
     public function index()
     {
-        // SEO
         $page = Menu::where('slug', 'kontakt')->firstOrFail(['title','meta_title', 'meta_description']);
-        MetaTag::set('title', $page->title);
-        MetaTag::set('meta_title', $page->meta_title);
-
-        return view('front.contact.index', ['validation' => 1, 'rules' => Rodo::orderBy('sort')->get()]);
+        return view('front.contact.index', [
+            'validation' => 1,
+            'rules' => Rodo::orderBy('sort')->get(),
+            'page' => $page
+        ]);
     }
 
     public function send(SendMail $request)

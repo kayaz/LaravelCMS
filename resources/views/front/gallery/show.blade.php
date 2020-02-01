@@ -1,6 +1,6 @@
 @extends('layouts.page')
 
-@section('meta_title', $name)
+@section('meta_title', $gallery->name)
 
 @section('content')
     <div id="photos-list" class="container pt-5 pb-5">

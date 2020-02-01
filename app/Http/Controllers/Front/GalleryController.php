@@ -20,12 +20,10 @@ class GalleryController extends Controller
     public function index()
     {
         $page = Menu::where('slug', 'galeria')->firstOrFail(['title','meta_title', 'meta_description']);
-
-        // SEO
-        MetaTag::set('title', $page->title);
-        MetaTag::set('meta_title', $page->meta_title);
-
-        return view('front.gallery.index', ['list' => Gallery::all('id', 'name')->sortBy("name")]);
+        return view('front.gallery.index', [
+            'list' => Gallery::all('id', 'name')->sortBy("name"),
+            'page' => $page
+        ]);
     }
 
     /**
@@ -37,10 +35,7 @@ class GalleryController extends Controller
      */
     public function show(Gallery $gallery)
     {
-        // SEO
-        MetaTag::set('title', $gallery->name);
-
         $photos = Photo::all()->sortBy("sort")->where('gallery_id', $gallery->id);
-        return view('front.gallery.show', ['name' => $gallery->name, 'list' => $photos]);
+        return view('front.gallery.show', ['gallery' => $gallery, 'list' => $photos]);
     }
 }

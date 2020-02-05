@@ -54,12 +54,12 @@
                         <span> Użytkownicy </span>
                     </a>
                 </li>
-{{--                <li class="">--}}
-{{--                    <a href="">--}}
-{{--                        <i class="fe-shield"></i>--}}
-{{--                        <span> Blokada dostępu </span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li class="{{ Request::routeIs('admin.ban.*') ? 'active' : '' }}">
+                    <a href="{{route('admin.ban.index')}}">
+                        <i class="fe-shield"></i>
+                        <span> Blokada dostępu </span>
+                    </a>
+                </li>
                 <li class="{{ Request::routeIs('admin.slider.*') ? 'active' : '' }}">
                     <a href="{{route('admin.slider.index')}}">
                         <i class="fe-airplay"></i>

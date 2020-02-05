@@ -35,7 +35,7 @@ class ContactForm extends Mailable
     public function build()
     {
         // Sprawdzamy czy dane adres email istnieje w bazie
-        if (RodoClient::where('mail', $this->request['email'])->exists()) {
+        if ($rodoClient = RodoClient::where('mail', $this->request['email'])->first(['id'])) {
 
             //Klient istnieje, aktualizujemy dane
             RodoClient::where('mail', $this->request['email'])->update([
@@ -43,6 +43,66 @@ class ContactForm extends Mailable
                 'host' => gethostbyaddr($this->request->ip()),
                 'browser' => $_SERVER['HTTP_USER_AGENT']
             ]);
+
+            // Pobieramy zaznaczone regułki
+            $checkbox = preg_grep("/rule_([0-9])/i", array_keys($this->request->all()));
+
+            foreach($checkbox as $rule) {
+
+                // Wyciągamy numer regułki
+                $getId = preg_replace('/[^0-9]/', '', $rule);
+
+                $rodo = RodoClientRules::where('id_rule', $getId)->where('id_client', $rodoClient->id)->first();
+
+                dd($rodo);
+
+            }
+
+//            foreach($regulki as $key => $number){
+//                $getId = preg_replace('/[^0-9]/', '', $number);
+//
+//                $regulkaArchiv = $db->fetchRow($db->select()->from('rodo_regulki_klient')->where('id_regulka = ?', $getId)->where('id_klient = ?', $klient->id));
+//
+//                if($regulkaArchiv){
+//
+//                    $arrayRegulka = json_decode(json_encode($regulkaArchiv),true);
+//                    unset($arrayRegulka['id']);
+//                    $arrayRegulka['data_anulowania'] = strtotime(date("Y-m-d H:i:s"));
+//
+//                    $db->insert('rodo_regulki_archiwum', $arrayRegulka);
+//
+//                    $regulka = $db->fetchRow($db->select()->from('rodo_regulki')->where('id = ?', $getId));
+//                    $dataRodo = array(
+//                        'id_regulka' => $getId,
+//                        'id_klient' => $klient->id,
+//                        'ip' => $ip,
+//                        'data_podpisania' => strtotime(date("Y-m-d H:i:s")),
+//                        'termin' => strtotime("+".$regulka->termin." months", strtotime(date("y-m-d"))),
+//                        'miesiace' => $regulka->termin,
+//                        'status' => 1
+//                    );
+//
+//                    $where = array(
+//                        'id_regulka = ?' => $getId,
+//                        'id_klient = ?' => $klient->id
+//                    );
+//                    $db->update('rodo_regulki_klient', $dataRodo, $where);
+//
+//                } else {
+//
+//                    $regulka = $db->fetchRow($db->select()->from('rodo_regulki')->where('id = ?', $getId));
+//                    $dataRodo = array(
+//                        'id_regulka' => $getId,
+//                        'id_klient' => $klient->id,
+//                        'ip' => $ip,
+//                        'data_podpisania' => strtotime(date("Y-m-d H:i:s")),
+//                        'termin' => strtotime("+".$regulka->termin." months", strtotime(date("y-m-d"))),
+//                        'miesiace' => $regulka->termin,
+//                        'status' => 1
+//                    );
+//                    $db->insert('rodo_regulki_klient', $dataRodo);
+//                }
+//            }
 
         } else {
 

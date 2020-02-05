@@ -29,6 +29,18 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/menu/', 'as' => 'admin.m
 
 });
 
+// Robimy blokade dostepu
+Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/ban/', 'as' => 'admin.ban.', 'middleware' => 'auth'], function() {
+
+    Route::get('/',                             'BanController@index')->name('index');
+    Route::get('add',                           'BanController@create')->name('create');
+    Route::post('save',                         'BanController@store')->name('store');
+    Route::get('edit/{ban}',                    'BanController@edit')->name('edit');
+    Route::put('update/{ban}',                  'BanController@update')->name('update');
+    Route::delete('delete/{ban}',               'BanController@destroy')->name('destroy');
+
+});
+
 // Robimy inwestycje
 Route::group(['namespace' => 'Admin', 'prefix'=>'/admin/investments/', 'as' => 'admin.investments.', 'middleware' => 'auth'], function() {
 

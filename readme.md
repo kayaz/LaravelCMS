@@ -12,14 +12,14 @@ Demo: https://laravel.jk-design.pl/
 * System użytkowników
 * Galeria
 * Zarządzanie menu na stronie
+* Edycja elementów na stronie - inline
+* Blokowanie dostępu wg. IP
+* Wykorzystanie map Leaflet
 
 ## Moduły do zrobienia
 * System zarządzania inwestycjami (80% wykonane)
-* Edycja elementów na stronie - inline (50% wykonane)
-* Blokowanie dostępu wg. IP
 * System statystyk strony
 * Logowanie via Facebook / Google IP
-* Wykorzystanie map Leaflet
 * System tłumaczeń
 
 ![](http://www.kcms.pl/cms.png)
